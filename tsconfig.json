@@ -3,15 +3,31 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@*": ["./*"],
+      "@components": ["./components/"],
+      "@components/*": ["./components/*"],
+      "@constants": ["./constants/"],
+      "@constants/*": ["./constants/*"],
+      "@hooks": ["./hooks/"],
+      "@hooks/*": ["./hooks/*"],
+      "@navigation": ["./navigation/"],
+      "@navigation/*": ["./navigation/*"],
+      "@screens": ["./screens/"],
+      "@screens/*": ["./screens/*"],
+      "@services": ["./services/"],
+      "@types": ["./types/"],
+      "@types/*": ["./types/*"],
+      "@utils": ["./libs/utils/"],
+      "@utils/*": ["./libs/utils/*"],
+      "@libs": ["./libs/"],
+      "@libs/*": ["./libs/*"],
+      "@apis": ["./libs/apis/"],
+      "@apis/*": ["./libs/apis/*"],
+      "@assets": ["./assets/"],
+      "@assets/*": ["./assets/*"],
+      "@images": ["./assets/images/"],
+      "@images/*": ["./assets/images/*"]
     }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts", "metro.config.js"]
 }
