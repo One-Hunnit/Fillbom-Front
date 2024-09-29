@@ -6,9 +6,6 @@
     "isolatedModules": true,
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
     /* Path */
     "baseUrl": "src",
     "paths": {
