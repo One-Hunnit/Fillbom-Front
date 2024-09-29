@@ -7,8 +7,8 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { useColorScheme } from '@/components/useColorScheme.web';
 import 'react-native-reanimated';
-import { useColorScheme } from '@/components/useColorScheme';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -25,7 +25,15 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    Apple100: require('../src/assets/fonts/AppleSDGothicNeoT.ttf'),
+    Apple200: require('../src/assets/fonts/AppleSDGothicNeoUL.ttf'),
+    Apple300: require('../src/assets/fonts/AppleSDGothicNeoL.ttf'),
+    Apple400: require('../src/assets/fonts/AppleSDGothicNeoR.ttf'),
+    Apple500: require('../src/assets/fonts/AppleSDGothicNeoM.ttf'),
+    Apple600: require('../src/assets/fonts/AppleSDGothicNeoSB.ttf'),
+    Apple700: require('../src/assets/fonts/AppleSDGothicNeoB.ttf'),
+    Apple800: require('../src/assets/fonts/AppleSDGothicNeoEB.ttf'),
+    Apple900: require('../src/assets/fonts/AppleSDGothicNeoH.ttf'),
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
