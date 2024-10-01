@@ -9,6 +9,8 @@
     /* Path */
     "baseUrl": "src",
     "paths": {
+      "@/app": ["app"],
+      "@/app/*": ["app/*"],
       "@/components": ["components"],
       "@/components/*": ["components/*"],
       "@/constants": ["constants"],

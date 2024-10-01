@@ -51,6 +51,11 @@ module.exports = {
             position: 'before',
           },
           {
+            pattern: '@/app/*',
+            group: 'internal',
+            position: 'after',
+          },
+          {
             pattern: '@/components/*',
             group: 'internal',
             position: 'after',
