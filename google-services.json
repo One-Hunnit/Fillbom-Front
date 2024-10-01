@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "231143837786",
+    "project_id": "onehunnit-mobile",
+    "storage_bucket": "onehunnit-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231143837786:android:375cd4c262ca8be04cc863",
+        "android_client_info": {
+          "package_name": "com.onehunnit.dementiacaregiver"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDymsKaL3fH4-R0nqWDOIZHIBq3LjIs-LA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
