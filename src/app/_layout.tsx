@@ -25,15 +25,15 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    Apple100: require('../src/assets/fonts/AppleSDGothicNeoT.ttf'),
-    Apple200: require('../src/assets/fonts/AppleSDGothicNeoUL.ttf'),
-    Apple300: require('../src/assets/fonts/AppleSDGothicNeoL.ttf'),
-    Apple400: require('../src/assets/fonts/AppleSDGothicNeoR.ttf'),
-    Apple500: require('../src/assets/fonts/AppleSDGothicNeoM.ttf'),
-    Apple600: require('../src/assets/fonts/AppleSDGothicNeoSB.ttf'),
-    Apple700: require('../src/assets/fonts/AppleSDGothicNeoB.ttf'),
-    Apple800: require('../src/assets/fonts/AppleSDGothicNeoEB.ttf'),
-    Apple900: require('../src/assets/fonts/AppleSDGothicNeoH.ttf'),
+    Apple100: require('../assets/fonts/AppleSDGothicNeoT.ttf'),
+    Apple200: require('../assets/fonts/AppleSDGothicNeoUL.ttf'),
+    Apple300: require('../assets/fonts/AppleSDGothicNeoL.ttf'),
+    Apple400: require('../assets/fonts/AppleSDGothicNeoR.ttf'),
+    Apple500: require('../assets/fonts/AppleSDGothicNeoM.ttf'),
+    Apple600: require('../assets/fonts/AppleSDGothicNeoSB.ttf'),
+    Apple700: require('../assets/fonts/AppleSDGothicNeoB.ttf'),
+    Apple800: require('../assets/fonts/AppleSDGothicNeoEB.ttf'),
+    Apple900: require('../assets/fonts/AppleSDGothicNeoH.ttf'),
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
