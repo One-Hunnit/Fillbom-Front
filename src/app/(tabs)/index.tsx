@@ -1,14 +1,12 @@
-import { StyleSheet } from 'react-native';
-import { Text, View } from '@/components/Themed';
+import { StyleSheet, Text, View } from 'react-native';
 
-export default function TabOneScreen() {
+export default function Home() {
   return (
     <View style={styles.container}>
-      <Text>Tab Home</Text>
+      <Text>Home Page</Text>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
