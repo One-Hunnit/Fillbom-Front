@@ -1,10 +1,10 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Redirect, Tabs } from 'expo-router';
-import React from 'react';
-import { useAuth } from 'ctx';
+import { useRecoilValue } from 'recoil';
+import { userState } from '@/stores/authStore';
 
 export default function TabLayout() {
-  const { user } = useAuth();
+  const user = useRecoilValue(userState);
 
   if (!user) {
     return <Redirect href="/auth/login" />;
