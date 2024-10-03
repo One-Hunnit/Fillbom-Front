@@ -1,9 +1,15 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import React from 'react';
-// import About from '../(app)/about';
+import { useAuth } from 'ctx';
 
 export default function TabLayout() {
+  const { user } = useAuth();
+
+  if (!user) {
+    return <Redirect href="/auth/login" />;
+  }
+
   return (
     <Tabs
       screenOptions={{
@@ -28,14 +34,15 @@ export default function TabLayout() {
           ),
         }}
       />
-      {/* <Tabs.Screen
+      <Tabs.Screen
         name="about"
-        component={About}
         options={{
           title: 'about',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} color={color} />,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={28} name="user" color={color} />
+          ),
         }}
-      /> */}
+      />
     </Tabs>
   );
 }

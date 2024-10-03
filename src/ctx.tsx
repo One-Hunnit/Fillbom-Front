@@ -17,11 +17,11 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [user, setUser] = useRecoilState<User | null>(userState); // Recoil 상태 사용
+  const [user, setUser] = useRecoilState<User | null>(userState);
 
   useEffect(() => {
     if (!user) {
-      const authenticatedUser: User = { id: '1', name: '인증된 사용자' }; // 인증된 사용자 정보 예시
+      const authenticatedUser: User = { id: '1', name: '인증된 사용자' };
       setUser(authenticatedUser);
     }
   }, [user, setUser]);
