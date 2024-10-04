@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "치매돌봄이",
+    "name": "필봄",
     "owner": "onehunnit",
-    "slug": "onehunnit-mobile",
+    "slug": "fillbom-front",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
@@ -15,11 +15,11 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.onehunnit.dementiacaregiver",
+      "bundleIdentifier": "com.onehunnit.fillbom",
       "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
-      "package": "com.onehunnit.dementiacaregiver",
+      "package": "com.onehunnit.fillbom",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -48,7 +48,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "e5c1d5c2-f86a-44ad-a6ea-1361b4bd91d5"
+        "projectId": "8874d96f-a2d2-4307-ab15-2280f7eb0f7f"
       }
     }
   }
