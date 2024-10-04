@@ -7,8 +7,12 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+// eslint-disable-next-line import/order
 import { useColorScheme } from '@/components/useColorScheme.web';
 import 'react-native-reanimated';
+// eslint-disable-next-line import/order
+import { RecoilRoot } from 'recoil';
+import { AppLoader } from '@/components/AppLoader';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -58,11 +62,17 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
+    <RecoilRoot>
+      <AppLoader>
+        <ThemeProvider
+          value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+          </Stack>
+        </ThemeProvider>
+      </AppLoader>
+    </RecoilRoot>
   );
 }

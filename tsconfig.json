@@ -33,7 +33,9 @@
       "@/assets": ["assets/"],
       "@/assets/*": ["assets/*"],
       "@/images": ["assets/images/"],
-      "@/images/*": ["assets/images/*"]
+      "@/images/*": ["assets/images/*"],
+      "@/stores/": ["stores/"],
+      "@/stores/*": ["stores/*"]
     }
   },
   "include": [
