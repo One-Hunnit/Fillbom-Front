@@ -12,6 +12,7 @@ import { useColorScheme } from '@/components/useColorScheme.web';
 import 'react-native-reanimated';
 // eslint-disable-next-line import/order
 import { RecoilRoot } from 'recoil';
+import { AppLoader } from '@/components/AppLoader';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -62,12 +63,16 @@ function RootLayoutNav() {
 
   return (
     <RecoilRoot>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-        </Stack>
-      </ThemeProvider>
+      <AppLoader>
+        <ThemeProvider
+          value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+          </Stack>
+        </ThemeProvider>
+      </AppLoader>
     </RecoilRoot>
   );
 }
