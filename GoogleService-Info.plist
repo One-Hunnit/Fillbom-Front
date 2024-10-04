@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyCFNeexyAzYDvVM_mc0XlliW2tg7DAgclY</string>
+	<string>AIzaSyD5pMxNZhnNt8Wa_F4rH1wakLuBfOHdEPc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>231143837786</string>
+	<string>774568569244</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.onehunnit.dementiacaregiver</string>
+	<string>com.onehunnit.fillbom</string>
 	<key>PROJECT_ID</key>
-	<string>onehunnit-mobile</string>
+	<string>fillbom</string>
 	<key>STORAGE_BUCKET</key>
-	<string>onehunnit-mobile.appspot.com</string>
+	<string>fillbom.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:231143837786:ios:b1ef0f13c96e892f4cc863</string>
+	<string>1:774568569244:ios:c2de910e5108f01df94059</string>
 </dict>
 </plist>

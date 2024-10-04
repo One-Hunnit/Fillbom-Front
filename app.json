@@ -2,7 +2,7 @@
   "expo": {
     "name": "필봄",
     "owner": "onehunnit",
-    "slug": "onehunnit-mobile",
+    "slug": "fillbom-front",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
@@ -48,7 +48,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "e5c1d5c2-f86a-44ad-a6ea-1361b4bd91d5"
+        "projectId": "8874d96f-a2d2-4307-ab15-2280f7eb0f7f"
       }
     }
   }
