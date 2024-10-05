@@ -1,7 +1,19 @@
-## 관련 이슈
+## Motivation
 
-https://onehunnit.atlassian.net/browse/OH-
+기능 설명과 개발 동기에 대해서는 티켓을 확인해주세요.
 
-## 작업 내용
+https://gom3.atlassian.net/browse/DUT-XXX
 
-## 참고사항
+<br>
+
+## Key Changes
+
+주요 변경사항을 요약하면 다음과 같습니다.
+
+- 
+
+<br>
+
+## To Reviewers
+
+-
