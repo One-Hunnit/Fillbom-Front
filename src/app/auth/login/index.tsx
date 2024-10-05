@@ -1,3 +1,4 @@
+import * as KakaoLogins from '@react-native-seoul/kakao-login';
 import { useRouter } from 'expo-router';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useSetRecoilState } from 'recoil';
@@ -13,10 +14,22 @@ const Login = () => {
     router.push('/');
   };
 
+  const loginWithKakao = () => {
+    try {
+      const token = KakaoLogins.login();
+      const profile = KakaoLogins.getProfile();
+      // const userData = { id: '1', name: 'test' };
+      // setUser(userData);
+      console.log(token, profile);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>로그인 페이지</Text>
       <Button title="로그인" onPress={handleLogin} />
+      <Button title="카카오 로그인" onPress={loginWithKakao} />
     </View>
   );
 };
