@@ -4,11 +4,12 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
-    "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web",
-    "test": "jest --watchAll",
-    "lint": "eslint ."
+    "android": "expo run:android",
+    "ios:device": "expo run:ios --device",
+    "android:device": "expo run:android --device",
+    "lint": "eslint .",
+    "test": "jest --watchAll"
   },
   "jest": {
     "preset": "jest-expo"
@@ -59,5 +60,6 @@
     "react-test-renderer": "18.2.0",
     "typescript": "~5.3.3"
   },
-  "private": true
+  "private": true,
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
 }
