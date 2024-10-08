@@ -1,17 +1,8 @@
 import * as Location from 'expo-location';
+import type { ICoordinates } from '@/types';
 
-interface Coordinates {
-  accuracy: number | null;
-  altitude: number | null;
-  altitudeAccuracy: number | null;
-  heading: number | null;
-  latitude: number;
-  longitude: number;
-  speed: number | null;
-}
-
-export const foreGroundLocationTraking = async (): Promise<Coordinates> => {
-  return new Promise<Coordinates>((resolve, reject) => {
+export const foreGroundLocationTraking = async (): Promise<ICoordinates> => {
+  return new Promise<ICoordinates>((resolve, reject) => {
     Location.watchPositionAsync(
       {
         accuracy: Location.Accuracy.High,
@@ -19,7 +10,10 @@ export const foreGroundLocationTraking = async (): Promise<Coordinates> => {
         distanceInterval: 0,
       },
       (location) => {
-        const coords: Coordinates = location.coords;
+        const coords: ICoordinates = {
+          ...location.coords,
+          accuracy: location.coords.accuracy ?? 0,
+        };
         console.log('foreground', coords);
         resolve(coords);
       },
