@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { Text, StyleSheet, View, Pressable } from 'react-native';
 
-interface ButtonProps {
+interface IButtonProps {
   title?: string;
   onPress?: () => void;
   svgIcon?: React.FC;
@@ -18,7 +18,7 @@ interface ButtonProps {
   defaultTextColor?: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<IButtonProps> = ({
   title,
   onPress,
   svgIcon: SvgIcon = null,
