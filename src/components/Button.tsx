@@ -3,10 +3,10 @@ import type { ViewStyle, TextStyle } from 'react-native';
 import { Text, StyleSheet, View, Pressable } from 'react-native';
 
 interface ButtonProps {
-  title: string;
-  onPress: () => void;
+  title?: string;
+  onPress?: () => void;
   svgIcon?: React.FC;
-  layoutType?: 'text' | 'iconTextSeparate' | 'iconTextTogether';
+  layoutType?: 'iconText' | 'iconOnly' | 'textOnly' | 'social';
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
   disabled?: boolean;
@@ -63,20 +63,37 @@ export const Button: React.FC<ButtonProps> = ({
       onPressIn={() => setIsPressed(true)}
       onPressOut={() => setIsPressed(false)}
     >
-      {layoutType === 'text' && <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>}
-      {layoutType === 'iconTextSeparate' && SvgIcon && (
-        <View style={styles.separate}>
-          <SvgIcon />
+      {layoutType === 'textOnly' && (
+        <View style={styles.contentWrapper}>
           <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
         </View>
       )}
-
-      {layoutType === 'iconTextTogether' && SvgIcon && (
-        <View style={styles.together}>
-          <View style={styles.iconWrapper}>
+      {layoutType === 'iconOnly' && SvgIcon && (
+        <View style={styles.contentWrapper}>
+          <View>
             <SvgIcon />
           </View>
-          <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
+        </View>
+      )}
+      {layoutType === 'iconText' && SvgIcon && (
+        <View style={styles.contentWrapper}>
+          <View style={styles.wrapper}>
+            <SvgIcon />
+            <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
+          </View>
+        </View>
+      )}
+
+      {layoutType === 'social' && SvgIcon && (
+        <View style={styles.contentWrapper}>
+          <View style={styles.socialContentWrapper}>
+            <View style={styles.social}>
+              <SvgIcon />
+              <View style={styles.textWrapper}>
+                <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
+              </View>
+            </View>
+          </View>
         </View>
       )}
     </Pressable>
@@ -89,22 +106,37 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     display: 'flex',
     height: 52,
-    padding: 10,
     width: 342,
   },
-  iconWrapper: {
-    marginRight: 10,
-  },
-  separate: {
+  contentWrapper: {
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    height: '100%',
+    justifyContent: 'center',
+  },
+  social: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  socialContentWrapper: {
+    flexDirection: 'row',
+    height: '100%',
+    width: 302,
   },
   text: {
     fontSize: 16,
   },
-  together: {
+  textWrapper: {
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'center',
+    paddingRight: 24,
+  },
+  wrapper: {
     alignItems: 'center',
     flexDirection: 'row',
+    gap: 10,
   },
 });

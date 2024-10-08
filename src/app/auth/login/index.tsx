@@ -21,9 +21,8 @@ const Login = () => {
       <Text style={styles.title}>로그인 페이지</Text>
       {/* <Button title="로그인" onPress={handleLogin} /> */}
       <Button
-        title="아이콘 텍스트"
-        onPress={() => console.log('아이콘 텍스트 떨어져 있는 버튼 클릭됨')}
-        layoutType="iconTextSeparate"
+        title="텍스트"
+        layoutType="iconText"
         svgIcon={infoIconBlack}
         pressedButtonColor={colors.blue[300]}
         disabledButtonColor={colors.blue[200]}
