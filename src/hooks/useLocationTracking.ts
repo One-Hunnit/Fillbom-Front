@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { backgroundLocationTraking } from '@/app/(tabs)/(locationUtils)/backgroundLocationTraking';
-import { defineLocationTrackingTask } from '@/app/(tabs)/(locationUtils)/defineLocationTrackingTask';
-import { foreGroundLocationTraking } from '@/app/(tabs)/(locationUtils)/foreGroundLocationTraking';
-import { requestLocationPermissions } from '@/app/(tabs)/(locationUtils)/requestLocationPermissions';
+import { backgroundLocationTraking } from '@/utils/location/backgroundLocationTraking';
+import { defineLocationTrackingTask } from '@/utils/location/defineLocationTrackingTask';
+import { foreGroundLocationTraking } from '@/utils/location/foreGroundLocationTraking';
+import { requestLocationPermissions } from '@/utils/location/requestLocationPermissions';
 
 const useLocationTracking = () => {
   useEffect(() => {
