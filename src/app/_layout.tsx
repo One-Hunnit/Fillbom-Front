@@ -21,15 +21,15 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    Apple100: require('../assets/fonts/AppleSDGothicNeoT.ttf'),
-    Apple200: require('../assets/fonts/AppleSDGothicNeoUL.ttf'),
-    Apple300: require('../assets/fonts/AppleSDGothicNeoL.ttf'),
-    Apple400: require('../assets/fonts/AppleSDGothicNeoR.ttf'),
-    Apple500: require('../assets/fonts/AppleSDGothicNeoM.ttf'),
-    Apple600: require('../assets/fonts/AppleSDGothicNeoSB.ttf'),
-    Apple700: require('../assets/fonts/AppleSDGothicNeoB.ttf'),
-    Apple800: require('../assets/fonts/AppleSDGothicNeoEB.ttf'),
-    Apple900: require('../assets/fonts/AppleSDGothicNeoH.ttf'),
+    'Pretendard-Black': require('./assets/fonts/Pretendard-Black.otf'),
+    'Pretendard-Bold': require('./assets/fonts/Pretendard-Bold.otf'),
+    'Pretendard-ExtraBold': require('./assets/fonts/Pretendard-ExtraBold.otf'),
+    'Pretendard-ExtraLight': require('./assets/fonts/Pretendard-ExtraLight.otf'),
+    'Pretendard-Light': require('./assets/fonts/Pretendard-Light.otf'),
+    'Pretendard-Medium': require('./assets/fonts/Pretendard-Medium.otf'),
+    'Pretendard-Regular': require('./assets/fonts/Pretendard-Regular.otf'),
+    'Pretendard-SemiBold': require('./assets/fonts/Pretendard-SemiBold.otf'),
+    'Pretendard-Thin': require('./assets/fonts/Pretendard-Thin.otf'),
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
