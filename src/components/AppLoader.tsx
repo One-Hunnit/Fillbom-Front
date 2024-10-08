@@ -12,10 +12,6 @@ export function AppLoader({ children }: { children: React.ReactNode }) {
   const loadAssetsAsync = async () => {
     try {
       const imageAssets = await Asset.loadAsync([
-        require('../assets/images/adaptive-icon.png'),
-        require('../assets/images/favicon.png'),
-        require('../assets/images/icon.png'),
-        require('../assets/images/splash.png'),
         require('../assets/fonts/AppleSDGothicNeoB.ttf'),
         require('../assets/fonts/AppleSDGothicNeoEB.ttf'),
         require('../assets/fonts/AppleSDGothicNeoH.ttf'),
