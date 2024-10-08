@@ -1,4 +1,4 @@
-import * as KakaoLogins from '@react-native-seoul/kakao-login';
+import { login } from '@react-native-seoul/kakao-login';
 import { useRouter } from 'expo-router';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useSetRecoilState } from 'recoil';
@@ -14,22 +14,23 @@ const Login = () => {
     router.push('/');
   };
 
-  const loginWithKakao = () => {
+  const signInWithKakao = async () => {
     try {
-      const token = KakaoLogins.login();
-      const profile = KakaoLogins.getProfile();
-      // const userData = { id: '1', name: 'test' };
-      // setUser(userData);
-      console.log(token, profile);
-    } catch (e) {
-      console.log(e);
+      const token = await login();
+      if (token) {
+        console.log(token);
+      } else {
+        console.log('토큰이 없습니다.');
+      }
+    } catch (err) {
+      console.error('login err', err);
     }
   };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>로그인 페이지</Text>
       <Button title="로그인" onPress={handleLogin} />
-      <Button title="카카오 로그인" onPress={loginWithKakao} />
+      <Button title="카카오 로그인" onPress={signInWithKakao} />
     </View>
   );
 };
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f7f7f7',
     flex: 1,
+    gap: 10,
     justifyContent: 'center',
     padding: 16,
   },
