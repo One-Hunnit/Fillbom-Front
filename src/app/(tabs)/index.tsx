@@ -1,30 +1,9 @@
 import { NaverMapMarkerOverlay, NaverMapView } from '@mj-studio/react-native-naver-map';
-import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { backgroundLocationTraking } from './(locationUtils)/backgroundLocationTraking';
-import { defineLocationTrackingTask } from './(locationUtils)/defineLocationTrackingTask';
-import { foreGroundLocationTraking } from './(locationUtils)/foreGroundLocationTraking';
-import { requestLocationPermissions } from './(locationUtils)/requestLocationPermissions';
-interface LocationCoords {
-  latitude: number;
-  longitude: number;
-}
+import useLocationTracking from '@/hooks/useLocationTracking';
 
 export default function Home() {
-  const [locationCoords, setLocationCoords] = useState<LocationCoords>({
-    latitude: 37.6540767,
-    longitude: 127.0566033,
-  });
-  useEffect(() => {
-    (async () => {
-      const hasPermission = await requestLocationPermissions();
-      if (!hasPermission) return;
-      defineLocationTrackingTask();
-      const location = await foreGroundLocationTraking();
-      setLocationCoords({ latitude: location.latitude, longitude: location.longitude });
-      await backgroundLocationTraking();
-    })();
-  }, []);
+  const locationCoords = useLocationTracking();
 
   return (
     <View style={styles.container}>
