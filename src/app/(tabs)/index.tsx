@@ -1,5 +1,6 @@
+import { NaverMapView } from '@mj-studio/react-native-naver-map';
 import { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { backgroundLocationTraking } from './(locationUtils)/backgroundLocationTraking';
 import { defineLocationTrackingTask } from './(locationUtils)/defineLocationTrackingTask';
 import { foreGroundLocationTraking } from './(locationUtils)/foreGroundLocationTraking';
@@ -15,10 +16,9 @@ export default function Home() {
       await backgroundLocationTraking();
     })();
   }, []);
-
   return (
     <View style={styles.container}>
-      <Text>Home Page</Text>
+      <NaverMapView />
     </View>
   );
 }
