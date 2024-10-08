@@ -2,6 +2,7 @@
 import { View, Text, StyleSheet } from 'react-native';
 // import { useSetRecoilState } from 'recoil';
 import { Button } from '@/components/Button';
+import colors from '@/constants/color';
 import infoIconBlack from '../../../assets/svgs/infoIconBlack.svg';
 // import { userState } from '@/stores/authStore';
 
@@ -19,19 +20,17 @@ const Login = () => {
     <View style={styles.container}>
       <Text style={styles.title}>로그인 페이지</Text>
       {/* <Button title="로그인" onPress={handleLogin} /> */}
-      <Button title="텍스트" onPress={() => console.log('텍스트 버튼 클릭')} layoutType="text" colorVariant="blue" />
       <Button
         title="아이콘 텍스트"
         onPress={() => console.log('아이콘 텍스트 떨어져 있는 버튼 클릭됨')}
         layoutType="iconTextSeparate"
         svgIcon={infoIconBlack}
-        colorVariant="gray"
-      />
-      <Button
-        onPress={() => console.log('아이콘 텍스트 떨어져 있는 버튼 클릭됨')}
-        layoutType="iconTextSeparate"
-        svgIcon={infoIconBlack}
-        colorVariant="blue"
+        pressedButtonColor={colors.blue[300]}
+        disabledButtonColor={colors.blue[200]}
+        defaultButtonColor={colors.blue[500]}
+        pressedTextColor={colors.blue[200]}
+        disabledTextColor={colors.blue[300]}
+        defaultTextColor={colors.gray[100]}
       />
     </View>
   );

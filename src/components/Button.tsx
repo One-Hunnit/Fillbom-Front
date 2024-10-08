@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
-import colors from '../constants/color';
+import type { ViewStyle, TextStyle } from 'react-native';
+import { Text, StyleSheet, View, Pressable } from 'react-native';
 
 interface ButtonProps {
   title: string;
@@ -10,8 +10,14 @@ interface ButtonProps {
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
   disabled?: boolean;
-  colorVariant?: keyof typeof colors;
+  pressedButtonColor?: string;
+  disabledButtonColor?: string;
+  defaultButtonColor?: string;
+  pressedTextColor?: string;
+  disabledTextColor?: string;
+  defaultTextColor?: string;
 }
+
 export const Button: React.FC<ButtonProps> = ({
   title,
   onPress,
@@ -20,35 +26,48 @@ export const Button: React.FC<ButtonProps> = ({
   buttonStyle = {},
   textStyle = {},
   disabled = false,
-  colorVariant = '',
+  pressedButtonColor,
+  disabledButtonColor,
+  defaultButtonColor,
+  pressedTextColor,
+  disabledTextColor,
+  defaultTextColor,
 }) => {
   const [isPressed, setIsPressed] = useState(false);
 
   const getButtonColor = () => {
     if (disabled) {
-      return colors[colorVariant][200];
+      return disabledButtonColor;
     }
     if (isPressed) {
-      console.log(colors[colorVariant][300]);
-      return colors[colorVariant][300];
+      return pressedButtonColor;
     }
-    return colors[colorVariant][500];
+    return defaultButtonColor;
+  };
+
+  const getTextColor = () => {
+    if (disabled) {
+      return disabledTextColor;
+    }
+    if (isPressed) {
+      return pressedTextColor;
+    }
+    return defaultTextColor;
   };
 
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
       style={[styles.button, { backgroundColor: getButtonColor() }, buttonStyle]}
       disabled={disabled}
       onPressIn={() => setIsPressed(true)}
       onPressOut={() => setIsPressed(false)}
     >
-      {layoutType === 'text' && <Text style={[styles.text, textStyle]}>{title}</Text>}
-
+      {layoutType === 'text' && <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>}
       {layoutType === 'iconTextSeparate' && SvgIcon && (
         <View style={styles.separate}>
           <SvgIcon />
-          <Text style={[styles.text, textStyle]}>{title}</Text>
+          <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
         </View>
       )}
 
@@ -57,10 +76,10 @@ export const Button: React.FC<ButtonProps> = ({
           <View style={styles.iconWrapper}>
             <SvgIcon />
           </View>
-          <Text style={[styles.text, textStyle]}>{title}</Text>
+          <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
         </View>
       )}
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
@@ -82,7 +101,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   text: {
-    color: '#FFF',
     fontSize: 16,
   },
   together: {
