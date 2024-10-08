@@ -18,15 +18,16 @@ export default function Home() {
   }, []);
   return (
     <View style={styles.container}>
-      <NaverMapView />
+      <NaverMapView style={styles.mapContainer} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
+  },
+  mapContainer: {
+    flex: 1,
   },
 });
