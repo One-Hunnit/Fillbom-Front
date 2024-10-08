@@ -1,27 +1,26 @@
-// import { useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native';
-// import { useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
+import infoIconBlack from '@/assets/svgs/infoIconBlack.svg';
 import { Button } from '@/components/Button';
 import colors from '@/constants/color';
-import infoIconBlack from '../../../assets/svgs/infoIconBlack.svg';
-// import { userState } from '@/stores/authStore';
+import { userState } from '@/stores/authStore';
 
 const Login = () => {
-  // const setUser = useSetRecoilState(userState);
-  // const router = useRouter();
+  const setUser = useSetRecoilState(userState);
+  const router = useRouter();
 
-  // const handleLogin = () => {
-  //   const userData = { id: '1', name: 'test' };
-  //   setUser(userData);
-  //   router.push('/');
-  // };
+  const handleLogin = () => {
+    const userData = { id: '1', name: 'test' };
+    setUser(userData);
+    router.push('/');
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>로그인 페이지</Text>
-      {/* <Button title="로그인" onPress={handleLogin} /> */}
       <Button
-        title="텍스트"
+        title="로그인"
         layoutType="iconText"
         svgIcon={infoIconBlack}
         pressedButtonColor={colors.blue[300]}
@@ -30,6 +29,7 @@ const Login = () => {
         pressedTextColor={colors.blue[200]}
         disabledTextColor={colors.blue[300]}
         defaultTextColor={colors.gray[100]}
+        onPress={handleLogin}
       />
     </View>
   );
