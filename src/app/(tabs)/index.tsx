@@ -1,7 +1,6 @@
 import { NaverMapMarkerOverlay, NaverMapView } from '@mj-studio/react-native-naver-map';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import currentLocationIcon from '@/assets/images/png/currentLocationIcon.png';
 import { backgroundLocationTraking } from './(locationUtils)/backgroundLocationTraking';
 import { defineLocationTrackingTask } from './(locationUtils)/defineLocationTrackingTask';
 import { foreGroundLocationTraking } from './(locationUtils)/foreGroundLocationTraking';
@@ -11,20 +10,6 @@ interface LocationCoords {
   longitude: number;
 }
 
-interface Location {
-  latitude: number;
-  longitude: number;
-}
-
-interface Coordinates {
-  accuracy: number | null;
-  altitude: number | null;
-  altitudeAccuracy: number | null;
-  heading: number | null;
-  latitude: number;
-  longitude: number;
-  speed: number | null;
-}
 export default function Home() {
   const [locationCoords, setLocationCoords] = useState<LocationCoords>({
     latitude: 37.6540767,
@@ -35,11 +20,12 @@ export default function Home() {
       const hasPermission = await requestLocationPermissions();
       if (!hasPermission) return;
       defineLocationTrackingTask();
-      const location: Coordinates = await foreGroundLocationTraking();
+      const location = await foreGroundLocationTraking();
       setLocationCoords({ latitude: location.latitude, longitude: location.longitude });
       await backgroundLocationTraking();
     })();
   }, []);
+
   return (
     <View style={styles.container}>
       <NaverMapView
@@ -59,7 +45,7 @@ export default function Home() {
           anchor={{ x: 0.5, y: 1 }}
           width={40}
           height={40}
-          image={currentLocationIcon}
+          image={require('@/assets/images/png/currentLocationIcon.png')}
         ></NaverMapMarkerOverlay>
       </NaverMapView>
     </View>
