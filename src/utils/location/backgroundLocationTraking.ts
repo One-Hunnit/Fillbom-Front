@@ -1,16 +1,6 @@
 import * as Location from 'expo-location';
-
-const LOCATION_TRACKING_TASK = 'location-tracking';
+import { BACKGROUND_SETTING, LOCATION_TRACKING_TASK } from '@/constants/location';
 
 export const backgroundLocationTraking = async () => {
-  await Location.startLocationUpdatesAsync(LOCATION_TRACKING_TASK, {
-    accuracy: Location.Accuracy.High,
-    timeInterval: 1000,
-    distanceInterval: 50,
-    showsBackgroundLocationIndicator: true,
-    foregroundService: {
-      notificationTitle: 'Background Location Tracking',
-      notificationBody: 'Your location is being tracked in the background',
-    },
-  });
+  await Location.startLocationUpdatesAsync(LOCATION_TRACKING_TASK, BACKGROUND_SETTING);
 };
