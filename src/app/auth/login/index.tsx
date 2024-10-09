@@ -1,7 +1,10 @@
 import { login } from '@react-native-seoul/kakao-login';
 import { useRouter } from 'expo-router';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { useSetRecoilState } from 'recoil';
+import infoIconBlack from '@/assets/svgs/infoIconBlack.svg';
+import { Button } from '@/components/Button';
+import colors from '@/constants/color';
 import { userState } from '@/stores/authStore';
 
 const Login = () => {
@@ -29,8 +32,30 @@ const Login = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>로그인 페이지</Text>
-      <Button title="로그인" onPress={handleLogin} />
-      <Button title="카카오 로그인" onPress={signInWithKakao} />
+      <Button
+        title="로그인"
+        layoutType="iconText"
+        svgIcon={infoIconBlack}
+        pressedButtonColor={colors.blue[300]}
+        disabledButtonColor={colors.blue[200]}
+        defaultButtonColor={colors.blue[500]}
+        pressedTextColor={colors.blue[200]}
+        disabledTextColor={colors.blue[300]}
+        defaultTextColor={colors.gray[100]}
+        onPress={handleLogin}
+      />
+      <Button
+        title="카카오 로그인"
+        layoutType="iconText"
+        svgIcon={infoIconBlack}
+        pressedButtonColor={colors.blue[300]}
+        disabledButtonColor={colors.blue[200]}
+        defaultButtonColor={colors.blue[500]}
+        pressedTextColor={colors.blue[200]}
+        disabledTextColor={colors.blue[300]}
+        defaultTextColor={colors.gray[100]}
+        onPress={signInWithKakao}
+      />
     </View>
   );
 };
