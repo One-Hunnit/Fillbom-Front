@@ -2,7 +2,7 @@ import { View, Text } from 'react-native';
 import { useRecoilValue } from 'recoil';
 import ico_apple_logo from '@/assets/svgs/ico_apple_logo.svg';
 import ico_kakao_logo from '@/assets/svgs/ico_kakao_logo.svg';
-import LoadingIcon from '@/assets/svgs/loadingIcon.svg';
+import Loading from '@/assets/svgs/loading.svg';
 import FillbomButton from '@/components/FillbomButton';
 import { FILLBOM_COLOR } from '@/constants/color';
 import { authState } from '@/stores/authStore';
@@ -20,7 +20,7 @@ const LoginPage = () => {
     <View style={styles.container}>
       {loading ? (
         <View style={styles.loadingOverlay}>
-          <LoadingIcon />
+          <Loading />
         </View>
       ) : (
         <>
