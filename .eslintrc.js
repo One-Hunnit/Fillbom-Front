@@ -11,16 +11,10 @@ module.exports = {
     'plugin:import/typescript',
   ],
   ignorePatterns: ['/*', '!/src', '!/app'],
-  plugins: [
-    '@typescript-eslint',
-    'react',
-    'react-native',
-    'react-hooks',
-    'import',
-  ],
+  plugins: ['@typescript-eslint', 'react', 'react-native', 'react-hooks', 'import'],
   rules: {
     'import/no-named-as-default-member': 'off',
-    '@typescript-eslint/consistent-type-imports': 'error',
+    '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'inline-type-imports' }],
     'import/prefer-default-export': 'off',
     'import/no-unresolved': 0,
     'prettier/prettier': [
