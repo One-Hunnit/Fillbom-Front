@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 import infoIconBlack from '@/assets/svgs/infoIconBlack.svg';
-import FillbomButton from '@/components/FillbomButton';
+import Button from '@/components/Button';
 import { FILLBOM_COLOR } from '@/constants/color';
 import useLogin from './hooks/useLogin';
 import { styles } from './styles';
@@ -11,9 +11,9 @@ const LoginPage = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>로그인 페이지</Text>
-      <FillbomButton
+      <Button
         title="로그인"
-        layoutType="iconText"
+        type="iconText"
         svgIcon={infoIconBlack}
         pressedButtonColor={FILLBOM_COLOR.BLUE[300]}
         disabledButtonColor={FILLBOM_COLOR.BLUE[200]}
@@ -23,9 +23,9 @@ const LoginPage = () => {
         defaultTextColor={FILLBOM_COLOR.GRAY[100]}
         onPress={handleLogin}
       />
-      <FillbomButton
+      <Button
         title="카카오 로그인"
-        layoutType="iconText"
+        type="iconText"
         svgIcon={infoIconBlack}
         pressedButtonColor={FILLBOM_COLOR.BLUE[300]}
         disabledButtonColor={FILLBOM_COLOR.BLUE[200]}

@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { Text, StyleSheet, View, Pressable } from 'react-native';
+import { match } from 'ts-pattern';
+import { type TValues } from '@/utils/type';
 
-interface IFillbomButtonProps {
+export const BUTTON_TYPE = {
+  ICON_TEXT: 'iconText',
+  ICON_ONLY: 'iconOnly',
+  TEXT_ONLY: 'textOnly',
+  SOCIAL: 'social',
+} as const;
+
+type TButtonType = TValues<typeof BUTTON_TYPE>;
+
+interface IButtonProps {
   title?: string;
   onPress?: () => void;
   svgIcon?: React.FC;
-  layoutType?: 'iconText' | 'iconOnly' | 'textOnly' | 'social';
+  type?: TButtonType;
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
   disabled?: boolean;
@@ -18,11 +29,11 @@ interface IFillbomButtonProps {
   defaultTextColor?: string;
 }
 
-const FillbomButton: React.FC<IFillbomButtonProps> = ({
+const Button = ({
   title,
   onPress,
-  svgIcon: SvgIcon = null,
-  layoutType = 'text',
+  svgIcon: SvgIcon,
+  type = BUTTON_TYPE.TEXT_ONLY,
   buttonStyle = {},
   textStyle = {},
   disabled = false,
@@ -32,7 +43,7 @@ const FillbomButton: React.FC<IFillbomButtonProps> = ({
   pressedTextColor,
   disabledTextColor,
   defaultTextColor,
-}) => {
+}: IButtonProps) => {
   const [isPressed, setIsPressed] = useState(false);
 
   const getButtonColor = () => {
@@ -63,39 +74,30 @@ const FillbomButton: React.FC<IFillbomButtonProps> = ({
       onPressIn={() => setIsPressed(true)}
       onPressOut={() => setIsPressed(false)}
     >
-      {layoutType === 'textOnly' && (
-        <View style={styles.contentWrapper}>
-          <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
-        </View>
-      )}
-      {layoutType === 'iconOnly' && SvgIcon && (
-        <View style={styles.contentWrapper}>
-          <View>
-            <SvgIcon />
-          </View>
-        </View>
-      )}
-      {layoutType === 'iconText' && SvgIcon && (
-        <View style={styles.contentWrapper}>
-          <View style={styles.wrapper}>
-            <SvgIcon />
+      <View style={styles.contentWrapper}>
+        {match(type)
+          .with(BUTTON_TYPE.TEXT_ONLY, () => (
             <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
-          </View>
-        </View>
-      )}
-
-      {layoutType === 'social' && SvgIcon && (
-        <View style={styles.contentWrapper}>
-          <View style={styles.socialContentWrapper}>
-            <View style={styles.social}>
-              <SvgIcon />
-              <View style={styles.textWrapper}>
-                <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
+          ))
+          .with(BUTTON_TYPE.ICON_ONLY, () => <View>{SvgIcon && <SvgIcon />}</View>)
+          .with(BUTTON_TYPE.ICON_TEXT, () => (
+            <View style={styles.wrapper}>
+              {SvgIcon && <SvgIcon />}
+              <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
+            </View>
+          ))
+          .with(BUTTON_TYPE.SOCIAL, () => (
+            <View style={styles.socialContentWrapper}>
+              <View style={styles.social}>
+                {SvgIcon && <SvgIcon />}
+                <View style={styles.textWrapper}>
+                  <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
+                </View>
               </View>
             </View>
-          </View>
-        </View>
-      )}
+          ))
+          .exhaustive()}
+      </View>
     </Pressable>
   );
 };
@@ -141,4 +143,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FillbomButton;
+export default Button;
