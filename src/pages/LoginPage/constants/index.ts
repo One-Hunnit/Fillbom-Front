@@ -8,7 +8,7 @@ export const mockAuthData: Pick<IAuth, 'accessToken' | 'refreshToken'> = {
 export const mockAccountData: IAuth['account'] = {
   id: '1',
   name: 'test',
-  role: 'patient',
+  role: 'caregiver',
   email: 'sjsjsj1246@gmail.com',
   profileImage: 'https://avatars.githubusercontent.com/u/24623403?v=4',
   status: 'SIGNUP_PENDING',

@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { styles } from './styles';
 
 const SignupPage = () => {
   return (
@@ -7,15 +8,5 @@ const SignupPage = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    backgroundColor: '#f7f7f7',
-    flex: 1,
-    justifyContent: 'center',
-    padding: 16,
-  },
-});
 
 export default SignupPage;

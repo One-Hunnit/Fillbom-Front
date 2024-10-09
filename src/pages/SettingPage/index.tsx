@@ -1,7 +1,8 @@
 import { useRouter } from 'expo-router';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, Text, View } from 'react-native';
 import { useSetRecoilState } from 'recoil';
 import { authState } from '@/stores/authStore';
+import { styles } from './styles';
 
 const SettingPage = () => {
   const router = useRouter();
@@ -15,13 +16,5 @@ const SettingPage = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
 
 export default SettingPage;

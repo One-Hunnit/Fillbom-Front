@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { styles } from './styles';
 
 const PatientListPage = () => {
   return (
@@ -7,13 +8,5 @@ const PatientListPage = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
 
 export default PatientListPage;
