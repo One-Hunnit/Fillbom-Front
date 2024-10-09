@@ -1,63 +1,32 @@
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import 'react-native-reanimated';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Slot, SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
 import { RecoilRoot } from 'recoil';
-import { AppLoader } from '@/components/AppLoader';
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
+import Loading from '@/components/Loading';
+import useInitializeApp from '@/hooks/useInitializeApp';
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
+const queryClient = new QueryClient();
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    'Pretendard-Black': require('./assets/fonts/Pretendard-Black.otf'),
-    'Pretendard-Bold': require('./assets/fonts/Pretendard-Bold.otf'),
-    'Pretendard-ExtraBold': require('./assets/fonts/Pretendard-ExtraBold.otf'),
-    'Pretendard-ExtraLight': require('./assets/fonts/Pretendard-ExtraLight.otf'),
-    'Pretendard-Light': require('./assets/fonts/Pretendard-Light.otf'),
-    'Pretendard-Medium': require('./assets/fonts/Pretendard-Medium.otf'),
-    'Pretendard-Regular': require('./assets/fonts/Pretendard-Regular.otf'),
-    'Pretendard-SemiBold': require('./assets/fonts/Pretendard-SemiBold.otf'),
-    'Pretendard-Thin': require('./assets/fonts/Pretendard-Thin.otf'),
-  });
-
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
+export default () => {
+  const [loaded, error] = useInitializeApp();
 
   useEffect(() => {
-    if (loaded) {
+    if (loaded || error) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [loaded, error]);
 
-  if (!loaded) {
-    return null;
+  if (!loaded && !error) {
+    return <Loading />;
   }
 
-  return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
   return (
     <RecoilRoot>
-      <AppLoader>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-        </Stack>
-      </AppLoader>
+      <QueryClientProvider client={queryClient}>
+        <Slot />
+      </QueryClientProvider>
     </RecoilRoot>
   );
-}
+};
