@@ -1,5 +1,5 @@
 import * as TaskManager from 'expo-task-manager';
-import type { ILocationEvent } from '@/\btypes';
+import type { ILocationEvent } from '@/types/location';
 
 const LOCATION_TRACKING_TASK = 'location-tracking';
 

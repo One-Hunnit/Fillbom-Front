@@ -1,5 +1,5 @@
 import * as Location from 'expo-location';
-import type { ICoordinates } from '@/types';
+import type { ICoordinates } from '@/types/location';
 
 export const foreGroundLocationTraking = async (): Promise<ICoordinates> => {
   return new Promise<ICoordinates>((resolve, reject) => {
