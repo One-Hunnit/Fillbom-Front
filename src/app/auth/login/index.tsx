@@ -1,3 +1,4 @@
+import { login } from '@react-native-seoul/kakao-login';
 import { useRouter } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native';
 import { useSetRecoilState } from 'recoil';
@@ -16,6 +17,18 @@ const Login = () => {
     router.push('/');
   };
 
+  const signInWithKakao = async () => {
+    try {
+      const token = await login();
+      if (token) {
+        console.log(token);
+      } else {
+        console.log('토큰이 없습니다.');
+      }
+    } catch (err) {
+      console.error('login err', err);
+    }
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>로그인 페이지</Text>
@@ -31,6 +44,18 @@ const Login = () => {
         defaultTextColor={colors.gray[100]}
         onPress={handleLogin}
       />
+      <Button
+        title="카카오 로그인"
+        layoutType="iconText"
+        svgIcon={infoIconBlack}
+        pressedButtonColor={colors.blue[300]}
+        disabledButtonColor={colors.blue[200]}
+        defaultButtonColor={colors.blue[500]}
+        pressedTextColor={colors.blue[200]}
+        disabledTextColor={colors.blue[300]}
+        defaultTextColor={colors.gray[100]}
+        onPress={signInWithKakao}
+      />
     </View>
   );
 };
@@ -39,6 +64,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f7f7f7',
     flex: 1,
+    gap: 10,
     justifyContent: 'center',
     padding: 16,
   },
