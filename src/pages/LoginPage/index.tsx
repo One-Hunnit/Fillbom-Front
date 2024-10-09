@@ -4,16 +4,18 @@ import kakaoLogo from '@/assets/svgs/kakaoLogo.svg';
 import FillbomButton from '@/components/FillbomButton';
 import { FILLBOM_COLOR } from '@/constants/color';
 import useLogin from './hooks/useLogin';
+import ModalComponent from './modal';
 import { styles } from './styles';
 
 const LoginPage = () => {
-  const { handleLogin, signInWithKakao } = useLogin();
+  const { handleLogin, signInWithKakao, modalVisible, setModalVisible } = useLogin();
 
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>로그인 페이지</Text>
       </View>
+      <ModalComponent visible={modalVisible} onClose={() => setModalVisible(false)} />
       <View style={styles.buttonContainer}>
         <FillbomButton
           title="로그인"

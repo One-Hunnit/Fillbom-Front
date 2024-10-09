@@ -1,11 +1,13 @@
 import { login } from '@react-native-seoul/kakao-login';
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { authState } from '@/stores/authStore';
 import { mockAccountData, mockAuthData } from '../constants';
 
 export default function useLogin() {
   const setAuth = useSetRecoilState(authState);
+  const [modalVisible, setModalVisible] = useState(false);
   const router = useRouter();
 
   const handleLogin = () => {
@@ -23,11 +25,14 @@ export default function useLogin() {
       }
     } catch (err) {
       console.error('login err', err);
+      setModalVisible(true);
     }
   };
 
   return {
     handleLogin,
     signInWithKakao,
+    modalVisible,
+    setModalVisible,
   };
 }
