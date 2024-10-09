@@ -51,6 +51,14 @@
         }
       ],
       [
+        "@react-native-seoul/kakao-login",
+        {
+          "kakaoAppKey": "7a1386dec3a034667c730827382adec0",
+          "overrideKakaoSDKVersion": "2.11.2",
+          "kotlinVersion": "1.9.0"
+        }
+      ],
+      [
         "expo-build-properties",
         {
           "ios": {
