@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import FavoriteIcon from '@/assets/images/FavoriteIcon.svg';
+import FavoriteIcon from '@/assets/images/svg/FavoriteIcon.svg';
 import { ExternalLink } from './ExternalLink';
 
 export default function EditScreenInfo({ path }: { path: string }) {
@@ -9,15 +9,12 @@ export default function EditScreenInfo({ path }: { path: string }) {
       <View style={styles.getStartedContainer}>
         <FavoriteIcon />
         <Text style={styles.getStartedText}>Open up the code for this</Text>
-        <View
-          style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-        >
+        <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
           <Text>{path}</Text>
         </View>
 
         <Text style={styles.getStartedText}>
-          Change any of the text, save the file, and your app will automatically
-          update.
+          Change any of the text, save the file, and your app will automatically update.
         </Text>
       </View>
 
@@ -27,8 +24,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
           href="https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet"
         >
           <Text style={styles.helpLinkText}>
-            Tap here if your app doesn't automatically update after making
-            changes
+            Tap here if your app doesn't automatically update after making changes
           </Text>
         </ExternalLink>
       </View>

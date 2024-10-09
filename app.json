@@ -5,30 +5,59 @@
     "slug": "fillbom-front",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/images/icon.png",
+    "icon": "./src/assets/images/png/icon.png",
     "scheme": "onehunnit",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./src/assets/images/splash.png",
+      "image": "./src/assets/images/png/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.onehunnit.fillbom",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "UIBackgroundModes": ["location", "fetch"],
+      "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow $(PRODUCT_NAME) to access your location both while the app is in use and in the background.",
+      "NSLocationAlwaysUsageDescription": "Allow $(PRODUCT_NAME) to access your location even when the app is in the background.",
+      "NSLocationWhenInUseUsageDescription": "Allow $(PRODUCT_NAME) to access your location while the app is in use."
     },
     "android": {
+      "jsEngine": "jsc",
       "package": "com.onehunnit.fillbom",
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/adaptive-icon.png",
+        "foregroundImage": "./src/assets/images/png/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./google-services.json",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION"
+      ]
     },
     "plugins": [
       "expo-router",
       "@react-native-firebase/app",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location.",
+          "isAndroidBackgroundLocationEnabled": true,
+          "isIosBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true
+        }
+      ],
+      [
+        "@react-native-seoul/kakao-login",
+        {
+          "kakaoAppKey": "7a1386dec3a034667c730827382adec0",
+          "overrideKakaoSDKVersion": "2.11.2",
+          "kotlinVersion": "1.9.0"
+        }
+      ],
       [
         "expo-build-properties",
         {
@@ -37,9 +66,17 @@
           },
           "android": {
             "extraMavenRepos": [
-              "https://devrepo.kakao.com/nexus/content/groups/public/"
-            ]
+              "https://devrepo.kakao.com/nexus/content/groups/public/",
+              "https://repository.map.naver.com/archive/maven"
+            ],
+            "enableProguardInReleaseBuilds": false
           }
+        }
+      ],
+      [
+        "@mj-studio/react-native-naver-map",
+        {
+          "client_id": "o5kpxrwc84"
         }
       ]
     ],
