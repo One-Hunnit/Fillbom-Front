@@ -1,17 +1,8 @@
-import { useRouter } from 'expo-router';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { useSetRecoilState } from 'recoil';
-import { userState } from '@/stores/authStore';
+import useLogin from './useLogin';
 
-const Login = () => {
-  const setUser = useSetRecoilState(userState);
-  const router = useRouter();
-
-  const handleLogin = () => {
-    const userData = { id: '1', name: 'test' };
-    setUser(userData);
-    router.push('/');
-  };
+const LoginPage = () => {
+  const { handleLogin } = useLogin();
 
   return (
     <View style={styles.container}>
@@ -20,6 +11,7 @@ const Login = () => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -35,4 +27,5 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
-export default Login;
+
+export default LoginPage;

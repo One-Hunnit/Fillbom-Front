@@ -1,12 +1,13 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
-export default function Tab() {
+const Loading = () => {
   return (
     <View style={styles.container}>
-      <Text>Tab Settings</Text>
+      <ActivityIndicator size="large" color="#0000ff" />
     </View>
   );
-}
+};
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -14,3 +15,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default Loading;

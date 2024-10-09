@@ -1,35 +1,25 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import type { AtomEffect } from 'recoil';
 import { atom } from 'recoil';
+import { persistAtom } from '@/utils/recoil';
 
-interface User {
-  id: string;
-  name: string;
-}
-
-function persistAtom<T>(key: string): AtomEffect<T> {
-  return ({ setSelf, onSet, trigger }) => {
-    const loadPersisted = async () => {
-      const savedValue = await AsyncStorage.getItem(key);
-
-      if (savedValue != null) {
-        setSelf(JSON.parse(savedValue));
-      }
-    };
-
-    if (trigger === 'get') {
-      loadPersisted();
-    }
-
-    onSet((newValue, _, isReset) => {
-      isReset
-        ? AsyncStorage.removeItem(key)
-        : AsyncStorage.setItem(key, JSON.stringify(newValue));
-    });
+export interface IAuth {
+  account: {
+    id: string;
+    name: string;
+    email: string;
+    profileImage: string;
+    role: 'patient' | 'caregiver';
+    status: 'SIGNUP_PENDING' | 'REGIST_INFO_PENDING' | 'DONE';
   };
+  accessToken: string;
+  refreshToken: string;
 }
-export const userState = atom<User | null>({
-  key: 'userState',
-  default: null,
-  effects_UNSTABLE: [persistAtom('userState')],
+
+export const AUTH_STATE_KEY = 'authState';
+
+const defaultAuthState = null;
+
+export const authState = atom<IAuth | null>({
+  key: AUTH_STATE_KEY,
+  default: defaultAuthState,
+  effects_UNSTABLE: [persistAtom(AUTH_STATE_KEY)],
 });

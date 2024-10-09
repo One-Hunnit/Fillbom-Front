@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Home() {
+const PatientListPage = () => {
   return (
     <View style={styles.container}>
-      <Text>Home Page</Text>
+      <Text>환자 관리 페이지</Text>
     </View>
   );
-}
+};
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -14,3 +15,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default PatientListPage;
