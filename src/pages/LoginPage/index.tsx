@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native';
 import appleLogo from '@/assets/svgs/appleLogo.svg';
 import kakaoLogo from '@/assets/svgs/kakaoLogo.svg';
+import LoadingIcon from '@/assets/svgs/loadingIcon.svg';
 import FillbomButton from '@/components/FillbomButton';
 import { FILLBOM_COLOR } from '@/constants/color';
 import useLogin from './hooks/useLogin';
@@ -14,7 +15,7 @@ const LoginPage = () => {
     <View style={styles.container}>
       {loading ? (
         <View style={styles.loadingOverlay}>
-          <Text>로딩 중</Text>
+          <LoadingIcon />
         </View>
       ) : (
         <>
