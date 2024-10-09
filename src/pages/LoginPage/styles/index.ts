@@ -15,6 +15,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 16,
   },
+  loadingOverlay: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    bottom: 0,
+    justifyContent: 'center',
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    zIndex: 1000,
+  },
   title: {
     color: '#333',
     fontSize: 24,

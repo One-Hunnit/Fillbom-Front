@@ -7,6 +7,7 @@ interface IModalComponentProps {
   visible: boolean;
   onClose: () => void;
 }
+
 const ModalComponent: React.FC<IModalComponentProps> = ({ visible, onClose }) => {
   return (
     <Modal transparent={true} visible={visible} onRequestClose={onClose}>

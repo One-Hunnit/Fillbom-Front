@@ -8,6 +8,7 @@ import { mockAccountData, mockAuthData } from '../constants';
 export default function useLogin() {
   const setAuth = useSetRecoilState(authState);
   const [modalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleLogin = () => {
@@ -24,7 +25,12 @@ export default function useLogin() {
         console.log('토큰이 없습니다.');
       }
     } catch (err) {
-      setModalVisible(true);
+      setLoading(true);
+
+      setTimeout(() => {
+        setLoading(false);
+        setModalVisible(true);
+      }, 1000);
     }
   };
 
@@ -33,5 +39,7 @@ export default function useLogin() {
     signInWithKakao,
     modalVisible,
     setModalVisible,
+    loading,
+    setLoading,
   };
 }
