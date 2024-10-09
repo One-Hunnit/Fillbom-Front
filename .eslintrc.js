@@ -51,42 +51,7 @@ module.exports = {
             position: 'before',
           },
           {
-            pattern: '@/app/*',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '@/components/*',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '@/constants/*',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '@/hooks/*',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '@/types/*',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '@/utils/*',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '@/apis/*',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '@/assets/*',
+            pattern: '@/*',
             group: 'internal',
             position: 'after',
           },

@@ -1,7 +1,6 @@
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import 'react-native-reanimated';
-// eslint-disable-next-line import/order
 import { RecoilRoot } from 'recoil';
 import { AppLoader } from '@/components/AppLoader';
 
