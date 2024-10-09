@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
-import appleLogo from '@/assets/svgs/appleLogo.svg';
-import kakaoLogo from '@/assets/svgs/kakaoLogo.svg';
+import ico_apple_logo from '@/assets/svgs/ico_apple_logo.svg';
+import ico_kakao_logo from '@/assets/svgs/ico_kakao_logo.svg';
 import LoadingIcon from '@/assets/svgs/loadingIcon.svg';
 import FillbomButton from '@/components/FillbomButton';
 import { FILLBOM_COLOR } from '@/constants/color';
@@ -38,7 +38,7 @@ const LoginPage = () => {
             <FillbomButton
               title="카카오톡으로 시작하기"
               layoutType="social"
-              svgIcon={kakaoLogo}
+              svgIcon={ico_kakao_logo}
               defaultButtonColor={'#FFE300'}
               pressedButtonColor={'#FFE300'}
               defaultTextColor={FILLBOM_COLOR.GRAY[900]}
@@ -48,7 +48,7 @@ const LoginPage = () => {
             <FillbomButton
               title="Apple ID로 시작하기"
               layoutType="social"
-              svgIcon={appleLogo}
+              svgIcon={ico_apple_logo}
               defaultButtonColor={FILLBOM_COLOR.GRAY[900]}
               pressedButtonColor={FILLBOM_COLOR.GRAY[900]}
               defaultTextColor={FILLBOM_COLOR.GRAY[100]}
