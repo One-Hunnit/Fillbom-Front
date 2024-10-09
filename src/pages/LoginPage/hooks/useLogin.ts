@@ -21,16 +21,21 @@ export default function useLogin() {
       const token = await login();
       if (token) {
         console.log(token);
+        setLoading(true);
+        setTimeout(() => {
+          setAuth({ account: mockAccountData, ...mockAuthData });
+          setLoading(false);
+          router.replace('/');
+        }, 2000);
       } else {
         console.log('토큰이 없습니다.');
       }
     } catch (err) {
       setLoading(true);
-
       setTimeout(() => {
         setLoading(false);
         setModalVisible(true);
-      }, 1000);
+      }, 2000);
     }
   };
 
