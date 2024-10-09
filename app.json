@@ -5,11 +5,11 @@
     "slug": "fillbom-front",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/images/icon.png",
+    "icon": "./src/assets/images/png/icon.png",
     "scheme": "onehunnit",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./src/assets/images/splash.png",
+      "image": "./src/assets/images/png/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -26,7 +26,7 @@
       "jsEngine": "jsc",
       "package": "com.onehunnit.fillbom",
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/adaptive-icon.png",
+        "foregroundImage": "./src/assets/images/png/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "googleServicesFile": "./google-services.json",
@@ -65,9 +65,18 @@
             "useFrameworks": "static"
           },
           "android": {
-            "extraMavenRepos": ["https://devrepo.kakao.com/nexus/content/groups/public/"],
+            "extraMavenRepos": [
+              "https://devrepo.kakao.com/nexus/content/groups/public/",
+              "https://repository.map.naver.com/archive/maven"
+            ],
             "enableProguardInReleaseBuilds": false
           }
+        }
+      ],
+      [
+        "@mj-studio/react-native-naver-map",
+        {
+          "client_id": "o5kpxrwc84"
         }
       ]
     ],

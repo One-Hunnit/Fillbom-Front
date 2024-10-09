@@ -1,8 +1,22 @@
 import * as Location from 'expo-location';
-import { FOREGROUND_SETTING } from '@/constants/location';
+import type { ICoordinates } from '@/types';
 
-export const foreGroundLocationTraking = async () => {
-  await Location.watchPositionAsync(FOREGROUND_SETTING, (location) => {
-    console.log('foreground', location.coords);
+export const foreGroundLocationTraking = async (): Promise<ICoordinates> => {
+  return new Promise<ICoordinates>((resolve, reject) => {
+    Location.watchPositionAsync(
+      {
+        accuracy: Location.Accuracy.High,
+        timeInterval: 1000,
+        distanceInterval: 0,
+      },
+      (location) => {
+        const coords: ICoordinates = {
+          ...location.coords,
+          accuracy: location.coords.accuracy ?? 0,
+        };
+        console.log('foreground', coords);
+        resolve(coords);
+      },
+    ).catch(reject);
   });
 };

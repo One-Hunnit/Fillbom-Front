@@ -1,27 +1,11 @@
 import * as TaskManager from 'expo-task-manager';
+import type { ILocationEvent } from '@/\btypes';
 
 const LOCATION_TRACKING_TASK = 'location-tracking';
 
 interface LocationData {
-  locations: LocationEvent[];
+  locations: ILocationEvent[];
 }
-
-interface LocationEvent {
-  coords: Coordinates;
-  mocked: boolean;
-  timestamp: number;
-}
-
-interface Coordinates {
-  accuracy: number;
-  altitude: number;
-  altitudeAccuracy: number;
-  heading: number;
-  latitude: number;
-  longitude: number;
-  speed: number;
-}
-
 interface CustomTaskManagerError extends TaskManager.TaskManagerError {
   name?: string;
 }
