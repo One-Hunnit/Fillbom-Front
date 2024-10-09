@@ -31,7 +31,9 @@ const LoginPage = () => {
           layoutType="social"
           svgIcon={kakaoLogo}
           defaultButtonColor={'#FFE300'}
+          pressedButtonColor={'#FFE300'}
           defaultTextColor={FILLBOM_COLOR.GRAY[900]}
+          pressedTextColor={FILLBOM_COLOR.GRAY[900]}
           onPress={signInWithKakao}
         />
         <FillbomButton
@@ -39,8 +41,9 @@ const LoginPage = () => {
           layoutType="social"
           svgIcon={appleLogo}
           defaultButtonColor={FILLBOM_COLOR.GRAY[900]}
+          pressedButtonColor={FILLBOM_COLOR.GRAY[900]}
           defaultTextColor={FILLBOM_COLOR.GRAY[100]}
-          onPress={signInWithKakao}
+          pressedTextColor={FILLBOM_COLOR.GRAY[100]}
         />
       </View>
     </View>
