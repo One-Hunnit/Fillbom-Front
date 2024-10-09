@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native';
-import infoIconBlack from '@/assets/svgs/infoIconBlack.svg';
+import appleLogo from '@/assets/svgs/appleLogo.svg';
+import kakaoLogo from '@/assets/svgs/kakaoLogo.svg';
 import FillbomButton from '@/components/FillbomButton';
 import { FILLBOM_COLOR } from '@/constants/color';
 import useLogin from './hooks/useLogin';
@@ -10,31 +11,38 @@ const LoginPage = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>로그인 페이지</Text>
-      <FillbomButton
-        title="로그인"
-        layoutType="iconText"
-        svgIcon={infoIconBlack}
-        pressedButtonColor={FILLBOM_COLOR.BLUE[300]}
-        disabledButtonColor={FILLBOM_COLOR.BLUE[200]}
-        defaultButtonColor={FILLBOM_COLOR.BLUE[500]}
-        pressedTextColor={FILLBOM_COLOR.BLUE[200]}
-        disabledTextColor={FILLBOM_COLOR.BLUE[300]}
-        defaultTextColor={FILLBOM_COLOR.GRAY[100]}
-        onPress={handleLogin}
-      />
-      <FillbomButton
-        title="카카오 로그인"
-        layoutType="iconText"
-        svgIcon={infoIconBlack}
-        pressedButtonColor={FILLBOM_COLOR.BLUE[300]}
-        disabledButtonColor={FILLBOM_COLOR.BLUE[200]}
-        defaultButtonColor={FILLBOM_COLOR.BLUE[500]}
-        pressedTextColor={FILLBOM_COLOR.BLUE[200]}
-        disabledTextColor={FILLBOM_COLOR.BLUE[300]}
-        defaultTextColor={FILLBOM_COLOR.GRAY[100]}
-        onPress={signInWithKakao}
-      />
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>로그인 페이지</Text>
+      </View>
+      <View style={styles.buttonContainer}>
+        <FillbomButton
+          title="로그인"
+          layoutType="textOnly"
+          pressedButtonColor={FILLBOM_COLOR.BLUE[300]}
+          disabledButtonColor={FILLBOM_COLOR.BLUE[200]}
+          defaultButtonColor={FILLBOM_COLOR.BLUE[500]}
+          pressedTextColor={FILLBOM_COLOR.BLUE[200]}
+          disabledTextColor={FILLBOM_COLOR.BLUE[300]}
+          defaultTextColor={FILLBOM_COLOR.GRAY[100]}
+          onPress={handleLogin}
+        />
+        <FillbomButton
+          title="카카오톡으로 시작하기"
+          layoutType="social"
+          svgIcon={kakaoLogo}
+          defaultButtonColor={'#FFE300'}
+          defaultTextColor={FILLBOM_COLOR.GRAY[900]}
+          onPress={signInWithKakao}
+        />
+        <FillbomButton
+          title="Apple ID로 시작하기"
+          layoutType="social"
+          svgIcon={appleLogo}
+          defaultButtonColor={FILLBOM_COLOR.GRAY[900]}
+          defaultTextColor={FILLBOM_COLOR.GRAY[100]}
+          onPress={signInWithKakao}
+        />
+      </View>
     </View>
   );
 };
