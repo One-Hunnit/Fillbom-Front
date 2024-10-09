@@ -1,15 +1,20 @@
 import { View, Text } from 'react-native';
+import { useRecoilValue } from 'recoil';
 import ico_apple_logo from '@/assets/svgs/ico_apple_logo.svg';
 import ico_kakao_logo from '@/assets/svgs/ico_kakao_logo.svg';
 import LoadingIcon from '@/assets/svgs/loadingIcon.svg';
 import FillbomButton from '@/components/FillbomButton';
 import { FILLBOM_COLOR } from '@/constants/color';
+import { authState } from '@/stores/authStore';
 import useLogin from './hooks/useLogin';
 import ModalComponent from './modal';
 import { styles } from './styles';
 
 const LoginPage = () => {
   const { handleLogin, signInWithKakao, modalVisible, setModalVisible, loading } = useLogin();
+  const auth = useRecoilValue(authState);
+
+  if (auth) return null;
 
   return (
     <View style={styles.container}>

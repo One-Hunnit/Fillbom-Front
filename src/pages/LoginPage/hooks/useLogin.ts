@@ -24,8 +24,8 @@ export default function useLogin() {
         setLoading(true);
         setTimeout(() => {
           setAuth({ account: mockAccountData, ...mockAuthData });
-          setLoading(false);
           router.replace('/');
+          setLoading(false);
         }, 2000);
       } else {
         console.log('토큰이 없습니다.');
