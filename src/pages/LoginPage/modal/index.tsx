@@ -1,8 +1,13 @@
+import React from 'react';
 import { StyleSheet, View, Modal, Text } from 'react-native';
 import FillbomButton from '@/components/FillbomButton';
 import { FILLBOM_COLOR } from '@/constants/color';
 
-const ModalComponent = ({ visible, onClose }) => {
+interface IModalComponentProps {
+  visible: boolean;
+  onClose: () => void;
+}
+const ModalComponent: React.FC<IModalComponentProps> = ({ visible, onClose }) => {
   return (
     <Modal transparent={true} visible={visible} onRequestClose={onClose}>
       <View style={styles.overlay}>
@@ -16,9 +21,10 @@ const ModalComponent = ({ visible, onClose }) => {
               title="확인"
               layoutType="modal"
               defaultButtonColor={FILLBOM_COLOR.GRAY[200]}
-              pressedButtonColor={FILLBOM_COLOR.GRAY[900]}
+              pressedButtonColor={FILLBOM_COLOR.GRAY[300]}
               defaultTextColor={FILLBOM_COLOR.GRAY[700]}
-              pressedTextColor={FILLBOM_COLOR.GRAY[900]}
+              pressedTextColor={FILLBOM_COLOR.GRAY[500]}
+              onPress={onClose}
             />
           </View>
         </View>

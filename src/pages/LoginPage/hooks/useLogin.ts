@@ -24,7 +24,6 @@ export default function useLogin() {
         console.log('토큰이 없습니다.');
       }
     } catch (err) {
-      console.error('login err', err);
       setModalVisible(true);
     }
   };
