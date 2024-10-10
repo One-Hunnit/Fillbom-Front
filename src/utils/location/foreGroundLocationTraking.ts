@@ -14,7 +14,7 @@ export const foreGroundLocationTraking = async (): Promise<ICoordinates> => {
           ...location.coords,
           accuracy: location.coords.accuracy ?? 0,
         };
-        console.log('foreground', coords);
+        // console.log('foreground', coords);
         resolve(coords);
       },
     ).catch(reject);

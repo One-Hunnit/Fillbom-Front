@@ -14,7 +14,6 @@ export const defineLocationTrackingTask = () => {
   TaskManager.defineTask(
     LOCATION_TRACKING_TASK,
     ({ data, error }: { data: LocationData | undefined; error: CustomTaskManagerError | null }) => {
-      console.log('데이터', data);
       if (error) {
         console.error('위치 추적 오류:', error);
         return;
