@@ -147,6 +147,6 @@ const TEXT_STYLES = StyleSheet.create({
     lineHeight: 18,
     color: FILLBOM_COLOR.GRAY[900],
   },
-});
+} as const);
 
 export default TEXT_STYLES;

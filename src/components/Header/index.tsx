@@ -3,7 +3,7 @@ import ArrowPrevious from '@/assets/svgs/ico_arrow_previous.svg';
 import { FILLBOM_COLOR } from '@/constants/color';
 import { HEADER_HEIGHT } from '@/constants/ui';
 import TEXT_STYLES from '@/styles/textStyles';
-import Button, { BUTTON_TYPE } from '../Button';
+import Button from '../Button';
 
 interface IHeaderProps {
   title: string;
@@ -15,9 +15,7 @@ interface IHeaderProps {
 const Header = ({ title, onBack, backButtonVisible, containerStyle }: IHeaderProps) => {
   return (
     <View style={[styles.container, containerStyle]}>
-      {backButtonVisible && (
-        <Button type={BUTTON_TYPE.ICON_ONLY} buttonStyle={styles.backButton} svgIcon={ArrowPrevious} onPress={onBack} />
-      )}
+      {backButtonVisible && <Button buttonStyle={styles.backButton} icon={ArrowPrevious} onPress={onBack} />}
       <Text style={styles.title}>{title}</Text>
     </View>
   );
