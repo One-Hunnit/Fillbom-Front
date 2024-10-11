@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import type { ViewStyle, TextStyle } from 'react-native';
 import { Text, StyleSheet, View, Pressable } from 'react-native';
+import { type SvgProps } from 'react-native-svg';
 import { match } from 'ts-pattern';
-import { type TValues } from '@/utils/type';
+import { type TValues } from '@/types/util';
 
 export const BUTTON_TYPE = {
   ICON_TEXT: 'iconText',
@@ -16,7 +17,9 @@ type TButtonType = TValues<typeof BUTTON_TYPE>;
 interface IButtonProps {
   title?: string;
   onPress?: () => void;
-  svgIcon?: React.FC;
+  svgIcon?: React.FC<SvgProps>;
+  iconColor?: string;
+
   type?: TButtonType;
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
@@ -45,6 +48,16 @@ const Button = ({
   defaultTextColor,
 }: IButtonProps) => {
   const [isPressed, setIsPressed] = useState(false);
+
+  const getIconColor = () => {
+    if (disabled) {
+      return disabledTextColor;
+    }
+    if (isPressed) {
+      return pressedTextColor;
+    }
+    return defaultTextColor;
+  };
 
   const getButtonColor = () => {
     if (disabled) {
@@ -77,21 +90,21 @@ const Button = ({
       <View style={styles.contentWrapper}>
         {match(type)
           .with(BUTTON_TYPE.TEXT_ONLY, () => (
-            <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
+            <Text style={[styles.text, textStyle, { color: getTextColor() }]}>{title}</Text>
           ))
-          .with(BUTTON_TYPE.ICON_ONLY, () => <View>{SvgIcon && <SvgIcon />}</View>)
+          .with(BUTTON_TYPE.ICON_ONLY, () => <View>{SvgIcon && <SvgIcon color={getIconColor()} />}</View>)
           .with(BUTTON_TYPE.ICON_TEXT, () => (
             <View style={styles.wrapper}>
-              {SvgIcon && <SvgIcon />}
-              <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
+              {SvgIcon && <SvgIcon color={getIconColor()} />}
+              <Text style={[styles.text, textStyle, { color: getTextColor() }]}>{title}</Text>
             </View>
           ))
           .with(BUTTON_TYPE.SOCIAL, () => (
             <View style={styles.socialContentWrapper}>
               <View style={styles.social}>
-                {SvgIcon && <SvgIcon />}
+                {SvgIcon && <SvgIcon color={getIconColor()} />}
                 <View style={styles.textWrapper}>
-                  <Text style={[styles.text, { color: getTextColor() }, textStyle]}>{title}</Text>
+                  <Text style={[styles.text, textStyle, { color: getTextColor() }]}>{title}</Text>
                 </View>
               </View>
             </View>
@@ -108,7 +121,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     display: 'flex',
     height: 52,
-    width: 342,
+    width: '100%',
   },
   contentWrapper: {
     alignItems: 'center',
