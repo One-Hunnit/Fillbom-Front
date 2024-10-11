@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import infoIconBlack from '@/assets/svgs/infoIconBlack.svg';
+import IconInfo from '@/assets/svgs/icon-info.svg';
 import Button from '@/components/Button';
 import { FILLBOM_COLOR } from '@/constants/color';
 import useLogin from './hooks/useLogin';
@@ -14,7 +14,7 @@ const LoginPage = () => {
       <Button
         title="로그인"
         type="iconText"
-        svgIcon={infoIconBlack}
+        svgIcon={IconInfo}
         pressedButtonColor={FILLBOM_COLOR.BLUE[300]}
         disabledButtonColor={FILLBOM_COLOR.BLUE[200]}
         defaultButtonColor={FILLBOM_COLOR.BLUE[500]}
@@ -26,7 +26,7 @@ const LoginPage = () => {
       <Button
         title="카카오 로그인"
         type="iconText"
-        svgIcon={infoIconBlack}
+        svgIcon={IconInfo}
         pressedButtonColor={FILLBOM_COLOR.BLUE[300]}
         disabledButtonColor={FILLBOM_COLOR.BLUE[200]}
         defaultButtonColor={FILLBOM_COLOR.BLUE[500]}
