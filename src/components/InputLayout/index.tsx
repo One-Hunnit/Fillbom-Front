@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import InfoIcon from '@/assets/svgs/icon-info.svg';
+import InfoIcon from '@/assets/svgs/ico_info.svg';
 import { FILLBOM_COLOR } from '@/constants/color';
 import TEXT_STYLES from '@/styles/textStyles';
 

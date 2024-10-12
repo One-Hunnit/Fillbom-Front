@@ -1,18 +1,25 @@
 import { StyleSheet } from 'react-native';
+import TEXT_STYLES from '@/styles/textStyles';
 
 export const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    backgroundColor: '#f7f7f7',
     flex: 1,
-    gap: 10,
+  },
+  titleContainer: {
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
-    padding: 16,
   },
   title: {
-    color: '#333',
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    ...TEXT_STYLES.TITLE_XL_BOLD,
+  },
+  buttonContainer: {
+    paddingHorizontal: 20,
+    gap: 12,
+    marginBottom: 40,
+  },
+  buttonIcon: {
+    position: 'absolute',
+    left: 20,
   },
 });
