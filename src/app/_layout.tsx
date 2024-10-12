@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Slot, SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { RecoilRoot } from 'recoil';
 import Loading from '@/components/Loading';
 import useInitializeApp from '@/hooks/useInitializeApp';
@@ -25,7 +26,9 @@ export default () => {
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
-        <Slot />
+        <GestureHandlerRootView>
+          <Slot />
+        </GestureHandlerRootView>
       </QueryClientProvider>
     </RecoilRoot>
   );

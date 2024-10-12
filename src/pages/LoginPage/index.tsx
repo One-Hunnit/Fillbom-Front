@@ -12,24 +12,22 @@ const LoginPage = () => {
     <View style={styles.container}>
       <Text style={styles.title}>로그인 페이지</Text>
       <Button
-        title="로그인"
-        type="iconText"
-        svgIcon={IconInfo}
-        pressedButtonColor={FILLBOM_COLOR.BLUE[300]}
-        disabledButtonColor={FILLBOM_COLOR.BLUE[200]}
-        defaultButtonColor={FILLBOM_COLOR.BLUE[500]}
+        text="로그인"
+        icon={IconInfo}
+        pressedBackgroundColor={FILLBOM_COLOR.BLUE[300]}
+        disabledBackgroundColor={FILLBOM_COLOR.BLUE[200]}
+        defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}
         pressedTextColor={FILLBOM_COLOR.BLUE[200]}
         disabledTextColor={FILLBOM_COLOR.BLUE[300]}
         defaultTextColor={FILLBOM_COLOR.GRAY[100]}
         onPress={handleLogin}
       />
       <Button
-        title="카카오 로그인"
-        type="iconText"
-        svgIcon={IconInfo}
-        pressedButtonColor={FILLBOM_COLOR.BLUE[300]}
-        disabledButtonColor={FILLBOM_COLOR.BLUE[200]}
-        defaultButtonColor={FILLBOM_COLOR.BLUE[500]}
+        text="카카오 로그인"
+        icon={IconInfo}
+        pressedBackgroundColor={FILLBOM_COLOR.BLUE[300]}
+        disabledBackgroundColor={FILLBOM_COLOR.BLUE[200]}
+        defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}
         pressedTextColor={FILLBOM_COLOR.BLUE[200]}
         disabledTextColor={FILLBOM_COLOR.BLUE[300]}
         defaultTextColor={FILLBOM_COLOR.GRAY[100]}

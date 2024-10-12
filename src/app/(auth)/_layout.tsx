@@ -1,13 +1,18 @@
-import { Redirect, Stack } from 'expo-router';
+import { Redirect, Stack, usePathname } from 'expo-router';
 import { useRecoilValue } from 'recoil';
 import { ROOT_BACKGROUND_COLOR } from '@/constants/ui';
 import { authState } from '@/stores/authStore';
 
 export default () => {
   const auth = useRecoilValue(authState);
+  const pathname = usePathname();
 
   if (!auth) {
     return <Redirect href="/login" />;
+  } else if (auth.account.status === 'SIGNUP_PENDING') {
+    if (pathname !== '/signup') {
+      return <Redirect href="/signup" />;
+    }
   }
 
   return (
