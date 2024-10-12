@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, type TextStyle, type ViewStyle, type PressableProps } from 'react-native';
+import { Pressable, StyleSheet, Text, type TextStyle, type ViewStyle } from 'react-native';
 import { match } from 'ts-pattern';
 import { FILLBOM_COLOR } from '@/constants/color';
 import TEXT_STYLES from '@/styles/textStyles';
 
-interface IChipProps extends PressableProps {
+interface IChipProps {
   title: string;
   selected?: boolean;
   defaultBackgroundColor?: string;
