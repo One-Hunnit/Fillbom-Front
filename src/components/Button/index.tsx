@@ -22,10 +22,13 @@ interface IButtonProps {
   disabled?: boolean;
   defaultBackgoundColor?: string;
   defaultTextColor?: string;
+  defaultIconColor?: string;
   pressedBackgroundColor?: string;
   pressedTextColor?: string;
+  pressedIconColor?: string;
   disabledBackgroundColor?: string;
   disabledTextColor?: string;
+  disabledIconColor?: string;
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
   iconStyle?: ViewStyle;
@@ -41,10 +44,13 @@ const Button = memo(
     disabled,
     defaultBackgoundColor,
     defaultTextColor,
+    defaultIconColor,
     pressedBackgroundColor,
     pressedTextColor,
+    pressedIconColor,
     disabledBackgroundColor,
     disabledTextColor,
+    disabledIconColor,
     buttonStyle,
     textStyle,
     iconStyle,
@@ -71,6 +77,16 @@ const Button = memo(
       return defaultTextColor;
     };
 
+    const getIconColor = () => {
+      if (disabled) {
+        return disabledIconColor;
+      }
+      if (isPressed) {
+        return pressedIconColor;
+      }
+      return defaultIconColor;
+    };
+
     return (
       <Pressable
         style={[styles.container, { backgroundColor: getButtonColor() }, buttonStyle]}
@@ -79,10 +95,10 @@ const Button = memo(
         onPressIn={() => setIsPressed(true)}
         onPressOut={() => setIsPressed(false)}
       >
-        {SvgIcon && iconPosition === ICON_POSITION.LEFT && <SvgIcon color={getTextColor()} style={iconStyle} />}
+        {SvgIcon && iconPosition === ICON_POSITION.LEFT && <SvgIcon color={getIconColor()} style={iconStyle} />}
         {text && <Text style={[styles.text, textStyle, { color: getTextColor() }]}>{text}</Text>}
         {subText && <Text style={[styles.subText, textStyle, { color: getTextColor() }]}>{subText}</Text>}
-        {SvgIcon && iconPosition === ICON_POSITION.RIGHT && <SvgIcon color={getTextColor()} style={iconStyle} />}
+        {SvgIcon && iconPosition === ICON_POSITION.RIGHT && <SvgIcon color={getIconColor()} style={iconStyle} />}
       </Pressable>
     );
   },
@@ -96,6 +112,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 12,
+    gap: 8,
   },
   text: {
     ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
