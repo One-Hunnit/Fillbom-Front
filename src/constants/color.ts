@@ -31,3 +31,5 @@ export const FILLBOM_COLOR = {
     50: '#FFFFFF',
   },
 } as const;
+
+export const NOTIFICATION_COLOR = '#FF231F7C';

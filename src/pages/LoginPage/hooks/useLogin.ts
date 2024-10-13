@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { authState } from '@/stores/authStore';
 import { mockAccountData, mockAuthData } from '../constants';
-import { registerForPushNotificationsAsync } from './useDevicePushToken';
 
 export default function useLogin() {
   const setAuth = useSetRecoilState(authState);
@@ -22,8 +21,6 @@ export default function useLogin() {
       const token = await login();
       if (token) {
         console.log(token);
-        const deviceToken = registerForPushNotificationsAsync();
-        console.log('device token', deviceToken);
         setAuth({ account: mockAccountData, ...mockAuthData });
         router.replace('/');
       } else {
