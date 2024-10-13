@@ -7,6 +7,13 @@ export const ACCOUNT_ROLE = {
 
 export type TAcccountRole = TValues<typeof ACCOUNT_ROLE>;
 
+export const ACCOUNT_STATUS = {
+  SIGNUP_PENDING: 'SIGNUP_PENDING',
+  DONE: 'DONE',
+};
+
+export type TAccountStatus = TValues<typeof ACCOUNT_STATUS>;
+
 export const GENDER = {
   MAN: 'man',
   WOMAN: 'woman',
