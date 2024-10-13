@@ -1,31 +1,19 @@
-import { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 import AppleLogoIcon from '@/assets/svgs/ico_apple_logo.svg';
 import KakaoLogoIcon from '@/assets/svgs/ico_kakao_logo.svg';
 import Button from '@/components/Button';
 import { FILLBOM_COLOR } from '@/constants/color';
-import { registerForPushNotificationsAsync } from './hooks/useDevicePushToken';
 import useLogin from './hooks/useLogin';
 import ModalComponent from './modal';
 import { styles } from './styles';
 
 const LoginPage = () => {
   const { handleLogin, signInWithKakao, modalVisible, setModalVisible } = useLogin();
-  const [deviceToken, setDeviceToken] = useState<string | undefined | null>(null);
-
-  useEffect(() => {
-    const getDeviceToken = async () => {
-      const token = await registerForPushNotificationsAsync();
-      setDeviceToken(token);
-    };
-    getDeviceToken();
-  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>로그인 페이지</Text>
-        <Text>{deviceToken ? `Device Token: ${deviceToken}` : '토큰을 가져오는 중...'}</Text>
       </View>
       <View style={styles.buttonContainer}>
         <Button
