@@ -22,7 +22,7 @@ export default function useLogin() {
       const token = await login();
       if (token) {
         console.log(token);
-        const deviceToken = await registerForPushNotificationsAsync();
+        const deviceToken = registerForPushNotificationsAsync();
         console.log('device token', deviceToken);
         setAuth({ account: mockAccountData, ...mockAuthData });
         router.replace('/');
