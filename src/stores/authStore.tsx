@@ -1,5 +1,6 @@
 import { atom } from 'recoil';
 import { persistAtom } from '@/utils/recoil';
+import { type TAccountStatus, type TAcccountRole } from '@/constants';
 
 export interface IAuth {
   account: {
@@ -7,8 +8,8 @@ export interface IAuth {
     name: string;
     email: string;
     profileImage: string;
-    role: 'patient' | 'caregiver';
-    status: 'SIGNUP_PENDING' | 'REGIST_INFO_PENDING' | 'DONE';
+    role: TAcccountRole;
+    status: TAccountStatus;
   };
   accessToken: string;
   refreshToken: string;

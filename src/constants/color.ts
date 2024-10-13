@@ -30,4 +30,4 @@ export const FILLBOM_COLOR = {
     100: '#F8F8FA',
     50: '#FFFFFF',
   },
-};
+} as const;
