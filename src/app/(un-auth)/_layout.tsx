@@ -1,5 +1,6 @@
 import { Redirect, Stack } from 'expo-router';
 import { useRecoilValue } from 'recoil';
+import { ROOT_BACKGROUND_COLOR } from '@/constants/ui';
 import { authState } from '@/stores/authStore';
 
 export default () => {
@@ -10,7 +11,7 @@ export default () => {
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
+    <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: ROOT_BACKGROUND_COLOR } }}>
       <Stack.Screen name="login" />
       <Stack.Screen name="refresh" />
     </Stack>
