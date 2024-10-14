@@ -11,5 +11,5 @@ export const mockAccountData: IAuth['account'] = {
   role: 'caregiver',
   email: 'sjsjsj1246@gmail.com',
   profileImage: 'https://avatars.githubusercontent.com/u/24623403?v=4',
-  status: 'SIGNUP_PENDING',
+  status: 'DONE',
 };
