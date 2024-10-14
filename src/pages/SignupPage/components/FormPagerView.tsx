@@ -1,7 +1,6 @@
-import { memo, useEffect, useRef } from 'react';
+import { memo } from 'react';
 import { Controller, type UseFormReturn } from 'react-hook-form';
 import { Pressable, ScrollView, Text, View } from 'react-native';
-import PagerView from 'react-native-pager-view';
 import { match } from 'ts-pattern';
 import IconSymbol from '@/assets/svgs/ico_symbol.svg';
 import Button from '@/components/Button';
@@ -73,7 +72,7 @@ interface IConfirmCardProps {
   formData: TSignupFormData;
   changeStep: (index: number) => void;
 }
-const ConfirmCard = ({ formData, changeStep }: IConfirmCardProps) => (
+const ConfirmCard = memo(({ formData, changeStep }: IConfirmCardProps) => (
   <View style={confirmStyles.container}>
     <View style={confirmStyles.title}>
       <IconSymbol style={confirmStyles.title} />
@@ -90,7 +89,7 @@ const ConfirmCard = ({ formData, changeStep }: IConfirmCardProps) => (
       />
     ))}
   </View>
-);
+));
 
 interface IFormPagerViewProps extends Pick<UseFormReturn<TSignupFormData>, 'control' | 'getValues'> {
   index: number;
@@ -98,61 +97,71 @@ interface IFormPagerViewProps extends Pick<UseFormReturn<TSignupFormData>, 'cont
 }
 
 const FormPagertView = ({ control, getValues, index, changeStep }: IFormPagerViewProps) => {
-  const pagerRef = useRef<PagerView>(null);
-
-  useEffect(() => {
-    pagerRef.current?.setPage(index);
-  }, [index]);
-
-  return (
-    <PagerView ref={pagerRef} style={styles.pagerView} initialPage={0} scrollEnabled={false}>
-      {SIGNUP_STEPS_ENTRIES.map(([key, { title, formInfo }]) => (
-        <ScrollView style={styles.section} key={key}>
-          <Text style={styles.title}>{title}</Text>
-          {match(key)
-            .with(SIGNUP_STEP_KEY.ROLE, (key) => (
-              <Controller
-                name={key}
-                control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <SelectRole selectedValue={value} onBlur={onBlur} onChange={onChange} />
-                )}
-              />
-            ))
-            .with(SIGNUP_STEP_KEY.NAME, SIGNUP_STEP_KEY.PHONE, SIGNUP_STEP_KEY.BIRTH, (key) => (
-              <Controller
-                name={key}
-                control={control}
-                render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
-                  <InputLayout label={formInfo?.formTitle} guide={formInfo?.guideText} error={!!error}>
-                    <TextInput
-                      onChangeText={onChange}
-                      onBlur={onBlur}
-                      value={value}
-                      placeholder={formInfo?.placeholder}
-                      error={!!error}
-                    />
-                  </InputLayout>
-                )}
-              />
-            ))
-            .with(SIGNUP_STEP_KEY.GENDER, (key) => (
-              <Controller
-                name={key}
-                control={control}
-                render={({ field: { onChange, onBlur, value }, fieldState }) => (
-                  <InputLayout label={formInfo?.formTitle} guide={formInfo?.guideText} error={!!fieldState.error}>
-                    <SelectGender onChange={onChange} onBlur={onBlur} selectedValue={value} />
-                  </InputLayout>
-                )}
-              />
-            ))
-            .with(SIGNUP_STEP_KEY.CONFIRM, () => <ConfirmCard formData={getValues()} changeStep={changeStep} />)
-            .exhaustive()}
-        </ScrollView>
-      ))}
-    </PagerView>
-  );
+  return SIGNUP_STEPS_ENTRIES.map(([key, { title, formInfo }]) => (
+    <ScrollView style={styles.section} key={key}>
+      <Text style={styles.title}>{title}</Text>
+      {match(key)
+        .with(SIGNUP_STEP_KEY.ROLE, (key) => (
+          <Controller
+            name={key}
+            control={control}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <SelectRole selectedValue={value} onBlur={onBlur} onChange={onChange} />
+            )}
+          />
+        ))
+        .with(SIGNUP_STEP_KEY.NAME, (key) => (
+          <Controller
+            name={key}
+            control={control}
+            render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
+              <InputLayout label={formInfo?.formTitle} guide={formInfo?.guideText} error={!!error}>
+                <TextInput
+                  autoFocus
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  placeholder={formInfo?.placeholder}
+                  error={!!error}
+                />
+              </InputLayout>
+            )}
+          />
+        ))
+        .with(SIGNUP_STEP_KEY.PHONE, SIGNUP_STEP_KEY.BIRTH, (key) => (
+          <Controller
+            name={key}
+            control={control}
+            render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
+              <InputLayout label={formInfo?.formTitle} guide={formInfo?.guideText} error={!!error}>
+                <TextInput
+                  autoFocus
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  placeholder={formInfo?.placeholder}
+                  error={!!error}
+                  keyboardType="numbers-and-punctuation"
+                />
+              </InputLayout>
+            )}
+          />
+        ))
+        .with(SIGNUP_STEP_KEY.GENDER, (key) => (
+          <Controller
+            name={key}
+            control={control}
+            render={({ field: { onChange, onBlur, value }, fieldState }) => (
+              <InputLayout label={formInfo?.formTitle} guide={formInfo?.guideText} error={!!fieldState.error}>
+                <SelectGender onChange={onChange} onBlur={onBlur} selectedValue={value} />
+              </InputLayout>
+            )}
+          />
+        ))
+        .with(SIGNUP_STEP_KEY.CONFIRM, () => <ConfirmCard formData={getValues()} changeStep={changeStep} />)
+        .exhaustive()}
+    </ScrollView>
+  ))[index];
 };
 
 export default FormPagertView;

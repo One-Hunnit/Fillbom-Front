@@ -1,5 +1,5 @@
 import { BottomSheetBackdrop, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
-import React, { forwardRef, memo, useCallback } from 'react';
+import React, { forwardRef, memo } from 'react';
 import { Text, Dimensions, View, Pressable } from 'react-native';
 import IconCheck from '@/assets/svgs/ico_check.svg';
 import Button from '@/components/Button';
