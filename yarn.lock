@@ -8198,6 +8198,13 @@ open@^8.0.4, open@^8.3.0:
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
 
+openapi-fetch@^0.12.2:
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/openapi-fetch/-/openapi-fetch-0.12.2.tgz#f8d6c8f00ef32a62da4b3918336df1b204495543"
+  integrity sha512-ctMQ4LkkSWfIDUMuf1SYuPMsQ7ePcWAkYaMPW1lCDdk4WlV3Vulq1zoyGrwnFVvrBs5t7OOqNF+EKa8SAaovEA==
+  dependencies:
+    openapi-typescript-helpers "^0.0.13"
+
 openapi-typescript-helpers@^0.0.13:
   version "0.0.13"
   resolved "https://registry.yarnpkg.com/openapi-typescript-helpers/-/openapi-typescript-helpers-0.0.13.tgz#d959b6a87b5461759e240af375fab480252d2caf"

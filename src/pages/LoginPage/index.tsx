@@ -28,7 +28,7 @@ const LoginPage = () => {
           onPress={signInWithKakao}
           iconStyle={styles.buttonIcon}
         />
-        <Button
+        {/* <Button
           text="Apple ID로 시작하기"
           icon={AppleLogoIcon}
           defaultBackgoundColor={FILLBOM_COLOR.GRAY[900]}
@@ -39,7 +39,7 @@ const LoginPage = () => {
           pressedIconColor={FILLBOM_COLOR.GRAY[400]}
           onPress={handleLogin}
           iconStyle={styles.buttonIcon}
-        />
+        /> */}
       </View>
       <ModalComponent visible={modalVisible} onClose={() => setModalVisible(false)} />
     </SafeAreaView>

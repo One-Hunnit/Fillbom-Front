@@ -48,6 +48,7 @@
     "expo-task-manager": "~11.8.2",
     "expo-web-browser": "~13.0.3",
     "lottie-react-native": "6.7.0",
+    "openapi-fetch": "^0.12.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.53.0",

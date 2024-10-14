@@ -1,13 +1,18 @@
 import { atom } from 'recoil';
 import { persistAtom } from '@/utils/recoil';
-import { type TAccountStatus, type TAcccountRole } from '@/constants';
+import { type TAccountStatus, type TAcccountRole, type TGender } from '@/constants';
 
 export interface IAuth {
-  account: {
-    id: string;
-    name: string;
-    email: string;
-    profileImage: string;
+  account?: {
+    email?: string;
+    provider?: 'KAKAO' | 'APPLE';
+    profile_image?: string;
+    name?: string;
+    nickname?: string;
+    age?: number;
+    phone?: string;
+    gender?: TGender;
+    birthday?: string;
     role: TAcccountRole;
     status: TAccountStatus;
   };
