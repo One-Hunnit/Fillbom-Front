@@ -14,6 +14,7 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "usesAppleSignIn": true,
       "supportsTablet": true,
       "bundleIdentifier": "com.onehunnit.fillbom",
       "googleServicesFile": "./GoogleService-Info.plist",
@@ -41,6 +42,7 @@
     "plugins": [
       "expo-router",
       "@react-native-firebase/app",
+      "expo-apple-authentication",
       [
         "expo-location",
         {
