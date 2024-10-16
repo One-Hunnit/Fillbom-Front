@@ -128,7 +128,9 @@ export const confirmStyles = StyleSheet.create({
     color: FILLBOM_COLOR.GRAY[600],
   },
   value: {
-    ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
+    ...TEXT_STYLES.BODY_MEDIUM_MEDIUM,
+    fontWeight: 900,
+    fontSize: 14,
     flex: 1,
     textAlign: 'left',
     color: FILLBOM_COLOR.GRAY[800],
