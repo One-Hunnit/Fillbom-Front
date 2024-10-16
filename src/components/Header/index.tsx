@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import ArrowPrevious from '@/assets/svgs/ico_arrow_previous.svg';
 import { FILLBOM_COLOR } from '@/constants/color';
@@ -13,9 +14,17 @@ interface IHeaderProps {
 }
 
 const Header = ({ title, onBack, backButtonVisible, containerStyle }: IHeaderProps) => {
+  const router = useRouter();
+
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <View style={[styles.container, containerStyle]}>
-      {backButtonVisible && <Button buttonStyle={styles.backButton} icon={ArrowPrevious} onPress={onBack} />}
+      {backButtonVisible && (
+        <Button buttonStyle={styles.backButton} icon={ArrowPrevious} onPress={onBack ?? handleBack} />
+      )}
       <Text style={styles.title}>{title}</Text>
     </View>
   );
