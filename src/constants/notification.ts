@@ -1,13 +1,13 @@
 import { type TValues } from '@/types/util';
 
 export const NOTIFICATION_TYPE = {
-  RELATIONSHIP_RESPONSE: 'relationship_response',
-  RELATIONSHIP_REQUEST: 'relationship_request',
-  SCHEDULE_REMINDER: 'schedule_reminder',
-  DIARY_CREATED: 'diary_created',
-  MEDICATION_REMINDER: 'medication_reminder',
-  RELEASED: 'released',
-  ETC: 'etc',
+  RELATIONSHIP_RESPONSE: 'RELATIONSHIP_RESPONSE',
+  RELATIONSHIP_REQUEST: 'RELATIONSHIP_REQUEST',
+  SCHEDULE_REMINDER: 'SCHEDULE_REMINDER',
+  DIARY_CREATED: 'DIARY_CREATED',
+  MEDICATION_REMINDER: 'MEDICATION_REMINDER',
+  RELEASED: 'RELEASED',
+  ETC: 'ETC',
 };
 
 export type TNotificationType = TValues<typeof NOTIFICATION_TYPE>;
