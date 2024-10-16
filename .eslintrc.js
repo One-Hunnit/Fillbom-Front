@@ -10,7 +10,7 @@ module.exports = {
     'plugin:import/recommended',
     'plugin:import/typescript',
   ],
-  ignorePatterns: ['/*', '!/src', '!/app'],
+  ignorePatterns: ['/*', '!/src', '!/app', '/src/api/types.ts'],
   plugins: ['@typescript-eslint', 'react', 'react-native', 'react-hooks', 'import'],
   rules: {
     'react-native/sort-styles': 'off',

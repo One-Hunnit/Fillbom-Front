@@ -1,13 +1,13 @@
 import { Redirect } from 'expo-router';
-import { useRecoilValue } from 'recoil';
 import { match } from 'ts-pattern';
-import { authState } from '@/stores/authStore';
+import { useAuthStore } from '@/stores/authStore';
 
 export default () => {
-  const auth = useRecoilValue(authState);
+  const { account } = useAuthStore();
 
-  return match(auth?.account.role)
+  return match(account?.role)
     .with('patient', () => <Redirect href="/patient" />)
     .with('caregiver', () => <Redirect href="/caregiver" />)
+    .with(null, () => <Redirect href="/signup" />)
     .otherwise(() => <Redirect href="/login" />);
 };

@@ -1,26 +1,68 @@
-import { atom } from 'recoil';
-import { persistAtom } from '@/utils/recoil';
-import { type TAccountStatus, type TAcccountRole } from '@/constants';
-
-export interface IAuth {
-  account: {
-    id: string;
-    name: string;
-    email: string;
-    profileImage: string;
-    role: TAcccountRole;
-    status: TAccountStatus;
-  };
-  accessToken: string;
-  refreshToken: string;
-}
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { produce } from 'immer';
+import { create } from 'zustand';
+import { createJSONStorage, devtools, persist } from 'zustand/middleware';
+import { setAccessToken } from '@/api/client';
+import { type TStore } from '@/types/store';
+import { type TAccountStatus, type TAcccountRole, type TGender } from '@/constants';
 
 export const AUTH_STATE_KEY = 'authState';
 
-const defaultAuthState = null;
+export interface IAuthState {
+  account?: {
+    id: number;
+    email: string;
+    provider: 'KAKAO' | 'APPLE';
+    profile_image: string | null;
+    name: string | null;
+    age: number | null;
+    phone: string | null;
+    gender: TGender | null;
+    birthday: string | null;
+    role: TAcccountRole | null;
+    status: TAccountStatus;
+  };
+  accessToken?: string;
+  refreshToken?: string;
+}
 
-export const authState = atom<IAuth | null>({
-  key: AUTH_STATE_KEY,
-  default: defaultAuthState,
-  effects_UNSTABLE: [persistAtom(AUTH_STATE_KEY)],
-});
+const initialState: IAuthState = {
+  account: undefined,
+  accessToken: undefined,
+  refreshToken: undefined,
+};
+
+export const useAuthStore = create<TStore<IAuthState>>()(
+  devtools(
+    persist(
+      (set, get) => ({
+        ...initialState,
+        setState: (key, value) =>
+          set(
+            produce(get(), (draft: IAuthState) => {
+              if (key === 'accessToken' || key === 'refreshToken') {
+                if (value) {
+                  setAccessToken(value as string);
+                }
+              }
+
+              draft[key] = value;
+            }),
+          ),
+        initState: () => set({ ...initialState }),
+      }),
+      {
+        name: 'useAuthStore',
+        partialize: ({ account, accessToken, refreshToken }: TStore<IAuthState>) => {
+          if (accessToken) setAccessToken(accessToken);
+          return {
+            account,
+            accessToken,
+            refreshToken,
+          };
+        },
+        storage: createJSONStorage(() => AsyncStorage),
+      },
+    ),
+  ),
+);
