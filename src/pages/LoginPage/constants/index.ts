@@ -5,11 +5,15 @@ export const mockAuthData: Pick<IAuth, 'accessToken' | 'refreshToken'> = {
   accessToken: 'access',
   refreshToken: 'refresh',
 };
+
 export const mockAccountData: IAuth['account'] = {
-  id: '1',
+  id: 1,
   name: 'test',
   role: 'caregiver',
   email: 'sjsjsj1246@gmail.com',
-  profileImage: 'https://avatars.githubusercontent.com/u/24623403?v=4',
+  profile_image: 'https://avatars.githubusercontent.com/u/24623403?v=4',
   status: 'SIGNUP_PENDING',
 };
+
+export const KAKAO_COLOR = '#FFE300';
+export const KAKAO_PRESSED_COLOR = '#FFEF70';
