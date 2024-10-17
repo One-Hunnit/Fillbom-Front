@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { match } from 'ts-pattern';
 import Button from '@/components/Button';
@@ -63,14 +63,16 @@ const PatientListPage = () => {
           <NoPatients />
         ) : (
           <ScrollView style={patientCardStyles.scrollViewStyle}>
-            {patients.map((patient, index) => (
-              <View style={styles.listWrapper}>
-                {match(patient.status)
-                  .with(PatientStatus.PENDING, () => <PatientCardPending key={index} patient={patient} />)
-                  .with(PatientStatus.ACCEPTED, () => <PatientCardAccepted key={index} patient={patient} />)
-                  .exhaustive()}
-              </View>
-            ))}
+            <View style={styles.listWrapper}>
+              {patients.map((patient, index) => (
+                <View style={styles.cardWrapper}>
+                  {match(patient.status)
+                    .with(PatientStatus.PENDING, () => <PatientCardPending key={index} patient={patient} />)
+                    .with(PatientStatus.ACCEPTED, () => <PatientCardAccepted key={index} patient={patient} />)
+                    .exhaustive()}
+                </View>
+              ))}
+            </View>
           </ScrollView>
         )}
         <View style={styles.buttonWrapper}>

@@ -14,12 +14,11 @@ export const styles = StyleSheet.create({
   },
   container: {
     width: '100%',
+    height: '100%',
     alignItems: 'center',
     flex: 1,
-    backgroundColor: '#fff',
     paddingTop: 12,
     justifyContent: 'center',
-    paddingBottom: 80,
   },
   buttonWrapper: {
     position: 'absolute',
@@ -30,6 +29,10 @@ export const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   listWrapper: {
+    paddingBottom: 80,
+    paddingTop: 12,
+  },
+  cardWrapper: {
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
@@ -51,6 +54,7 @@ export const patientCardStyles = StyleSheet.create({
   },
   scrollViewStyle: {
     width: '100%',
+    paddingBottom: 100,
     backgroundColor: '#fff',
   },
   profilWrapper: {
