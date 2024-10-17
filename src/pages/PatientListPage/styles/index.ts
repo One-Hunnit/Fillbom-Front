@@ -115,9 +115,15 @@ export const acceptedCardStyles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: FILLBOM_COLOR.GRAY[200],
   },
+  buttonPressed: {
+    backgroundColor: FILLBOM_COLOR.GRAY[300],
+  },
   showDetailText: {
     ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
     color: FILLBOM_COLOR.GRAY[700],
+  },
+  textPressed: {
+    color: FILLBOM_COLOR.GRAY[500],
   },
   wanderingDetectionButton: {
     width: 137,
