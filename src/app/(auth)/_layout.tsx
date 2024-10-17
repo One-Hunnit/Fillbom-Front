@@ -1,17 +1,17 @@
-import { Redirect, Stack, usePathname } from 'expo-router';
+import { Redirect, Stack } from 'expo-router';
+import Loading from '@/components/Loading';
 import { ROOT_BACKGROUND_COLOR } from '@/constants/ui';
 import useAccount from '@/hooks/useAccount';
 
 export default () => {
-  const { account } = useAccount();
-  const pathname = usePathname();
+  const { account, isLoading } = useAccount();
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   if (!account) {
     return <Redirect href="/login" />;
-  } else if (account.status === 'SIGNUP_PENDING') {
-    if (pathname !== '/signup') {
-      return <Redirect href="/signup" />;
-    }
   }
 
   return (

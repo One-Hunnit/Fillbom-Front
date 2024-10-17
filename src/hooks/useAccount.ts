@@ -6,6 +6,7 @@ import { type IAccount } from '@/types/account';
 const useAccount = () => {
   const { accessToken } = useAuthStore();
   const {
+    isLoading,
     data: account,
     queryKey: accountQueryKey,
     refetch,
@@ -18,6 +19,7 @@ const useAccount = () => {
   };
 
   return {
+    isLoading,
     account: account?.data as IAccount | undefined,
     accountQueryKey,
     reset,
