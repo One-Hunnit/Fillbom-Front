@@ -79,6 +79,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/image/upload": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["uploadImage"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/diaries": {
         parameters: {
             query?: never;
@@ -361,6 +377,12 @@ export interface components {
         IdTokenDto: {
             idToken?: string;
         };
+        ResponseDtoString: {
+            /** @enum {string} */
+            status?: "SUCCESS" | "FAILURE" | "ERROR";
+            message?: string;
+            data?: string;
+        };
         DiaryRequestDto: {
             /** @description 제목 */
             title?: string;
@@ -372,17 +394,8 @@ export interface components {
             shared?: boolean;
         };
         SignUp: {
-            /** @description 이메일 */
-            email?: string;
-            /** @description 소셜 미디어(KAKAO,APPLE) */
-            provider?: string;
             /** @description 이름 */
             name?: string;
-            /**
-             * Format: int32
-             * @description 나이
-             */
-            age?: number;
             /** @description 성별(MAN,WOMAN) */
             gender?: string;
             /** @description 전화번호 */
@@ -392,29 +405,29 @@ export interface components {
              * @example 1999.09.13
              */
             birthday?: string;
+            /** @description 프로필이미지 url */
+            profile_image?: string;
+            /** @description 역할(PATIENT,CAREGIVER) */
+            role?: string;
         };
         Update: {
-            nickname?: string;
-            profileImage?: string;
+            name?: string;
+            profile_image?: string;
             phone?: string;
             birthday?: string;
             /** @enum {string} */
             gender?: "MAN" | "WOMAN";
-            /** @enum {string} */
-            status?: "SIGNUP_PENDING" | "REGISTER_INFO_PENDING" | "DONE";
         };
         Info: {
             /** Format: int64 */
             id?: number;
             email?: string;
-            nickname?: string;
+            name?: string;
             phone?: string;
             profile_image?: string;
             birthday?: string;
             /** @enum {string} */
             gender?: "MAN" | "WOMAN";
-            /** @enum {string} */
-            status?: "SIGNUP_PENDING" | "REGISTER_INFO_PENDING" | "DONE";
         };
         ResponseDtoInfo: {
             /** @enum {string} */
@@ -518,8 +531,6 @@ export interface components {
             profile_image?: string;
             /** @description 이름 */
             name?: string;
-            /** @description 닉네임 */
-            nickname?: string;
             /**
              * Format: int32
              * @description 나이
@@ -534,11 +545,6 @@ export interface components {
             gender?: "MAN" | "WOMAN";
             /** @description 생년월일 */
             birthday?: string;
-            /**
-             * @description 상태(SIGNUP_PENDING,REGISTER_INFO_PENDING,DONE)
-             * @enum {string}
-             */
-            status?: "SIGNUP_PENDING" | "REGISTER_INFO_PENDING" | "DONE";
             /** @description 역할(PATIENT,CAREGIVER */
             role?: string;
         };
@@ -667,6 +673,33 @@ export interface operations {
             };
         };
     };
+    uploadImage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "multipart/form-data": {
+                    /** Format: binary */
+                    image: string;
+                };
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoString"];
+                };
+            };
+        };
+    };
     saveDiary: {
         parameters: {
             query?: never;
@@ -710,7 +743,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "*/*": components["schemas"]["ResponseDtoLong"];
+                    "*/*": components["schemas"]["ResponseDtoString"];
                 };
             };
         };

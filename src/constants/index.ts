@@ -1,8 +1,8 @@
 import { type TValues } from '@/types/util';
 
 export const ACCOUNT_ROLE = {
-  PATIENT: 'patient',
-  CAREGIVER: 'caregiver',
+  PATIENT: 'PATIENT',
+  CAREGIVER: 'CAREGIVER',
 } as const;
 
 export type TAcccountRole = TValues<typeof ACCOUNT_ROLE>;
