@@ -1,5 +1,6 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
+import IcoCareStroke from '@/assets/svgs/ico_care_stroke.svg';
 import type { ITab } from '@/types/route';
 
 const CAREGIVER_TABS: ITab[] = [
@@ -11,7 +12,7 @@ const CAREGIVER_TABS: ITab[] = [
   {
     name: 'patient-list',
     title: '환자 관리',
-    tabBarIcon: ({ color }) => <FontAwesome size={28} name="user" color={color} />,
+    tabBarIcon: ({ color }) => <IcoCareStroke color={color} />,
   },
   {
     name: 'settings',
