@@ -5,6 +5,7 @@ import TEXT_STYLES from '@/styles/textStyles';
 export const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+    width: '100%',
     backgroundColor: '#fff',
   },
   headerContainer: {
@@ -12,20 +13,27 @@ export const styles = StyleSheet.create({
     borderBottomColor: 'none',
   },
   container: {
+    width: '100%',
     alignItems: 'center',
     flex: 1,
-    backgroundColor: 'pink',
+    backgroundColor: '#fff',
     paddingTop: 12,
-    paddingHorizontal: 20,
+    justifyContent: 'center',
+    paddingBottom: 80,
   },
   buttonWrapper: {
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    paddingTop: 40,
     paddingBottom: 40,
     paddingRight: 20,
     paddingLeft: 20,
+  },
+  listWrapper: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 24,
   },
 });
 
@@ -33,18 +41,23 @@ export const patientCardStyles = StyleSheet.create({
   container: {
     backgroundColor: FILLBOM_COLOR.GRAY[100],
     borderRadius: 12,
-    width: '100%',
-    padding: 20,
-    marginBottom: 20,
+    width: 350,
+    height: 100,
+    paddingHorizontal: 12,
+    overflow: 'scroll',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  scrollViewStyle: {
+    width: '100%',
+    backgroundColor: '#fff',
   },
   profilWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: 16,
+    paddingVertical: 16,
   },
   profileImage: {
     width: 40,
@@ -94,15 +107,21 @@ export const acceptedCardStyles = StyleSheet.create({
   container: {
     backgroundColor: FILLBOM_COLOR.GRAY[100],
     borderRadius: 12,
-    width: '100%',
-    padding: 20,
-    marginBottom: 20,
+    width: 350,
+    paddingHorizontal: 12,
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    gap: 10,
+    justifyContent: 'center',
+    paddingBottom: 12,
+  },
+  iconWrapper: {
+    height: '100%',
+  },
+  acceptedProfileWrapper: {
+    marginVertical: 16,
   },
   buttonsWrapper: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     gap: 12,
   },
   showDetailButton: {
@@ -113,6 +132,7 @@ export const acceptedCardStyles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 20,
     flexDirection: 'row',
+    gap: 8,
     backgroundColor: FILLBOM_COLOR.GRAY[200],
   },
   buttonPressed: {
@@ -133,6 +153,7 @@ export const acceptedCardStyles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 20,
     flexDirection: 'row',
+    gap: 8,
     backgroundColor: FILLBOM_COLOR.GRAY[200],
   },
 });

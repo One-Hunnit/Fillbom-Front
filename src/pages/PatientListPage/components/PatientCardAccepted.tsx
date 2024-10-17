@@ -24,7 +24,7 @@ const PatientCardAccepted = ({ patient }: PatientCardPendingProps) => {
           setIsProfileWrapperPressed(true);
         }}
         onPressOut={() => setIsProfileWrapperPressed(false)}
-        style={patientCardStyles.profilWrapper}
+        style={[patientCardStyles.profilWrapper, acceptedCardStyles.acceptedProfileWrapper]}
       >
         <View style={patientCardStyles.infoWrapper}>
           <View
@@ -39,7 +39,9 @@ const PatientCardAccepted = ({ patient }: PatientCardPendingProps) => {
             </Text>
           </View>
         </View>
-        {isProfileWrapperPressed ? <IcoArrowNextStatePressed /> : <IcoArrowNextState />}
+        <View style={acceptedCardStyles.iconWrapper}>
+          {isProfileWrapperPressed ? <IcoArrowNextStatePressed /> : <IcoArrowNextState />}
+        </View>
       </Pressable>
       <View style={acceptedCardStyles.buttonsWrapper}>
         <Pressable
@@ -63,7 +65,6 @@ const PatientCardAccepted = ({ patient }: PatientCardPendingProps) => {
           ]}
         >
           {isWanderingDetectionButtonPressed ? <IcoRaderStatePressed /> : <IcoRaderState />}
-
           <Text
             style={[
               acceptedCardStyles.showDetailText,

@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { match } from 'ts-pattern';
 import Button from '@/components/Button';
@@ -7,11 +7,39 @@ import { FILLBOM_COLOR } from '@/constants/color';
 import NoPatients from './components/NoPatients';
 import PatientCardAccepted from './components/PatientCardAccepted';
 import PatientCardPending from './components/PatientCardPending';
-import { styles } from './styles';
+import { patientCardStyles, styles } from './styles';
 import { PatientStatus, type IPatient } from './types';
 
 const PatientListPage = () => {
   const patients: IPatient[] = [
+    {
+      id: '1',
+      name: '홍길동',
+      birth: '1990-01-01',
+      relation: '아들',
+      status: PatientStatus.ACCEPTED,
+    },
+    {
+      id: '2',
+      name: '홍길순',
+      birth: '1992-02-02',
+      relation: '딸',
+      status: PatientStatus.PENDING,
+    },
+    {
+      id: '1',
+      name: '홍길동',
+      birth: '1990-01-01',
+      relation: '아들',
+      status: PatientStatus.ACCEPTED,
+    },
+    {
+      id: '2',
+      name: '홍길순',
+      birth: '1992-02-02',
+      relation: '딸',
+      status: PatientStatus.PENDING,
+    },
     {
       id: '1',
       name: '홍길동',
@@ -34,16 +62,17 @@ const PatientListPage = () => {
         {patients.length === 0 ? (
           <NoPatients />
         ) : (
-          patients.map((patient, index) => (
-            <View>
-              {match(patient.status)
-                .with(PatientStatus.PENDING, () => <PatientCardPending key={index} patient={patient} />)
-                .with(PatientStatus.ACCEPTED, () => <PatientCardAccepted key={index} patient={patient} />)
-                .exhaustive()}
-            </View>
-          ))
+          <ScrollView style={patientCardStyles.scrollViewStyle}>
+            {patients.map((patient, index) => (
+              <View style={styles.listWrapper}>
+                {match(patient.status)
+                  .with(PatientStatus.PENDING, () => <PatientCardPending key={index} patient={patient} />)
+                  .with(PatientStatus.ACCEPTED, () => <PatientCardAccepted key={index} patient={patient} />)
+                  .exhaustive()}
+              </View>
+            ))}
+          </ScrollView>
         )}
-        <Text>환자 관리 페이지</Text>
         <View style={styles.buttonWrapper}>
           <Button
             text="환자 추가하기"
