@@ -40,46 +40,53 @@ export const patientCardStyles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  profilWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 16,
+  },
   profileImage: {
     width: 40,
     height: 40,
     borderRadius: 20,
     backgroundColor: 'gray',
   },
-  relationText: {
-    ...TEXT_STYLES.SUBTEXT_SMALL_SEMI_BOLD,
-    color: FILLBOM_COLOR.GRAY[600],
+  infoWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 12,
+  },
+  infoTextWrapper: {
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   name: {
     ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
     color: FILLBOM_COLOR.GRAY[800],
   },
+  pressedText: {
+    ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
+    color: FILLBOM_COLOR.GRAY[500],
+  },
   relation: {
     ...TEXT_STYLES.BODY_MEDIUM_REGULAR,
     color: FILLBOM_COLOR.GRAY[600],
-  },
-  infoWrapper: {
-    flexDirection: 'column',
-  },
-  profilWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    textAlign: 'center',
-    gap: 16,
-  },
-  pendingText: {
-    ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
-    fontSize: 14,
-    color: FILLBOM_COLOR.BLUE[500],
   },
   pendingWrapper: {
     height: 30,
     paddingVertical: 4,
     paddingHorizontal: 10,
-    textAlign: 'right',
-    borderRadius: 1500,
     backgroundColor: FILLBOM_COLOR.BLUE[100],
+    textAlign: 'right',
     justifyContent: 'center',
+    borderRadius: 1500,
+  },
+  pendingText: {
+    ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
+    fontSize: 14,
+    color: FILLBOM_COLOR.BLUE[500],
   },
 });
 

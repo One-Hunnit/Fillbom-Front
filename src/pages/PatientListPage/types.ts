@@ -3,4 +3,10 @@ export interface IPatient {
   name: string;
   birth: string;
   relation: string;
+  status: PatientStatus;
+}
+
+export enum PatientStatus {
+  PENDING = 'pending',
+  ACCEPTED = 'accepted',
 }

@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { patientCardStyles } from '../styles';
 import { type IPatient } from '../types';
 interface PatientCardPendingProps {
@@ -8,13 +8,15 @@ interface PatientCardPendingProps {
 const PatientCardPending = ({ patient }: PatientCardPendingProps) => {
   return (
     <View style={patientCardStyles.container}>
-      <View style={patientCardStyles.profilWrapper}>
-        <View style={patientCardStyles.profileImage}></View>
+      <Pressable style={patientCardStyles.profilWrapper}>
         <View style={patientCardStyles.infoWrapper}>
-          <Text style={patientCardStyles.name}>{patient.name}</Text>
-          <Text>{patient.relation}</Text>
+          <View style={patientCardStyles.profileImage}></View>
+          <View style={patientCardStyles.infoTextWrapper}>
+            <Text style={patientCardStyles.name}>{patient.name}</Text>
+            <Text style={patientCardStyles.relation}>{patient.relation}</Text>
+          </View>
         </View>
-      </View>
+      </Pressable>
       <View style={patientCardStyles.pendingWrapper}>
         <Text style={patientCardStyles.pendingText}> 수락 대기 중...</Text>
       </View>

@@ -1,4 +1,7 @@
-import { Text, View } from 'react-native';
+import { useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import IcoArrowNextState from '@/assets/svgs/ico_arrow_next_state.svg';
+import IcoArrowNextStatePressed from '@/assets/svgs/ico_arrow_next_state_pressed.svg';
 import IcoDocumentState from '@/assets/svgs/ico_document_state.svg';
 import IcoRaderState from '@/assets/svgs/icon_rader_state.svg';
 import { acceptedCardStyles, patientCardStyles } from '../styles';
@@ -8,15 +11,32 @@ interface PatientCardPendingProps {
 }
 
 const PatientCardAccepted = ({ patient }: PatientCardPendingProps) => {
+  const [isProfileWrapperPressed, setIsProfileWrapperPressed] = useState<boolean>(false);
+
   return (
     <View style={acceptedCardStyles.container}>
-      <View style={patientCardStyles.profilWrapper}>
-        <View style={patientCardStyles.profileImage}></View>
+      <Pressable
+        onPressIn={() => {
+          setIsProfileWrapperPressed(true);
+        }}
+        onPressOut={() => setIsProfileWrapperPressed(false)}
+        style={patientCardStyles.profilWrapper}
+      >
         <View style={patientCardStyles.infoWrapper}>
-          <Text style={patientCardStyles.name}>{patient.name}</Text>
-          <Text style={patientCardStyles.relation}>{patient.relation}</Text>
+          <View
+            style={isProfileWrapperPressed ? patientCardStyles.profileImage : patientCardStyles.profileImage}
+          ></View>
+          <View style={patientCardStyles.infoTextWrapper}>
+            <Text style={isProfileWrapperPressed ? patientCardStyles.pressedText : patientCardStyles.name}>
+              {patient.name}
+            </Text>
+            <Text style={isProfileWrapperPressed ? patientCardStyles.pressedText : patientCardStyles.relation}>
+              {patient.relation}
+            </Text>
+          </View>
         </View>
-      </View>
+        {isProfileWrapperPressed ? <IcoArrowNextStatePressed /> : <IcoArrowNextState />}
+      </Pressable>
       <View style={acceptedCardStyles.buttonsWrapper}>
         <View style={acceptedCardStyles.showDetailButton}>
           <IcoDocumentState />
