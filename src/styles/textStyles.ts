@@ -7,7 +7,7 @@ const TEXT_STYLES = StyleSheet.create({
   TITLE_XL_BOLD: {
     fontFamily: 'Pretendard-Bold',
     fontSize: 26,
-    fontWeight: 'bold',
+    fontWeight: '700',
     lineHeight: 36,
     color: FILLBOM_COLOR.GRAY[900],
   },
@@ -30,7 +30,7 @@ const TEXT_STYLES = StyleSheet.create({
   SUBTITLE_LARGE_BOLD: {
     fontFamily: 'Pretendard-Bold',
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: '700',
     lineHeight: 28,
     color: FILLBOM_COLOR.GRAY[900],
   },
@@ -53,7 +53,7 @@ const TEXT_STYLES = StyleSheet.create({
   BODY_MEDIUM_BOLD: {
     fontFamily: 'Pretendard-Bold',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '700',
     lineHeight: 22,
     color: FILLBOM_COLOR.GRAY[900],
   },
@@ -83,7 +83,7 @@ const TEXT_STYLES = StyleSheet.create({
   SUBTEXT_SMALL_BOLD: {
     fontFamily: 'Pretendard-Bold',
     fontSize: 14,
-    fontWeight: 'bold',
+    fontWeight: '700',
     lineHeight: 20,
     color: FILLBOM_COLOR.GRAY[900],
   },
@@ -122,7 +122,7 @@ const TEXT_STYLES = StyleSheet.create({
   CAPTION_X_SMALL_BOLD: {
     fontFamily: 'Pretendard-Bold',
     fontSize: 12,
-    fontWeight: 'bold',
+    fontWeight: '700',
     lineHeight: 18,
     color: FILLBOM_COLOR.GRAY[900],
   },
