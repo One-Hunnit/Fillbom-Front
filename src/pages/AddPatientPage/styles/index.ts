@@ -52,4 +52,8 @@ export const styles = StyleSheet.create({
   errorInput: {
     borderColor: FILLBOM_COLOR.PINK[500],
   },
+  buttonKeyboardVisible: {
+    borderRadius: 0,
+    marginBottom: 0,
+  },
 });

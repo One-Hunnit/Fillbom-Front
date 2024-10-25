@@ -5,7 +5,7 @@ import { FILLBOM_COLOR } from '@/constants/color';
 import TEXT_STYLES from '@/styles/textStyles';
 
 interface IInputWithIconProps extends RNTextInputProps {
-  icon?: React.FC<SvgProps>;
+  icon?: React.FC<SvgProps> | null;
   error?: boolean;
   maxLength?: number;
   defaultBackgoundColor?: string;
@@ -19,6 +19,8 @@ interface IInputWithIconProps extends RNTextInputProps {
   errorTextColor?: string;
   selectedBorderColor?: string;
   activatedTextColor?: string;
+  isFocused?: boolean;
+  setIsFocused: (isFocused: boolean) => void;
 }
 
 const InputWithIcon = ({
@@ -28,6 +30,8 @@ const InputWithIcon = ({
   error,
   onPress,
   onChangeText,
+  isFocused,
+  setIsFocused,
   maxLength,
   defaultBackgoundColor,
   defaultBorderColor,
@@ -43,16 +47,15 @@ const InputWithIcon = ({
   ...props
 }: IInputWithIconProps) => {
   const [isPressed, setIsPressed] = useState(false);
-
   const getBackgroundColor = () => {
     if (error) return errorBackgroundColor;
     if (isPressed) return pressedBackgroundColor;
     return defaultBackgoundColor;
   };
   const getBorderColor = () => {
-    if (inputValue?.length === 0) return selectedBorderColor;
     if (error) return errorBackgroundColor;
     if (isPressed) return pressedBackgroundColor;
+    if (isFocused) return selectedBorderColor;
     return defaultBorderColor;
   };
   const getTextColor = () => {
@@ -80,6 +83,7 @@ const InputWithIcon = ({
       onPressOut={() => setIsPressed(false)}
     >
       <TextInput
+        onFocus={() => setIsFocused(true)}
         autoFocus={true}
         placeholder={placeholder}
         value={inputValue}

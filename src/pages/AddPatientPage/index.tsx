@@ -1,27 +1,43 @@
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Keyboard, Pressable, Text, View, type ViewStyle } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import IconCancel from '@/assets/svgs/ico_cancel.svg';
 import IconSearch from '@/assets/svgs/ico_search.svg';
+import Button from '@/components/Button';
 import Header from '@/components/Header';
 import InputLayout from '@/components/InputLayout';
 import InputWithIcon from '@/components/InputWithIcon';
 import { FILLBOM_COLOR } from '@/constants/color';
+import TEXT_STYLES from '@/styles/textStyles';
 import { styles } from './styles';
+import useKeyboardVisible from '../SignupPage/hooks/useKeyboardVisible';
 
 const AddPatientPage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const error = phoneNumber.length > 0 && !/\d{11}/g.test(phoneNumber);
+  const keyboardVisible = useKeyboardVisible();
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  const buttonStyle: ViewStyle = keyboardVisible
+    ? styles.buttonKeyboardVisible
+    : { marginLeft: 20, marginRight: 20, marginBottom: 20, width: 'auto' };
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['left', 'right', 'top']}>
       <Header backButtonVisible={true} containerStyle={styles.headerContainer} title="환자 추가하기" />
-      <View style={styles.container}>
+      <Pressable
+        onPress={() => {
+          setIsInputFocused(false);
+          Keyboard.dismiss();
+        }}
+        style={styles.container}
+      >
         <View style={styles.titleWrapper}>
           <Text style={styles.title}>전화번호를 입력하면{`\n`}환자를 찾을 수 있습니다</Text>
         </View>
         <InputLayout label={'전화번호 검색'} guide={'띄어쓰기 없이 11자리를 입력해주세요.'} error={error}>
           <InputWithIcon
+            isFocused={isInputFocused}
+            setIsFocused={setIsInputFocused}
             error={error}
             placeholder={'01012345678'}
             value={phoneNumber}
@@ -37,11 +53,28 @@ const AddPatientPage = () => {
             defaultIconColor={FILLBOM_COLOR.GRAY[500]}
             pressedIconColor={FILLBOM_COLOR.GRAY[400]}
             onChangeText={setPhoneNumber}
-            icon={phoneNumber.length > 0 ? IconCancel : IconSearch}
+            icon={phoneNumber.length > 0 ? IconCancel : isInputFocused ? IconSearch : null}
             textContentType="telephoneNumber"
           />
         </InputLayout>
-      </View>
+      </Pressable>
+      <Button
+        text={'다음'}
+        onPress={() => {
+          setIsInputFocused(false);
+          Keyboard.dismiss();
+          console.log('TRUE');
+        }}
+        disabled={phoneNumber.length !== 11}
+        defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}
+        defaultTextColor={FILLBOM_COLOR.GRAY[100]}
+        pressedBackgroundColor={FILLBOM_COLOR.BLUE[300]}
+        pressedTextColor={FILLBOM_COLOR.BLUE[200]}
+        disabledBackgroundColor={FILLBOM_COLOR.GRAY[200]}
+        disabledTextColor={FILLBOM_COLOR.GRAY[700]}
+        textStyle={TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD}
+        buttonStyle={buttonStyle}
+      />
     </SafeAreaView>
   );
 };
