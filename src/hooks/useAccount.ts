@@ -20,7 +20,7 @@ const useAccount = () => {
 
   return {
     isLoading,
-    account: account?.data as IAccount | undefined,
+    account: account?.data?.data as IAccount | undefined,
     accountQueryKey,
     reset,
     refetch,

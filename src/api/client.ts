@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { router, usePathname } from 'expo-router';
 import createClient, { type Middleware } from 'openapi-fetch';
 import { type StorageValue } from 'zustand/middleware';
 import { type IAuthState } from '@/stores/authStore';
@@ -25,7 +26,10 @@ const authMiddleware: Middleware = {
   },
   onResponse({ response }) {
     if (response.status === 401) {
-      accessToken = null;
+      const pathname = usePathname();
+      if (pathname !== '/refresh') {
+        router.replace('/refresh');
+      }
     }
     return response;
   },
