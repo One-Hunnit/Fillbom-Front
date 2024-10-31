@@ -10,12 +10,10 @@ const useSignup = () => {
 
   const handleSignup = async (formData: TSignupFormData) => {
     try {
-      const { error } = await signup({ body: formData });
-      if (error) {
-        console.log(error);
-        throw new Error(error);
+      const res = await signup({ body: formData });
+      if (res.error) {
+        throw new Error(res.error.message);
       }
-
       await refetch();
       router.replace('/');
     } catch (error) {

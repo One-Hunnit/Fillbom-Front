@@ -9,6 +9,6 @@ export default () => {
   return match(account?.role)
     .with(ACCOUNT_ROLE.PATIENT, () => <Redirect href="/patient" />)
     .with(ACCOUNT_ROLE.CAREGIVER, () => <Redirect href="/caregiver" />)
-    .with(null, () => <Redirect href="/caregiver" />)
+    .with(null, () => <Redirect href="/signup" />)
     .otherwise(() => <Redirect href="/login" />);
 };

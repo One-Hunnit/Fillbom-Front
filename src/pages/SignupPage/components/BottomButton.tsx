@@ -30,6 +30,7 @@ const BottomButton = ({ formState, currentStepKey, isLastStep, onPress }: IBotto
       SIGNUP_STEP_KEY.PHONE,
       (key) => !!errors[key] || !dirtyFields[key],
     )
+    .with(SIGNUP_STEP_KEY.PROFILE_IMAGE, () => false)
     .with(SIGNUP_STEP_KEY.CONFIRM, () => !isValid)
     .exhaustive();
 

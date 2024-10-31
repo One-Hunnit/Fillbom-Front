@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { Button, Text, View } from 'react-native';
+import { Button, Image, Text, View } from 'react-native';
 import useAccount from '@/hooks/useAccount';
 import { useAuthStore } from '@/stores/authStore';
 import { styles } from './styles';
@@ -11,6 +11,7 @@ const SettingPage = () => {
 
   return (
     <View style={styles.container}>
+      <Image src={account?.profileImage ?? ''} style={styles.avatar} />
       <Text>설정 페이지</Text>
       <Text>이름 {account?.name}</Text>
       <Button title="테스트용으로 로그인 페이지 이동하기" onPress={() => router.replace('/login')} />

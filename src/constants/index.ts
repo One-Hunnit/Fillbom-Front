@@ -20,3 +20,13 @@ export const GENDER = {
 } as const;
 
 export type TGender = TValues<typeof GENDER>;
+
+export const THUMBNAIL_TYPE = {
+  PROFILE: 'profile',
+} as const;
+
+export type TThumbnailType = TValues<typeof THUMBNAIL_TYPE>;
+
+export const THUMBNAIL_QUERY_MAP = {
+  [THUMBNAIL_TYPE.PROFILE]: '?type=f&w=300&h=300&quality=90&faceopt=true&ttype=jpg',
+} as const;

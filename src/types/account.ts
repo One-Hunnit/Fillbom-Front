@@ -4,7 +4,7 @@ export interface IAccount {
   id: number;
   email: string;
   provider: 'KAKAO' | 'APPLE';
-  profile_image: string | null;
+  profileImage: string | null;
   name: string | null;
   age: number | null;
   phone: string | null;

@@ -2,6 +2,7 @@ import { login } from '@react-native-seoul/kakao-login';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
+import { Alert } from 'react-native';
 import { client } from '@/api/client';
 import useAccount from '@/hooks/useAccount';
 import { useAuthStore } from '@/stores/authStore';
@@ -49,6 +50,7 @@ export default function useLogin() {
         ],
       });
       if (idToken) {
+        Alert.alert('Apple 토큰', idToken);
         await getServiceToken(idToken);
         await refetch();
         router.replace('/');
