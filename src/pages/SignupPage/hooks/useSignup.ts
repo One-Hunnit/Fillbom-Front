@@ -9,6 +9,8 @@ const useSignup = () => {
   const router = useRouter();
 
   const handleSignup = async (formData: TSignupFormData) => {
+    console.log(formData);
+    return;
     try {
       const { error } = await signup({ body: formData });
       if (error) {

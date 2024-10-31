@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { DEFAULT_PROFILE_IMAGES } from '@/constants/image';
 import { ACCOUNT_ROLE, GENDER } from '@/constants';
 import { SIGNUP_STEP_KEY } from '../constants';
 
@@ -18,6 +19,7 @@ const signupformSchema = z.object({
     .enum([GENDER.MAN, GENDER.WOMAN])
     .optional()
     .refine((val) => val !== undefined),
+  [SIGNUP_STEP_KEY.PROFILE_IMAGE]: z.string().url(),
   [SIGNUP_STEP_KEY.PHONE]: z
     .string()
     .length(11)
@@ -30,6 +32,9 @@ export const useSignupForm = () => {
   const { formState, control, handleSubmit, getValues } = useForm<TSignupFormData>({
     resolver: zodResolver(signupformSchema),
     mode: 'onChange',
+    defaultValues: {
+      profileImage: DEFAULT_PROFILE_IMAGES[0],
+    },
   });
 
   return {
