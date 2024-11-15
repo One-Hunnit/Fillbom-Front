@@ -20,6 +20,7 @@ interface IInputWithIconProps extends RNTextInputProps {
   selectedBorderColor?: string;
   activatedTextColor?: string;
   isFocused?: boolean;
+  onIconPress?: () => void | undefined;
   setIsFocused: (isFocused: boolean) => void;
 }
 
@@ -29,6 +30,7 @@ const InputWithIcon = ({
   value: inputValue,
   error,
   onPress,
+  onIconPress,
   onChangeText,
   isFocused,
   setIsFocused,
@@ -92,7 +94,7 @@ const InputWithIcon = ({
         maxLength={maxLength}
         {...props}
       />
-      {SvgIcon && <SvgIcon color={getIconColor()} />}
+      <Pressable onPress={onIconPress}>{SvgIcon && <SvgIcon color={getIconColor()} />}</Pressable>
     </Pressable>
   );
 };
