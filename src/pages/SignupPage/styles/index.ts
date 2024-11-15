@@ -129,7 +129,7 @@ export const confirmStyles = StyleSheet.create({
   },
   value: {
     ...TEXT_STYLES.BODY_MEDIUM_MEDIUM,
-    fontWeight: 900,
+    fontWeight: '900',
     fontSize: 14,
     flex: 1,
     textAlign: 'left',
