@@ -3,9 +3,8 @@ import { useRouter } from 'expo-router';
 import React, { useRef } from 'react';
 import { View, Platform, KeyboardAvoidingView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRecoilState } from 'recoil';
 import Header from '@/components/Header';
-import { authState } from '@/stores/authStore';
+import { useAuthStore } from '@/stores/authStore';
 import { ACCOUNT_STATUS } from '@/constants';
 import BottomButton from './components/BottomButton';
 import BottomSheet from './components/BottomSheet';
@@ -17,7 +16,7 @@ import { styles } from './styles';
 
 const SignupPage = () => {
   const router = useRouter();
-  const [auth, setAuth] = useRecoilState(authState);
+  const { account, setState } = useAuthStore();
   const { currentStepIndex, currentStepKey, changeStep, isLastStep, progress, isfirstStep } = useSignupStep();
   const { formState, control, getValues, handleSubmit } = useSignupForm();
 
@@ -25,7 +24,7 @@ const SignupPage = () => {
   const handleBack = () => changeStep(currentStepIndex - 1);
   const handleSignup = (formData: TSignupFormData) => {
     console.log(formData);
-    setAuth({ ...auth!, account: { ...auth!.account, status: ACCOUNT_STATUS.DONE } });
+    account && setState('account', { ...account, status: ACCOUNT_STATUS.DONE });
     router.replace('/');
   };
 

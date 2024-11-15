@@ -1,15 +1,7 @@
-import { Redirect, Stack } from 'expo-router';
-import { useRecoilValue } from 'recoil';
+import { Stack } from 'expo-router';
 import { ROOT_BACKGROUND_COLOR } from '@/constants/ui';
-import { authState } from '@/stores/authStore';
 
 export default () => {
-  const auth = useRecoilValue(authState);
-
-  if (auth) {
-    return <Redirect href="/" />;
-  }
-
   return (
     <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: ROOT_BACKGROUND_COLOR } }}>
       <Stack.Screen name="login" />

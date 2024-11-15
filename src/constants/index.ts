@@ -15,8 +15,8 @@ export const ACCOUNT_STATUS = {
 export type TAccountStatus = TValues<typeof ACCOUNT_STATUS>;
 
 export const GENDER = {
-  MAN: 'man',
-  WOMAN: 'woman',
+  MAN: 'MAN',
+  WOMAN: 'WOMAN',
 } as const;
 
 export type TGender = TValues<typeof GENDER>;

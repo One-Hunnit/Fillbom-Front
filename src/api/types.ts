@@ -4,607 +4,996 @@
  */
 
 export interface paths {
-  '/safe-zone/patients/{patientId}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/safe-zone/patients/{patientId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 안전구역 목록 조회 */
+        get: operations["findAllSafeZone"];
+        put?: never;
+        /** 안전구역 설정 */
+        post: operations["registerSafeZone"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** 안전구역 목록 조회 */
-    get: operations['findAllSafeZone'];
-    put?: never;
-    /** 안전구역 설정 */
-    post: operations['registerSafeZone'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/patient/registration/caregivers/{caregiver_id}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/patient/registration/caregivers/{caregiver_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * 보호자 등록 요청
+         * @description jwt 토큰 필요
+         */
+        post: operations["registerCaregiver"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * 보호자 등록 요청
-     * @description jwt 토큰 필요
-     */
-    post: operations['registerCaregiver'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/oauth/refresh-token': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/oauth/refresh-token": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * 토큰 재발급
+         * @description 리프레시 토큰 앞에 토큰 타입 'Bearer ' 필요
+         */
+        post: operations["reGenerateAccessToken"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * 토큰 재발급
-     * @description 리프레시 토큰 앞에 토큰 타입 'Bearer ' 필요
-     */
-    post: operations['reGenerateAccessToken'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/accounts/sign-up': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/oauth/kakao": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 카카오 소셜로그인 */
+        post: operations["kakaoLogin"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /** 회원가입 */
-    post: operations['signUp'];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/oauth/kakao': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/diaries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 일기 저장 */
+        post: operations["saveDiary"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** 카카오 소셜로그인 */
-    get: operations['kakaoLogin'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/district/search': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/accounts/sign-up": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 회원가입 */
+        post: operations["signUp"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * 행정 구역 검색
-     * @description jwt 토큰 필요
-     */
-    get: operations['searchDistricts'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/district/save-data': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/accounts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * 회원탈퇴
+         * @description jwt 토큰 필요
+         */
+        delete: operations["deleteAccount"];
+        options?: never;
+        head?: never;
+        /**
+         * 계정 정보 수정
+         * @description jwt 토큰 필요
+         */
+        patch: operations["updateUserInfo"];
+        trace?: never;
     };
-    /**
-     * 행정구역 데이터 저장
-     * @description 로컬에서 데이터 저장 용도, 배포 서버 사용X
-     */
-    get: operations['processGeoJson'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/district/coordinate': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/district/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * 행정 구역 검색
+         * @description jwt 토큰 필요
+         */
+        get: operations["searchDistricts"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * 행정 구역 정보 조회
-     * @description jwt 토큰 필요, 좌표 제공
-     */
-    get: operations['getDistrictCoordinate'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/district/check/location/safe-zone': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/district/save-data": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * 행정구역 데이터 저장
+         * @description 로컬에서 데이터 저장 용도, 배포 서버 사용X
+         */
+        get: operations["processGeoJson"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * 행정구역 내에 포함 여부 확인
-     * @description jwt 토큰 필요
-     */
-    get: operations['checkLocation'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/accounts/me': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/district/coordinate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * 행정 구역 정보 조회
+         * @description jwt 토큰 필요, 좌표 제공
+         */
+        get: operations["getDistrictCoordinate"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * 계정 정보 조회
-     * @description jwt 토큰 필요
-     */
-    get: operations['getUserInfo'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/safe-zone/{safeZoneId}': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/district/check/location/safe-zone": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * 행정구역 내에 포함 여부 확인
+         * @description jwt 토큰 필요
+         */
+        get: operations["checkLocation"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    post?: never;
-    /** 안전구역 삭제 */
-    delete: operations['deleteSafeZone'];
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
+    "/diaries/{diaryId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 환자가 일기 조회 */
+        get: operations["findDiaryById"];
+        put?: never;
+        post?: never;
+        /** 환자가 일기 삭제 */
+        delete: operations["deleteDiaryById"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/diaries/{diaryId}/patients/{patientId}/caregivers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * 보호자가 환자의 일기 조회
+         * @description 환자가 공유 허용한 일기만 조회
+         */
+        get: operations["findPatientDiaryForCaregivers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/diaries/patients/{patientId}/caregivers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * 보호자가 환자의 일기 목록 조회
+         * @description 환자가 공유 허용한 일기만 조회
+         */
+        get: operations["findPatientDiariesForCaregivers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/diaries/all": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 환자가 전체 일기 목록 조회 */
+        get: operations["findAllDiary"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/accounts/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * 계정 정보 조회
+         * @description jwt 토큰 필요
+         */
+        get: operations["getUserInfo"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/safe-zone/{safeZoneId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** 안전구역 삭제 */
+        delete: operations["deleteSafeZone"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-  schemas: {
-    ResponseDtoLong: {
-      /** @enum {string} */
-      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
-      message?: string;
-      /** Format: int64 */
-      data?: number;
+    schemas: {
+        ResponseDtoLong: {
+            /** @enum {string} */
+            status?: "SUCCESS" | "FAILURE" | "ERROR";
+            message?: string;
+            /** Format: int64 */
+            data?: number;
+        };
+        RefreshTokenDto: {
+            /** @description 리프레시 토큰(Bearer 필요) */
+            refreshToken?: string;
+        };
+        ResponseDtoTokenInfoDto: {
+            /** @enum {string} */
+            status?: "SUCCESS" | "FAILURE" | "ERROR";
+            message?: string;
+            data?: components["schemas"]["TokenInfoDto"];
+        };
+        TokenInfoDto: {
+            /** @description 허가 타입(Bearer) */
+            grantType?: string;
+            /** @description 액세스 토큰 */
+            accessToken?: string;
+            /** @description 리프레시 토큰 */
+            refreshToken?: string;
+        };
+        IdTokenDto: {
+            idToken?: string;
+        };
+        DiaryRequestDto: {
+            /** @description 제목 */
+            title?: string;
+            /** @description 내용 */
+            content?: string;
+            /** @description 감정상태(HAPPINESS,SADNESS,ANGER,ANXIETY,CALMNESS */
+            emotionState?: string;
+            /** @description 공유여부 */
+            shared?: boolean;
+        };
+        SignUp: {
+            /** @description 이메일 */
+            email?: string;
+            /** @description 소셜 미디어(KAKAO,APPLE) */
+            provider?: string;
+            /** @description 이름 */
+            name?: string;
+            /**
+             * Format: int32
+             * @description 나이
+             */
+            age?: number;
+            /** @description 성별(MAN,WOMAN) */
+            gender?: string;
+            /** @description 전화번호 */
+            phone?: string;
+            /**
+             * @description 생년월일
+             * @example 1999.09.13
+             */
+            birthday?: string;
+        };
+        Update: {
+            nickname?: string;
+            profileImage?: string;
+            phone?: string;
+            birthday?: string;
+            /** @enum {string} */
+            gender?: "MAN" | "WOMAN";
+            /** @enum {string} */
+            status?: "SIGNUP_PENDING" | "REGISTER_INFO_PENDING" | "DONE";
+        };
+        Info: {
+            /** Format: int64 */
+            id?: number;
+            email?: string;
+            nickname?: string;
+            phone?: string;
+            profile_image?: string;
+            birthday?: string;
+            /** @enum {string} */
+            gender?: "MAN" | "WOMAN";
+            /** @enum {string} */
+            status?: "SIGNUP_PENDING" | "REGISTER_INFO_PENDING" | "DONE";
+        };
+        ResponseDtoInfo: {
+            /** @enum {string} */
+            status?: "SUCCESS" | "FAILURE" | "ERROR";
+            message?: string;
+            data?: components["schemas"]["Info"];
+        };
+        DistrictResponseDto: {
+            /** @description 행정구역 명칭 */
+            adm_nm?: string;
+            /** @description 행정구역 코드 */
+            adm_cd?: string;
+        };
+        ResponseDtoListDistrictResponseDto: {
+            /** @enum {string} */
+            status?: "SUCCESS" | "FAILURE" | "ERROR";
+            message?: string;
+            data?: components["schemas"]["DistrictResponseDto"][];
+        };
+        DistrictCoordinateResponseDto: {
+            /** @description 행정구역 명칭 */
+            admNm?: string;
+            /** @description 행정구역 코드 */
+            admCd?: string;
+            /** @description 행정구역 좌표 */
+            coordinate?: string;
+        };
+        ResponseDtoDistrictCoordinateResponseDto: {
+            /** @enum {string} */
+            status?: "SUCCESS" | "FAILURE" | "ERROR";
+            message?: string;
+            data?: components["schemas"]["DistrictCoordinateResponseDto"];
+        };
+        Detail: {
+            /** @description 제목 */
+            title?: string;
+            /** @description 내용 */
+            content?: string;
+            /**
+             * @description 감정상태(HAPPINESS,SADNESS,ANGER,ANXIETY,CALMNESS
+             * @enum {string}
+             */
+            emotionState?: "HAPPINESS" | "SADNESS" | "ANGER" | "ANXIETY" | "CALMNESS";
+            /**
+             * Format: date-time
+             * @description 생성일자
+             */
+            createdAt?: string;
+        };
+        ResponseDtoDetail: {
+            /** @enum {string} */
+            status?: "SUCCESS" | "FAILURE" | "ERROR";
+            message?: string;
+            data?: components["schemas"]["Detail"];
+        };
+        Brief: {
+            /**
+             * Format: int64
+             * @description 일기 인덱스
+             */
+            id?: number;
+            /** @description 제목 */
+            title?: string;
+            /**
+             * @description 감정상태(HAPPINESS,SADNESS,ANGER,ANXIETY,CALMNESS
+             * @enum {string}
+             */
+            emotionState?: "HAPPINESS" | "SADNESS" | "ANGER" | "ANXIETY" | "CALMNESS";
+            /**
+             * Format: date-time
+             * @description 생성일자
+             */
+            createdAt?: string;
+        };
+        ResponseDtoListBrief: {
+            /** @enum {string} */
+            status?: "SUCCESS" | "FAILURE" | "ERROR";
+            message?: string;
+            data?: components["schemas"]["Brief"][];
+        };
+        ResponseDtoTokenAccountInfoDto: {
+            /** @enum {string} */
+            status?: "SUCCESS" | "FAILURE" | "ERROR";
+            message?: string;
+            data?: components["schemas"]["TokenAccountInfoDto"];
+        };
+        TokenAccountInfoDto: {
+            /**
+             * Format: int64
+             * @description 계정 인덱스
+             */
+            id?: number;
+            /** @description 이메일 */
+            email?: string;
+            /**
+             * @description 내용
+             * @enum {string}
+             */
+            provider?: "KAKAO" | "APPLE";
+            /** @description 프로필 이미지 url */
+            profile_image?: string;
+            /** @description 이름 */
+            name?: string;
+            /** @description 닉네임 */
+            nickname?: string;
+            /**
+             * Format: int32
+             * @description 나이
+             */
+            age?: number;
+            /** @description 전화번호 */
+            phone?: string;
+            /**
+             * @description 성별(MAN,WOMAN)
+             * @enum {string}
+             */
+            gender?: "MAN" | "WOMAN";
+            /** @description 생년월일 */
+            birthday?: string;
+            /**
+             * @description 상태(SIGNUP_PENDING,REGISTER_INFO_PENDING,DONE)
+             * @enum {string}
+             */
+            status?: "SIGNUP_PENDING" | "REGISTER_INFO_PENDING" | "DONE";
+            /** @description 역할(PATIENT,CAREGIVER */
+            role?: string;
+        };
     };
-    RefreshTokenDto: {
-      /** @description 리프레시 토큰(Bearer 필요) */
-      refreshToken?: string;
-    };
-    ResponseDtoTokenInfoDto: {
-      /** @enum {string} */
-      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
-      message?: string;
-      data?: components['schemas']['TokenInfoDto'];
-    };
-    TokenInfoDto: {
-      /** @description 허가 타입(Bearer) */
-      grantType?: string;
-      /** @description 액세스 토큰 */
-      accessToken?: string;
-      /** @description 리프레시 토큰 */
-      refreshToken?: string;
-    };
-    SignUp: {
-      /** @description 이메일 */
-      email?: string;
-      /** @description 소셜 미디어(KAKAO,APPLE) */
-      provider?: string;
-      /** @description 이름 */
-      name?: string;
-      /**
-       * Format: int32
-       * @description 나이
-       */
-      age?: number;
-      /** @description 성별(MAN,WOMAN) */
-      gender?: string;
-      /** @description 전화번호 */
-      phone?: string;
-      /**
-       * @description 생년월일
-       * @example 1999.09.13
-       */
-      birthday?: string;
-    };
-    DistrictResponseDto: {
-      /** @description 행정구역 명칭 */
-      adm_nm?: string;
-      /** @description 행정구역 코드 */
-      adm_cd?: string;
-    };
-    ResponseDtoListDistrictResponseDto: {
-      /** @enum {string} */
-      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
-      message?: string;
-      data?: components['schemas']['DistrictResponseDto'][];
-    };
-    DistrictCoordinateResponseDto: {
-      /** @description 행정구역 명칭 */
-      admNm?: string;
-      /** @description 행정구역 코드 */
-      admCd?: string;
-      /** @description 행정구역 좌표 */
-      coordinate?: string;
-    };
-    ResponseDtoDistrictCoordinateResponseDto: {
-      /** @enum {string} */
-      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
-      message?: string;
-      data?: components['schemas']['DistrictCoordinateResponseDto'];
-    };
-    ResponseDtoTokenAccountInfoDto: {
-      /** @enum {string} */
-      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
-      message?: string;
-      data?: components['schemas']['TokenAccountInfoDto'];
-    };
-    TokenAccountInfoDto: {
-      /** @description 이메일 */
-      email?: string;
-      /**
-       * @description 내용
-       * @enum {string}
-       */
-      provider?: 'KAKAO' | 'APPLE';
-      /** @description 프로필 이미지 url */
-      profile_image?: string;
-      /** @description 이름 */
-      name?: string;
-      /** @description 닉네임 */
-      nickname?: string;
-      /**
-       * Format: int32
-       * @description 나이
-       */
-      age?: number;
-      /** @description 전화번호 */
-      phone?: string;
-      /**
-       * @description 성별(MAN,WOMAN)
-       * @enum {string}
-       */
-      gender?: 'MAN' | 'WOMAN';
-      /** @description 생년월일 */
-      birthday?: string;
-      /**
-       * @description 상태(SIGNUP_PENDING,REGISTER_INFO_PENDING,DONE)
-       * @enum {string}
-       */
-      status?: 'SIGNUP_PENDING' | 'REGISTER_INFO_PENDING' | 'DONE';
-      /** @description 역할(PATIENT,CAREGIVER */
-      role?: string;
-    };
-  };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-  findAllSafeZone: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        patientId: number;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    findAllSafeZone: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patientId: number;
+            };
+            cookie?: never;
         };
-        content: {
-          '*/*': components['schemas']['ResponseDtoListDistrictResponseDto'];
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoListDistrictResponseDto"];
+                };
+            };
         };
-      };
     };
-  };
-  registerSafeZone: {
-    parameters: {
-      query: {
-        adm_cd: string;
-      };
-      header?: never;
-      path: {
-        patientId: number;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    registerSafeZone: {
+        parameters: {
+            query: {
+                adm_cd: string;
+            };
+            header?: never;
+            path: {
+                patientId: number;
+            };
+            cookie?: never;
         };
-        content: {
-          '*/*': components['schemas']['ResponseDtoLong'];
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoLong"];
+                };
+            };
         };
-      };
     };
-  };
-  registerCaregiver: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        caregiver_id: number;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    registerCaregiver: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                caregiver_id: number;
+            };
+            cookie?: never;
         };
-        content: {
-          '*/*': components['schemas']['ResponseDtoLong'];
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoLong"];
+                };
+            };
         };
-      };
     };
-  };
-  reGenerateAccessToken: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['RefreshTokenDto'];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    reGenerateAccessToken: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          '*/*': components['schemas']['ResponseDtoTokenInfoDto'];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RefreshTokenDto"];
+            };
         };
-      };
-    };
-  };
-  signUp: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        'application/json': components['schemas']['SignUp'];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoTokenInfoDto"];
+                };
+            };
         };
-        content: {
-          '*/*': components['schemas']['ResponseDtoLong'];
+    };
+    kakaoLogin: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-  };
-  kakaoLogin: {
-    parameters: {
-      query: {
-        idToken: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["IdTokenDto"];
+            };
         };
-        content: {
-          '*/*': components['schemas']['ResponseDtoTokenInfoDto'];
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoTokenInfoDto"];
+                };
+            };
         };
-      };
     };
-  };
-  searchDistricts: {
-    parameters: {
-      query: {
-        searchWord: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    saveDiary: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          '*/*': components['schemas']['ResponseDtoListDistrictResponseDto'];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["DiaryRequestDto"];
+            };
         };
-      };
-    };
-  };
-  processGeoJson: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoLong"];
+                };
+            };
         };
-        content?: never;
-      };
     };
-  };
-  getDistrictCoordinate: {
-    parameters: {
-      query: {
-        adm_cd: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    signUp: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          '*/*': components['schemas']['ResponseDtoDistrictCoordinateResponseDto'];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SignUp"];
+            };
         };
-      };
-    };
-  };
-  checkLocation: {
-    parameters: {
-      query: {
-        adm_cd: string;
-        longitude: number;
-        latitude: number;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoLong"];
+                };
+            };
         };
-        content: {
-          '*/*': string;
-        };
-      };
     };
-  };
-  getUserInfo: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    deleteAccount: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          '*/*': components['schemas']['ResponseDtoTokenAccountInfoDto'];
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": string;
+                };
+            };
         };
-      };
     };
-  };
-  deleteSafeZone: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        safeZoneId: number;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    updateUserInfo: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          '*/*': components['schemas']['ResponseDtoLong'];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Update"];
+            };
         };
-      };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoInfo"];
+                };
+            };
+        };
     };
-  };
+    searchDistricts: {
+        parameters: {
+            query: {
+                searchWord: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoListDistrictResponseDto"];
+                };
+            };
+        };
+    };
+    processGeoJson: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    getDistrictCoordinate: {
+        parameters: {
+            query: {
+                adm_cd: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoDistrictCoordinateResponseDto"];
+                };
+            };
+        };
+    };
+    checkLocation: {
+        parameters: {
+            query: {
+                adm_cd: string;
+                longitude: number;
+                latitude: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": string;
+                };
+            };
+        };
+    };
+    findDiaryById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                diaryId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoDetail"];
+                };
+            };
+        };
+    };
+    deleteDiaryById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                diaryId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": string;
+                };
+            };
+        };
+    };
+    findPatientDiaryForCaregivers: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patientId: number;
+                diaryId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoDetail"];
+                };
+            };
+        };
+    };
+    findPatientDiariesForCaregivers: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patientId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoListBrief"];
+                };
+            };
+        };
+    };
+    findAllDiary: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoListBrief"];
+                };
+            };
+        };
+    };
+    getUserInfo: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoTokenAccountInfoDto"];
+                };
+            };
+        };
+    };
+    deleteSafeZone: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                safeZoneId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoLong"];
+                };
+            };
+        };
+    };
 }

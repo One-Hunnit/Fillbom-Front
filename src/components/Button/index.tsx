@@ -137,8 +137,8 @@ export const MonoButton = (props: IButtonProps) => (
 export const ColorButton = (props: IButtonProps) => (
   <Button
     {...props}
-    defaultBackgoundColor={FILLBOM_COLOR.BLUE[100]}
-    defaultTextColor={FILLBOM_COLOR.BLUE[500]}
+    defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}
+    defaultTextColor={FILLBOM_COLOR.GRAY[100]}
     disabledBackgroundColor={FILLBOM_COLOR.BLUE[200]}
     disabledTextColor={FILLBOM_COLOR.BLUE[300]}
     pressedBackgroundColor={FILLBOM_COLOR.BLUE[300]}
