@@ -1,7 +1,5 @@
-import { useRouter } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { Keyboard, ScrollView, type ViewStyle } from 'react-native';
-import { client } from '@/api/client';
 import IconCancel from '@/assets/svgs/ico_cancel.svg';
 import IconSearch from '@/assets/svgs/ico_search.svg';
 import Button from '@/components/Button';
@@ -14,12 +12,12 @@ import { patientInfoStyles } from './styles';
 import useKeyboardVisible from '../../SignupPage/hooks/useKeyboardVisible';
 import ManagePatientLayout from '../Layouts';
 import { commonStyles } from '../styles';
+import useFindPatient from './hooks/useAddPatient';
 
 const AddPatientPage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isInputFocused, setIsInputFocused] = useState(false);
-
-  const router = useRouter();
+  const { postFindPatient, patientList } = useFindPatient();
   const keyboardVisible = useKeyboardVisible();
 
   const buttonStyle: ViewStyle = keyboardVisible
@@ -38,21 +36,11 @@ const AddPatientPage = () => {
     } else if (inputIcon === IconSearch) {
       return async () => {
         setIsInputFocused(false);
-        await postFindPatient();
+        await postFindPatient(phoneNumber);
       };
     }
     return undefined;
   }, [inputIcon]);
-
-  const postFindPatient = async () => {
-    const data = await client.POST('/patients/search', { body: { phoneNumber } });
-    console.log(data);
-    if (data?.data) {
-      return data.data;
-    } else {
-      throw new Error('환자를 찾을 수 없습니다.');
-    }
-  };
 
   return (
     <ManagePatientLayout
@@ -86,21 +74,12 @@ const AddPatientPage = () => {
       </InputLayout>
       <>
         <ScrollView style={patientInfoStyles.container}>
-          <PatientInfo />
-          <PatientInfo />
-          <PatientInfo />
-          <PatientInfo />
-          <PatientInfo />
-          <PatientInfo />
-          <PatientInfo />
-          <PatientInfo />
-          <PatientInfo />
+          {patientList && patientList.map((patientInfo) => <PatientInfo key={patientInfo.name} {...patientInfo} />)}
         </ScrollView>
         <Button
           text="다음"
           onPress={async () => {
-            await postFindPatient();
-            router.push('/caregiver/requestRelation');
+            await postFindPatient(phoneNumber);
             setIsInputFocused(false);
             Keyboard.dismiss();
           }}
