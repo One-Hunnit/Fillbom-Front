@@ -21,7 +21,7 @@ const TEXT_STYLES = StyleSheet.create({
   TITLE_XL_REGULAR: {
     fontFamily: 'Pretendard-Regular',
     fontSize: 26,
-    fontWeight: 'normal',
+    fontWeight: '400',
     lineHeight: 36,
     color: FILLBOM_COLOR.GRAY[900],
   },
@@ -44,7 +44,7 @@ const TEXT_STYLES = StyleSheet.create({
   SUBTITLE_LARGE_REGULAR: {
     fontFamily: 'Pretendard-Regular',
     fontSize: 20,
-    fontWeight: 'normal',
+    fontWeight: '400',
     lineHeight: 28,
     color: FILLBOM_COLOR.GRAY[900],
   },
@@ -74,7 +74,7 @@ const TEXT_STYLES = StyleSheet.create({
   BODY_MEDIUM_REGULAR: {
     fontFamily: 'Pretendard-Regular',
     fontSize: 16,
-    fontWeight: 'normal',
+    fontWeight: '400',
     lineHeight: 22,
     color: FILLBOM_COLOR.GRAY[900],
   },
@@ -104,7 +104,7 @@ const TEXT_STYLES = StyleSheet.create({
   SUBTEXT_SMALL_REGULAR: {
     fontFamily: 'Pretendard-Regular',
     fontSize: 14,
-    fontWeight: 'normal',
+    fontWeight: '400',
     lineHeight: 20,
     color: FILLBOM_COLOR.GRAY[900],
   },
@@ -143,7 +143,7 @@ const TEXT_STYLES = StyleSheet.create({
   CAPTION_X_SMALL_REGULAR: {
     fontFamily: 'Pretendard-Regular',
     fontSize: 12,
-    fontWeight: 'normal',
+    fontWeight: '400',
     lineHeight: 18,
     color: FILLBOM_COLOR.GRAY[900],
   },
