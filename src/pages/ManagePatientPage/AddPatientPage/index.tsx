@@ -46,7 +46,7 @@ const AddPatientPage = () => {
     <ManagePatientLayout
       headerText="환자 추가하기"
       setIsInputFocused={setIsInputFocused}
-      titleText="전화번호를 입력하면{`\n`}환자를 찾을 수 있습니다"
+      titleText={`전화번호를 입력하면 \n환자를 찾을 수 있습니다`}
     >
       <InputLayout label="전화번호 검색" guide="띄어쓰기 없이 11자리를 입력해주세요." error={error}>
         <InputWithIcon
