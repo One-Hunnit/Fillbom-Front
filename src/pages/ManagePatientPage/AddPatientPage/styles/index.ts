@@ -27,6 +27,7 @@ export const patientInfoStyles = StyleSheet.create({
     flexDirection: 'row',
     padding: 16,
     alignItems: 'center',
+    flex: 1,
   },
   patientNamePhoneNumberWrapper: {
     flexDirection: 'column',
