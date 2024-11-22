@@ -7,6 +7,7 @@ import InputLayout from '@/components/InputLayout';
 import InputWithIcon from '@/components/InputWithIcon';
 import { FILLBOM_COLOR } from '@/constants/color';
 import TEXT_STYLES from '@/styles/textStyles';
+import { type IPatientInfo } from '@/types/patient';
 import PatientInfo from './components/PatientInfo';
 import { patientInfoStyles } from './styles';
 import useKeyboardVisible from '../../SignupPage/hooks/useKeyboardVisible';
@@ -17,6 +18,8 @@ import useFindPatient from './hooks/useAddPatient';
 const AddPatientPage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const [selectedPatientInfo, setSelectedPatientInfo] = useState<IPatientInfo>(null);
+
   const { postFindPatient, patientList } = useFindPatient();
   const keyboardVisible = useKeyboardVisible();
 
@@ -74,12 +77,20 @@ const AddPatientPage = () => {
       </InputLayout>
       <>
         <ScrollView style={patientInfoStyles.container}>
-          {patientList && patientList.map((patientInfo) => <PatientInfo key={patientInfo.name} {...patientInfo} />)}
+          {patientList &&
+            patientList.map((patientInfo) => (
+              <PatientInfo
+                selectedPatientInfo={selectedPatientInfo}
+                setSelectedPatientInfo={setSelectedPatientInfo}
+                key={patientInfo.name}
+                patientInfo={patientInfo}
+              />
+            ))}
         </ScrollView>
         <Button
           text="다음"
           onPress={async () => {
-            await postFindPatient(phoneNumber);
+            patientList || (await postFindPatient(phoneNumber));
             setIsInputFocused(false);
             Keyboard.dismiss();
           }}
