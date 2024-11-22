@@ -18,7 +18,7 @@ import useFindPatient from './hooks/useAddPatient';
 const AddPatientPage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isInputFocused, setIsInputFocused] = useState(false);
-  const [selectedPatientInfo, setSelectedPatientInfo] = useState<IPatientInfo>(null);
+  const [selectedPatientInfo, setSelectedPatientInfo] = useState<IPatientInfo | null>(null);
 
   const { postFindPatient, patientList } = useFindPatient();
   const keyboardVisible = useKeyboardVisible();

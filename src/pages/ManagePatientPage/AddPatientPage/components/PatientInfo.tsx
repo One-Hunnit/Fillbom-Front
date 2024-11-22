@@ -10,8 +10,8 @@ import MaskedName from './MaskedName';
 
 interface IPatientInfoProps {
   patientInfo: IPatientInfo;
-  selectedPatientInfo: IPatientInfo;
-  setSelectedPatientInfo: (patientInfo: IPatientInfo) => void;
+  selectedPatientInfo: IPatientInfo | null;
+  setSelectedPatientInfo: (patientInfo: IPatientInfo | null) => void | null;
 }
 
 const PatientInfo = ({ patientInfo, selectedPatientInfo, setSelectedPatientInfo }: IPatientInfoProps) => {
