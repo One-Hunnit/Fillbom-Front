@@ -9,7 +9,6 @@ import Button, { MonoButton } from '@/components/Button';
 import Chip from '@/components/Chip';
 import TextInput from '@/components/TextInput';
 import { FILLBOM_COLOR } from '@/constants/color';
-import { DEFAULT_PROFILE_IMAGES } from '@/constants/image';
 import { useUIStore } from '@/stores/ui';
 import { pickImage } from '@/utils/imagePicker';
 import {
@@ -19,6 +18,7 @@ import {
   GENDER,
   THUMBNAIL_QUERY_MAP,
   THUMBNAIL_TYPE,
+  DEFAULT_PROFILE_IMAGES,
 } from '@/constants';
 import InputLayout from '../../../components/InputLayout';
 import { SIGNUP_STEP_KEY, SIGNUP_STEPS, SIGNUP_STEPS_ENTRIES, toKorean } from '../constants';

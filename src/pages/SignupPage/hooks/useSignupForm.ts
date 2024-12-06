@@ -1,8 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { DEFAULT_PROFILE_IMAGES } from '@/constants/image';
-import { ACCOUNT_ROLE, GENDER } from '@/constants';
+import { ACCOUNT_ROLE, DEFAULT_PROFILE_IMAGES, GENDER } from '@/constants';
 import { SIGNUP_STEP_KEY } from '../constants';
 
 const signupformSchema = z.object({
