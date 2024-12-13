@@ -22,4 +22,8 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     left: 20,
   },
+  appleLoginButton: {
+    width: '100%',
+    height: 52,
+  },
 });

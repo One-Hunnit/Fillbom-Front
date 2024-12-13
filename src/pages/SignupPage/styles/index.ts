@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { FILLBOM_COLOR } from '@/constants/color';
 import TEXT_STYLES from '@/styles/textStyles';
 
@@ -13,6 +13,10 @@ export const styles = StyleSheet.create({
     ...TEXT_STYLES.TITLE_XL_SEMI_BOLD,
     marginTop: 24,
     marginBottom: 20,
+  },
+  subTitle: {
+    ...TEXT_STYLES.SUBTEXT_SMALL_MEDIUM,
+    color: FILLBOM_COLOR.GRAY[500],
   },
   container: {
     flex: 1,
@@ -47,7 +51,8 @@ export const styles = StyleSheet.create({
 
 export const progressBarStyles = StyleSheet.create({
   container: {
-    width: '100%',
+    alignSelf: 'center',
+    width: Dimensions.get('window').width - 40,
     height: 4,
     marginBottom: -4,
     backgroundColor: FILLBOM_COLOR.GRAY[200],
@@ -87,6 +92,44 @@ export const selectGenderStyles = StyleSheet.create({
   },
 });
 
+export const uploadProfileImageStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  profile: {
+    width: 132,
+    height: 132,
+    borderRadius: 100,
+    marginTop: 20,
+  },
+  buttonContainer: {
+    marginTop: 48,
+    flexDirection: 'row',
+    gap: 12,
+  },
+  button: {
+    paddingHorizontal: 20,
+    paddingVertical: 6,
+    width: 'auto',
+  },
+  defaultProfileContainer: {
+    marginTop: 24,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 17,
+  },
+  defaultProfile: {
+    width: 56,
+    height: 56,
+    borderRadius: 100,
+  },
+  selectedProfile: {
+    borderColor: FILLBOM_COLOR.PINK[300],
+    borderWidth: 3,
+  },
+});
+
 export const confirmStyles = StyleSheet.create({
   container: {
     marginTop: 12,
@@ -105,6 +148,7 @@ export const confirmStyles = StyleSheet.create({
   titleIcon: {
     width: 48,
     height: 48,
+    borderRadius: 48,
   },
   titleText: {
     ...TEXT_STYLES.SUBTITLE_LARGE_BOLD,

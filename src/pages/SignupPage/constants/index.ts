@@ -20,6 +20,7 @@ export const SIGNUP_STEP_KEY = {
   BIRTH: 'birth',
   GENDER: 'gender',
   PHONE: 'phone',
+  PROFILE_IMAGE: 'profileImage',
   CONFIRM: 'confirm',
 } as const;
 
@@ -61,6 +62,9 @@ export const SIGNUP_STEPS: Record<TSignupStepKey, ISignupStep> = {
       placeholder: '01012345678',
       guideText: '띄어쓰기 없이 11자리를 입력해주세요.',
     },
+  },
+  [SIGNUP_STEP_KEY.PROFILE_IMAGE]: {
+    title: '프로필 이미지를 선택해주세요',
   },
   [SIGNUP_STEP_KEY.CONFIRM]: {
     title: '마지막 단계입니다!\n입력된 정보를 확인해주세요',
