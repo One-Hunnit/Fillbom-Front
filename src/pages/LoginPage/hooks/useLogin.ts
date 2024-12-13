@@ -1,5 +1,6 @@
 import { login } from '@react-native-seoul/kakao-login';
 import * as AppleAuthentication from 'expo-apple-authentication';
+import * as Clipboard from 'expo-clipboard';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
@@ -29,6 +30,7 @@ export default function useLogin() {
   const signInWithKakao = async () => {
     try {
       const { idToken } = await login();
+      Clipboard.setStringAsync(idToken);
       if (idToken) {
         await getServiceToken(idToken);
         await refetch();
@@ -50,7 +52,7 @@ export default function useLogin() {
         ],
       });
       if (idToken) {
-        Alert.alert('Apple 토큰', idToken);
+        Clipboard.setStringAsync(idToken);
         await getServiceToken(idToken);
         await refetch();
         router.replace('/');
