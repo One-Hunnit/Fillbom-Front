@@ -3,11 +3,14 @@ import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Clipboard from 'expo-clipboard';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
+import { Alert } from 'react-native';
 import { client } from '@/api/client';
-import { type IAuthState, useAuthStore } from '@/stores/authStore';
+import useAccount from '@/hooks/useAccount';
+import { useAuthStore } from '@/stores/authStore';
 
 export default function useLogin() {
   const { setState, initState } = useAuthStore();
+  const { refetch } = useAccount();
   const [modalVisible, setModalVisible] = useState(false);
   const router = useRouter();
 
@@ -24,23 +27,13 @@ export default function useLogin() {
     }
   };
 
-  const getAccountData = async (): Promise<IAuthState['account']> => {
-    const { data } = await client.GET('/accounts/me');
-    if (data?.data) {
-      setState('account', data.data as IAuthState['account']);
-      return data.data as IAuthState['account'];
-    } else {
-      throw new Error('계정 정보를 가져오는데 실패했습니다.');
-    }
-  };
-
   const signInWithKakao = async () => {
     try {
       const { idToken } = await login();
       Clipboard.setStringAsync(idToken);
       if (idToken) {
         await getServiceToken(idToken);
-        await getAccountData();
+        await refetch();
         router.replace('/');
       }
     } catch (e) {
@@ -61,7 +54,7 @@ export default function useLogin() {
       if (idToken) {
         Clipboard.setStringAsync(idToken);
         await getServiceToken(idToken);
-        await getAccountData();
+        await refetch();
         router.replace('/');
       }
     } catch (e) {
