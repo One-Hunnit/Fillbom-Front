@@ -47,10 +47,22 @@ export const patientCardStyles = StyleSheet.create({
     width: 350,
     height: 100,
     paddingHorizontal: 12,
+    paddingLeft: 34,
+    paddingRight: 38,
     overflow: 'scroll',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: 11,
+  },
+  profileImageInfoTextWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  phoneNumber: {
+    ...TEXT_STYLES.BODY_MEDIUM_REGULAR,
+    color: FILLBOM_COLOR.GRAY[600],
   },
   scrollViewStyle: {
     width: '100%',
@@ -58,6 +70,7 @@ export const patientCardStyles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   profilWrapper: {
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -76,8 +89,7 @@ export const patientCardStyles = StyleSheet.create({
     gap: 12,
   },
   infoTextWrapper: {
-    flexDirection: 'column',
-    justifyContent: 'center',
+    width: 200,
   },
   name: {
     ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
@@ -95,7 +107,6 @@ export const patientCardStyles = StyleSheet.create({
     height: 30,
     paddingVertical: 4,
     paddingHorizontal: 10,
-    backgroundColor: FILLBOM_COLOR.BLUE[100],
     textAlign: 'right',
     justifyContent: 'center',
     borderRadius: 1500,
