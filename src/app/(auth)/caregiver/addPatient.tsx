@@ -1,3 +1,3 @@
-import AddPatientPage from '@/pages/ManagePatientPage/AddPatientPage';
+import SearchPatientPage from '@/pages/ManagePatientPage/SearchPatientPage';
 
-export default () => <AddPatientPage />;
+export default () => <SearchPatientPage />;
