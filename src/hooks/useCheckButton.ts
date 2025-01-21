@@ -7,7 +7,7 @@ import CheckButtonSelectedPressed from '@/assets/svgs/check_button_selected_pres
 const useCheckButton = () => {
   const [checkButtonState, setCheckButtonState] = useState({
     isPressed: false,
-    isSelected: false,
+    isSelected: true,
   });
 
   const handleCheckButtonPressIn = () => {
