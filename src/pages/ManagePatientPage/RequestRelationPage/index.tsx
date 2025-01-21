@@ -1,116 +1,129 @@
-import { useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { Image, Pressable, Text, View, type ViewStyle } from 'react-native';
+import { router, useLocalSearchParams } from 'expo-router';
+import React, { useMemo, useState } from 'react';
+import { Image, Text, View, type ViewStyle } from 'react-native';
+import IconCancel from '@/assets/svgs/ico_cancel.svg';
 import Button from '@/components/Button';
 import InputWithIcon from '@/components/InputWithIcon';
 import { FILLBOM_COLOR } from '@/constants/color';
 import useCheckButton from '@/hooks/useCheckButton';
 import { patientCardStyles } from '@/pages/PatientListPage/styles';
+import useGetKeyboardHeight from '@/pages/SignupPage/hooks/useGetKeyboardHeight';
 import useKeyboardVisible from '@/pages/SignupPage/hooks/useKeyboardVisible';
 import TEXT_STYLES from '@/styles/textStyles';
-import MaskedName from '../AddPatientPage/components/MaskedName';
 import ManagePatientLayout from '../Layouts';
-import { commonStyles } from '../styles';
+import useRegistPatients from './hooks/useRegistPatients';
 import styles from './styles';
 import formattedPhoneNumber from './utils/formatingPhoneNumber';
+import MaskedName from '../SearchPatientPage/components/MaskedName';
 
 const RequestRelationPage = () => {
   const { patientInfo } = useLocalSearchParams();
-  const { setCheckButtonState, handleCheckButtonPressIn, handleCheckButtonPressOut, getCheckButtonIcon } =
-    useCheckButton();
-  const patient = JSON.parse(patientInfo as string);
+  const { getCheckButtonIcon } = useCheckButton();
+  const patient = {
+    name: '김필봄',
+    phoneNumber: '01012341234',
+    profileImageUrl: 'https://fillbom.s3.ap-northeast-2.amazonaws.com/1619822389000.png',
+  };
+
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
   const [relation, setRelation] = useState<string>('');
   const CheckButtonIcon = getCheckButtonIcon();
   const keyboardVisible = useKeyboardVisible();
+  const keyboardHeight = useGetKeyboardHeight();
   const buttonStyle: ViewStyle = keyboardVisible
-    ? commonStyles.buttonKeyboardVisible
-    : { marginLeft: 20, marginRight: 20, marginBottom: 20, width: 350 };
+    ? { width: '100%', bottom: keyboardHeight - 34, borderRadius: 0 }
+    : styles.bottomFixButtonStyle;
 
-  useEffect(() => {
-    setCheckButtonState({ isPressed: false, isSelected: true });
-  }, []);
+  const inputIcon = useMemo(() => {
+    return relation.length > 0 ? IconCancel : null;
+  }, [relation, isInputFocused]);
 
-  useEffect(() => {
-    console.log('keyboardVisible', keyboardVisible);
-  }, [keyboardVisible]);
-
-  const onRequestButtonPress = () => {
-    console.log('환자 추가 요청');
+  const onResearchPatientButtonPress = () => {
+    router.replace('/caregiver/addPatient');
+  };
+  const onRequestButtonPress = async () => {
+    await useRegistPatients(1);
   };
 
   return (
     <ManagePatientLayout
+      status="REQUEST"
       setIsInputFocused={setIsInputFocused}
       headerText="환자 추가하기"
       titleText={`환자와의 관계를 입력하고 \n 수락 요청을 보내세요`}
     >
-      <View style={styles.temp}>
-        <Text>추가 하고 싶은 환자</Text>
-        <View style={patientCardStyles.container}>
-          <Pressable style={patientCardStyles.profilWrapper}>
+      <View style={styles.patientInfoSection}>
+        <Text style={styles.text}>추가 하고 싶은 환자</Text>
+        <View style={[patientCardStyles.container, { width: '100%' }]}>
+          <View style={patientCardStyles.profilWrapper}>
             <View style={patientCardStyles.profileImageInfoTextWrapper}>
-              <Image src={patient.profileImageUrl} style={patientCardStyles.profileImage}></Image>
+              <Image src={patient.profileImageUrl} style={patientCardStyles.profileImage} />
               <View style={patientCardStyles.infoTextWrapper}>
                 <Text style={patientCardStyles.name}> {MaskedName(patient.name)}</Text>
-                <Text style={patientCardStyles.phoneNumber}> {formattedPhoneNumber(patient.phoneNumber)}</Text>
+                <Text numberOfLines={1} style={patientCardStyles.phoneNumber}>
+                  {formattedPhoneNumber(patient.phoneNumber)}
+                </Text>
               </View>
             </View>
-            <Pressable onPressIn={handleCheckButtonPressIn} onPressOut={handleCheckButtonPressOut}>
+            <View>
               <CheckButtonIcon />
-            </Pressable>
-          </Pressable>
+            </View>
+          </View>
         </View>
         <View style={styles.patientRelationInputWrapper}>
-          <Text>환자와의 관계</Text>
+          <Text style={styles.text}>환자와의 관계</Text>
           <InputWithIcon
             isFocused={isInputFocused}
             setIsFocused={setIsInputFocused}
             placeholder="아버지"
             value={relation}
             keyboardType="default"
-            selectedBorderColor={FILLBOM_COLOR.BLUE[500]}
+            selectedBorderColor={FILLBOM_COLOR.BLUE[200]}
             defaultBorderColor={FILLBOM_COLOR.GRAY[100]}
-            defaultBackgoundColor={FILLBOM_COLOR.GRAY[100]}
+            defaultBackgoundColor={FILLBOM_COLOR.GRAY[200]}
             pressedBackgroundColor={FILLBOM_COLOR.GRAY[200]}
-            defaultTextColor={FILLBOM_COLOR.GRAY[100]}
+            defaultTextColor={FILLBOM_COLOR.GRAY[800]}
             pressedTextColor={FILLBOM_COLOR.GRAY[400]}
             activatedTextColor={FILLBOM_COLOR.GRAY[900]}
             defaultIconColor={FILLBOM_COLOR.GRAY[500]}
             pressedIconColor={FILLBOM_COLOR.GRAY[400]}
             onChangeText={setRelation}
-            textContentType="telephoneNumber"
+            onIconPress={() => setRelation('')}
+            icon={inputIcon}
           />
         </View>
       </View>
-      <View style={styles.testWrapper}>
+      <View style={styles.buttonWrapper}>
         <Button
           text="다시 검색"
+          onPress={onResearchPatientButtonPress}
+          disabled={relation.length === 0}
+          defaultBackgoundColor={FILLBOM_COLOR.GRAY[200]}
+          defaultTextColor={FILLBOM_COLOR.GRAY[700]}
+          pressedBackgroundColor={FILLBOM_COLOR.GRAY[300]}
+          pressedTextColor={FILLBOM_COLOR.GRAY[500]}
+          disabledBackgroundColor={FILLBOM_COLOR.GRAY[200]}
+          disabledTextColor={FILLBOM_COLOR.GRAY[700]}
+          textStyle={TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD}
+          buttonStyle={styles.researchPatientButton}
+        />
+        <Button
+          text="수락요청 보내기"
           onPress={onRequestButtonPress}
           disabled={relation.length === 0}
-          defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}
-          defaultTextColor={FILLBOM_COLOR.GRAY[100]}
+          defaultBackgoundColor={FILLBOM_COLOR.GRAY[200]}
+          defaultTextColor={FILLBOM_COLOR.GRAY[700]}
           pressedBackgroundColor={FILLBOM_COLOR.BLUE[300]}
           pressedTextColor={FILLBOM_COLOR.BLUE[200]}
           disabledBackgroundColor={FILLBOM_COLOR.GRAY[200]}
           disabledTextColor={FILLBOM_COLOR.GRAY[700]}
+          activatedBackgroundColor={FILLBOM_COLOR.BLUE[500]}
+          activatedTextColor={FILLBOM_COLOR.GRAY[100]}
           textStyle={TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD}
-          buttonStyle={styles.bottomFixButtonStyle}
+          isActive={relation.length > 0}
+          buttonStyle={buttonStyle}
         />
       </View>
-      <Button
-        text="수락요청 보내기"
-        onPress={onRequestButtonPress}
-        disabled={relation.length === 0}
-        defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}
-        defaultTextColor={FILLBOM_COLOR.GRAY[100]}
-        pressedBackgroundColor={FILLBOM_COLOR.BLUE[300]}
-        pressedTextColor={FILLBOM_COLOR.BLUE[200]}
-        disabledBackgroundColor={FILLBOM_COLOR.GRAY[200]}
-        disabledTextColor={FILLBOM_COLOR.GRAY[700]}
-        textStyle={TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD}
-        buttonStyle={buttonStyle}
-      />
     </ManagePatientLayout>
   );
 };
