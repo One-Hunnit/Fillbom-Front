@@ -66,7 +66,7 @@ const PatientListPage = () => {
           <ScrollView style={patientCardStyles.scrollViewStyle}>
             <View style={styles.listWrapper}>
               {patients.map((patient, index) => (
-                <View style={styles.cardWrapper}>
+                <View key={index} style={styles.cardWrapper}>
                   {match(patient.status)
                     .with(PatientStatus.PENDING, () => <PatientCardPending key={index} patient={patient} />)
                     .with(PatientStatus.ACCEPTED, () => <PatientCardAccepted key={index} patient={patient} />)
