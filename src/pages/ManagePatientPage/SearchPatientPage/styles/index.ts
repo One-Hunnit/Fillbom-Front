@@ -5,8 +5,11 @@ import TEXT_STYLES from '@/styles/textStyles';
 export const patientInfoStyles = StyleSheet.create({
   container: {
     margin: 10,
-    height: '100%',
+    width: '100%',
     paddingBottom: 120,
+  },
+  viewWrapper: {
+    height: 130,
   },
   wrapper: {
     width: '100%',
@@ -16,6 +19,7 @@ export const patientInfoStyles = StyleSheet.create({
     paddingRight: 24,
     borderBottomWidth: 1,
     borderBottomColor: FILLBOM_COLOR.GRAY[200],
+    backgroundColor: 'white',
   },
   profileImage: {
     width: 50,
@@ -27,7 +31,13 @@ export const patientInfoStyles = StyleSheet.create({
     flexDirection: 'row',
     padding: 16,
     alignItems: 'center',
+    justifyContent: 'center',
     flex: 1,
+  },
+  patientImageInfoWrapper: {
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
   },
   patientNamePhoneNumberWrapper: {
     flexDirection: 'column',

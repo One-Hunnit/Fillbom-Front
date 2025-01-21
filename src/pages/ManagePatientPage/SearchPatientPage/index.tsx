@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { router } from 'expo-router';
+import React, { useMemo, useState } from 'react';
 import { Keyboard, ScrollView, type ViewStyle } from 'react-native';
 import IconCancel from '@/assets/svgs/ico_cancel.svg';
 import IconSearch from '@/assets/svgs/ico_search.svg';
@@ -6,25 +7,29 @@ import Button from '@/components/Button';
 import InputLayout from '@/components/InputLayout';
 import InputWithIcon from '@/components/InputWithIcon';
 import { FILLBOM_COLOR } from '@/constants/color';
+import useGetKeyboardHeight from '@/pages/SignupPage/hooks/useGetKeyboardHeight';
 import TEXT_STYLES from '@/styles/textStyles';
 import { type IPatientInfo } from '@/types/patient';
 import PatientInfo from './components/PatientInfo';
 import { patientInfoStyles } from './styles';
 import useKeyboardVisible from '../../SignupPage/hooks/useKeyboardVisible';
 import ManagePatientLayout from '../Layouts';
-import { commonStyles } from '../styles';
-import useFindPatient from './hooks/useAddPatient';
+import useSearchPatient from './hooks/useSearchPatient';
 
-const AddPatientPage = () => {
+const SearchPatientPage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isInputFocused, setIsInputFocused] = useState(false);
-  const [selectedPatientInfo, setSelectedPatientInfo] = useState<IPatientInfo | null>(null);
+  const [selectedPatientInfo, setSelectedPatientInfo] = useState<IPatientInfo | null>({
+    name: '김필봄',
+    phoneNumber: '01012345678',
+    profileImageUrl: 'https://fillbom.s3.ap-northeast-2.amazonaws.com/1619822389000.png',
+  });
 
-  const { postFindPatient, patientList } = useFindPatient();
+  const { postFindPatient, patientList } = useSearchPatient();
   const keyboardVisible = useKeyboardVisible();
-
+  const keyboardHeight = useGetKeyboardHeight();
   const buttonStyle: ViewStyle = keyboardVisible
-    ? commonStyles.buttonKeyboardVisible
+    ? { borderRadius: 0, marginBottom: keyboardHeight + 24 }
     : { marginLeft: 20, marginRight: 20, marginBottom: 20, width: 350 };
 
   const error = phoneNumber.length > 0 && !/\d{11}/g.test(phoneNumber);
@@ -44,9 +49,16 @@ const AddPatientPage = () => {
     }
     return undefined;
   }, [inputIcon]);
-
+  const onSubmitEditing = async () => {
+    if (phoneNumber.length === 11) {
+      await postFindPatient(phoneNumber);
+      setIsInputFocused(false);
+      Keyboard.dismiss();
+    }
+  };
   return (
     <ManagePatientLayout
+      status="ADD"
       headerText="환자 추가하기"
       setIsInputFocused={setIsInputFocused}
       titleText={`전화번호를 입력하면 \n환자를 찾을 수 있습니다`}
@@ -72,6 +84,7 @@ const AddPatientPage = () => {
           onChangeText={setPhoneNumber}
           onIconPress={onIconPress}
           icon={inputIcon}
+          onSubmitEditing={onSubmitEditing}
           textContentType="telephoneNumber"
         />
       </InputLayout>
@@ -90,9 +103,7 @@ const AddPatientPage = () => {
         <Button
           text="다음"
           onPress={async () => {
-            patientList || (await postFindPatient(phoneNumber));
-            setIsInputFocused(false);
-            Keyboard.dismiss();
+            router.push(`/caregiver/requestRelation/${selectedPatientInfo?.toString()}`);
           }}
           disabled={phoneNumber.length !== 11}
           defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}
@@ -109,4 +120,4 @@ const AddPatientPage = () => {
   );
 };
 
-export default AddPatientPage;
+export default SearchPatientPage;
