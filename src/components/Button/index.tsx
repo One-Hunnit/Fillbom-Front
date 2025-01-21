@@ -20,6 +20,7 @@ interface IButtonProps {
   iconPosition?: TIconPosition;
   onPress?: () => void;
   disabled?: boolean;
+  isActive?: boolean;
   defaultBackgoundColor?: string;
   defaultTextColor?: string;
   defaultIconColor?: string;
@@ -32,6 +33,9 @@ interface IButtonProps {
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
   iconStyle?: ViewStyle;
+  activatedTextColor?: string;
+  activatedBackgroundColor?: string;
+  activatedIconColor?: string;
 }
 
 const Button = memo(
@@ -42,6 +46,7 @@ const Button = memo(
     icon: SvgIcon,
     iconPosition = ICON_POSITION.LEFT,
     disabled,
+    isActive,
     defaultBackgoundColor,
     defaultTextColor,
     defaultIconColor,
@@ -54,6 +59,9 @@ const Button = memo(
     buttonStyle,
     textStyle,
     iconStyle,
+    activatedTextColor,
+    activatedBackgroundColor,
+    activatedIconColor,
   }: IButtonProps) => {
     const [isPressed, setIsPressed] = useState(false);
 
@@ -63,6 +71,9 @@ const Button = memo(
       }
       if (isPressed) {
         return pressedBackgroundColor;
+      }
+      if (isActive) {
+        return activatedBackgroundColor;
       }
       return defaultBackgoundColor;
     };
@@ -74,6 +85,9 @@ const Button = memo(
       if (isPressed) {
         return pressedTextColor;
       }
+      if (isActive) {
+        return activatedTextColor;
+      }
       return defaultTextColor;
     };
 
@@ -83,6 +97,9 @@ const Button = memo(
       }
       if (isPressed) {
         return pressedIconColor;
+      }
+      if (isActive) {
+        return activatedIconColor;
       }
       return defaultIconColor;
     };
