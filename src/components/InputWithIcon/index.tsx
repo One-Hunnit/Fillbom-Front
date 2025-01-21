@@ -20,6 +20,7 @@ interface IInputWithIconProps extends RNTextInputProps {
   selectedBorderColor?: string;
   activatedTextColor?: string;
   isFocused?: boolean;
+  onSubmitEditing?: (e: any) => void;
   onIconPress?: () => void | undefined;
   setIsFocused: (isFocused: boolean) => void;
 }
@@ -46,6 +47,7 @@ const InputWithIcon = ({
   errorTextColor,
   selectedBorderColor,
   activatedTextColor,
+  onSubmitEditing,
   ...props
 }: IInputWithIconProps) => {
   const [isPressed, setIsPressed] = useState(false);
@@ -91,6 +93,7 @@ const InputWithIcon = ({
         value={inputValue}
         style={[styles.input, { color: getTextColor() }]}
         onChangeText={onChangeText}
+        onSubmitEditing={(e) => onSubmitEditing && onSubmitEditing(e)}
         maxLength={maxLength}
         {...props}
       />
