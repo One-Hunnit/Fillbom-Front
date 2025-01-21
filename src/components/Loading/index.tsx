@@ -27,6 +27,8 @@ const styles = StyleSheet.create({
   },
   fullScreen: {
     position: 'absolute',
+    top: 0,
+    left: 0,
     width: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.195)',
     alignItems: 'center',

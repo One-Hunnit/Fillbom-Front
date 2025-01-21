@@ -1,4 +1,5 @@
 import type {
+  QueryKey,
   UseMutationOptions as RQUseMutationOptions,
   UseQueryOptions as RQUseQueryOptions,
 } from '@tanstack/react-query';
@@ -14,13 +15,17 @@ type Params<M extends HttpMethod, P extends Paths<M>> = M extends keyof paths[P]
 type UseQueryOptions = Pick<RQUseQueryOptions, 'enabled'>;
 
 export function useGetQuery<P extends Paths<'get'>>(path: P, params: Params<'get', P> & { rq?: UseQueryOptions }) {
+  const queryKey = [path, params];
+
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
-  return useQuery({
-    queryKey: [path, params],
-    queryFn: async () => client.GET(path, params).then(({ data }) => data),
+  const queryResult = useQuery({
+    queryKey,
+    queryFn: async () => client.GET(path, params),
     ...params.rq,
   });
+
+  return { ...queryResult, queryKey: queryKey as QueryKey };
 }
 
 type UseMutationOptions = Pick<RQUseMutationOptions, 'retry'>;
@@ -34,14 +39,14 @@ export function usePostMutation<P extends Paths<'post'>>(path: P, options?: UseM
 
 export function usePutMutation<P extends Paths<'put'>>(path: P, options?: UseMutationOptions) {
   return useMutation({
-    mutationFn: (params: Params<'put', P>) => client.PUT(path, params).then(({ data }) => data),
+    mutationFn: (params: Params<'put', P>) => client.PUT(path, params),
     ...options,
   });
 }
 
 export function useDeleteMutation<P extends Paths<'delete'>>(path: P, options?: UseMutationOptions) {
   return useMutation({
-    mutationFn: (params: Params<'delete', P>) => client.DELETE(path, params).then(({ data }) => data),
+    mutationFn: (params: Params<'delete', P>) => client.DELETE(path, params),
     ...options,
   });
 }

@@ -1,3 +1,5 @@
+import * as AppleAuthentication from 'expo-apple-authentication';
+import { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 import AppleLogoIcon from '@/assets/svgs/ico_apple_logo.svg';
 import KakaoLogoIcon from '@/assets/svgs/ico_kakao_logo.svg';
@@ -10,6 +12,12 @@ import { styles } from './styles';
 
 const LoginPage = () => {
   const { modalVisible, signInWithKakao, signInWithApple, setModalVisible } = useLogin();
+
+  const [appleLoginAvailable, setAppleLoginAvailable] = useState(false);
+
+  useEffect(() => {
+    AppleAuthentication.isAvailableAsync().then(setAppleLoginAvailable);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,18 +37,20 @@ const LoginPage = () => {
           onPress={signInWithKakao}
           iconStyle={styles.buttonIcon}
         />
-        <Button
-          text="Apple ID로 시작하기"
-          icon={AppleLogoIcon}
-          defaultBackgoundColor={FILLBOM_COLOR.GRAY[900]}
-          defaultTextColor={FILLBOM_COLOR.GRAY[100]}
-          defaultIconColor={FILLBOM_COLOR.GRAY[100]}
-          pressedBackgroundColor={FILLBOM_COLOR.GRAY[700]}
-          pressedTextColor={FILLBOM_COLOR.GRAY[400]}
-          pressedIconColor={FILLBOM_COLOR.GRAY[400]}
-          onPress={signInWithApple}
-          iconStyle={styles.buttonIcon}
-        />
+        {appleLoginAvailable && (
+          <Button
+            text="Apple ID로 시작하기"
+            icon={AppleLogoIcon}
+            defaultBackgoundColor={FILLBOM_COLOR.GRAY[900]}
+            defaultTextColor={FILLBOM_COLOR.GRAY[100]}
+            defaultIconColor={FILLBOM_COLOR.GRAY[100]}
+            pressedBackgroundColor={FILLBOM_COLOR.GRAY[700]}
+            pressedTextColor={FILLBOM_COLOR.GRAY[400]}
+            pressedIconColor={FILLBOM_COLOR.GRAY[400]}
+            onPress={signInWithApple}
+            iconStyle={styles.buttonIcon}
+          />
+        )}
       </View>
       <ModalComponent visible={modalVisible} onClose={() => setModalVisible(false)} />
     </SafeAreaView>

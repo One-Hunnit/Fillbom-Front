@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Loading from '@/components/Loading';
 import useInitializeApp from '@/hooks/useInitializeApp';
+import { useUIStore } from '@/stores/ui';
 
 const queryClient = new QueryClient();
 
@@ -11,6 +12,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default () => {
   const [loaded, error] = useInitializeApp();
+  const { loading } = useUIStore();
 
   useEffect(() => {
     if (loaded || error) {
@@ -26,6 +28,7 @@ export default () => {
     <QueryClientProvider client={queryClient}>
       <GestureHandlerRootView>
         <Slot />
+        {loading && <Loading fullScreen />}
       </GestureHandlerRootView>
     </QueryClientProvider>
   );

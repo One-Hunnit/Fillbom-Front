@@ -6,4 +6,5 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  avatar: { width: 80, height: 80, borderRadius: 40 },
 });
