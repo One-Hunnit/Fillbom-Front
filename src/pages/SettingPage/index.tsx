@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import { Button, Image, Text, View } from 'react-native';
 import useAccount from '@/hooks/useAccount';
 import { useAuthStore } from '@/stores/authStore';
+import { logEvent } from '@/utils/firebase';
 import { styles } from './styles';
 
 const SettingPage = () => {
@@ -21,6 +22,12 @@ const SettingPage = () => {
         title="센트리 에러 테스트"
         onPress={() => {
           Sentry.captureException(new Error('test error'));
+        }}
+      />
+      <Button
+        title="GA 로깅 데스트"
+        onPress={() => {
+          logEvent('test_event', { test: 'test' });
         }}
       />
       <Button
