@@ -11,7 +11,6 @@ const useAccount = () => {
     queryKey: accountQueryKey,
     refetch,
   } = useGetQuery('/accounts/me', { rq: { enabled: !!accessToken } });
-
   const queryClient = useQueryClient();
 
   const reset = () => {
