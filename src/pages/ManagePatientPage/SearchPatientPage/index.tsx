@@ -7,7 +7,7 @@ import Button from '@/components/Button';
 import InputLayout from '@/components/InputLayout';
 import InputWithIcon from '@/components/InputWithIcon';
 import { FILLBOM_COLOR } from '@/constants/color';
-import useGetKeyboardHeight from '@/pages/SignupPage/hooks/useGetKeyboardHeight';
+import useGetKeyboardHeight from '@/hooks/useGetKeyboardHeight';
 import TEXT_STYLES from '@/styles/textStyles';
 import { type IPatientInfo } from '@/types/patient';
 import PatientInfo from './components/PatientInfo';
