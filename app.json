@@ -100,6 +100,14 @@
           "photosPermission": "프로필 사진 업로드를 위해 앨범 접근 권한이 필요합니다.",
           "cameraPermission": "프로필 사진 업로드를 위해 카메라 접근 권한이 필요합니다."
         }
+      ],
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "fillbom",
+          "organization": "one-hunnit"
+        }
       ]
     ],
     "experiments": {
