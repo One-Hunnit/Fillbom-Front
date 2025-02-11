@@ -11,6 +11,6 @@ const useRegistPatients = async (patientId: number, relationship: string) => {
       relationship: relationship,
     },
   });
-  return data?.data;
+  return { data: data?.data, status: data?.status };
 };
 export default useRegistPatients;

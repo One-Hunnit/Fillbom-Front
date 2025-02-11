@@ -2,7 +2,9 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import React, { useMemo, useState } from 'react';
 import { Image, Text, View, type ViewStyle } from 'react-native';
+import Toast from 'react-native-toast-message';
 import IconCancel from '@/assets/svgs/ico_cancel.svg';
+import IconToastMessage from '@/assets/svgs/ico_toast_message.svg';
 import Button from '@/components/Button';
 import InputWithIcon from '@/components/InputWithIcon';
 import { FILLBOM_COLOR } from '@/constants/color';
@@ -41,7 +43,17 @@ const RequestRelationPage = () => {
     router.replace('/caregiver/addPatient');
   };
   const onRequestButtonPress = async () => {
-    await useRegistPatients(patient.patientId, relation);
+    const { status } = await useRegistPatients(patient.patientId, relation);
+    if (status === 'SUCCESS') {
+      Toast.show({
+        type: 'ToastPopup',
+        props: {
+          text: '상대방에게 수락 요청을 보냈습니다.',
+          icon: <IconToastMessage />,
+        },
+      });
+      // router.replace('/(auth)/caregiver/patient-list');
+    }
   };
 
   return (

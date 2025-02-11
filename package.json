@@ -68,6 +68,7 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-svg-transformer": "^1.5.0",
+    "react-native-toast-message": "^2.2.1",
     "react-native-web": "~0.19.10",
     "react-native-webview": "13.8.6",
     "ts-pattern": "^5.4.0",
@@ -96,7 +97,7 @@
   "private": true,
   "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72",
   "expo": {
-    "doctor": {
+    "doc@react-navigation/nativer": {
       "reactNativeDirectoryCheck": {
         "enabled": true
       }

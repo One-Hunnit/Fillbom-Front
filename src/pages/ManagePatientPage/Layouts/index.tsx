@@ -1,6 +1,6 @@
 import { WINDOW_HEIGHT } from '@gorhom/bottom-sheet';
 import React from 'react';
-import { Keyboard, Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '@/components/Header';
@@ -15,13 +15,7 @@ interface ManagePatientLayoutProps {
   status: 'REQUEST' | 'ADD';
 }
 
-const ManagePatientLayout = ({
-  headerText,
-  setIsInputFocused,
-  children,
-  titleText,
-  status,
-}: ManagePatientLayoutProps) => {
+const ManagePatientLayout = ({ headerText, children, titleText, status }: ManagePatientLayoutProps) => {
   const childrenArray = React.Children.toArray(children);
   const PRESSABLE_HEIGHT = status === 'REQUEST' ? WINDOW_HEIGHT - HEADER_HEIGHT - 88 : 116 + 142;
   return (
@@ -29,20 +23,14 @@ const ManagePatientLayout = ({
       <SafeAreaView style={commonStyles.safeArea} edges={['left', 'right', 'top', 'bottom']}>
         <Header backButtonVisible={true} containerStyle={commonStyles.headerContainer} title={headerText} />
         <View style={commonStyles.pageWrapper}>
-          <Pressable
-            onPress={() => {
-              setIsInputFocused(false);
-              Keyboard.dismiss();
-            }}
-            style={[commonStyles.pressableContainer, { height: PRESSABLE_HEIGHT }]}
-          >
+          <View style={[commonStyles.pressableContainer, { height: PRESSABLE_HEIGHT }]}>
             <View>
               <View style={commonStyles.titleWrapper}>
                 <Text style={commonStyles.title}>{titleText}</Text>
               </View>
               {childrenArray[0]}
             </View>
-          </Pressable>
+          </View>
           <View style={[commonStyles.example, { height: WINDOW_HEIGHT - HEADER_HEIGHT - PRESSABLE_HEIGHT }]}>
             {childrenArray[1]}
           </View>

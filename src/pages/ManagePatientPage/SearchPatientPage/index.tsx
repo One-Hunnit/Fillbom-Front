@@ -36,7 +36,13 @@ const SearchPatientPage = () => {
   const error = phoneNumber.length > 0 && !/\d{11}/g.test(phoneNumber);
 
   const inputIcon = useMemo(() => {
-    return phoneNumber.length > 0 ? IconCancel : isInputFocused ? IconSearch : null;
+    if (phoneNumber.length > 0 && isInputFocused) {
+      return IconCancel;
+    } else if (phoneNumber.length > 0 && !isInputFocused) {
+      return IconSearch;
+    } else {
+      return null;
+    }
   }, [phoneNumber, isInputFocused]);
 
   const onIconPress = useMemo(() => {
