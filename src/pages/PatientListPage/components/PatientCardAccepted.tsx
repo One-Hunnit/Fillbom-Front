@@ -35,7 +35,7 @@ const PatientCardAccepted = ({ patient }: PatientCardPendingProps) => {
               {patient.name}
             </Text>
             <Text style={isProfileWrapperPressed ? patientCardStyles.pressedText : patientCardStyles.relation}>
-              {patient.relation}
+              {patient.relationship}
             </Text>
           </View>
         </View>
