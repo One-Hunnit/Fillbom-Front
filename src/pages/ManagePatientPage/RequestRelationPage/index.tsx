@@ -52,7 +52,7 @@ const RequestRelationPage = () => {
           icon: <IconToastMessage />,
         },
       });
-      // router.replace('/(auth)/caregiver/patient-list');
+      router.replace('/(auth)/caregiver/patient-list');
     }
   };
 
