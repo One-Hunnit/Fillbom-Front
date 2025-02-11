@@ -11,20 +11,32 @@ interface IPatientInfoProps {
   setSelectedPatientInfo: (patientInfo: IPatientInfo | null) => void | null;
 }
 
-const PatientInfo = ({ patientInfo, selectedPatientInfo, setSelectedPatientInfo }: IPatientInfoProps) => {
-  const { setCheckButtonState, handleCheckButtonPressIn, handleCheckButtonPressOut, getCheckButtonIcon } =
-    useCheckButton();
+const PatientInfo = ({ patientInfo, setSelectedPatientInfo }: IPatientInfoProps) => {
+  const {
+    checkButtonState,
+    handleCheckButtonPressIn,
+    setCheckButtonState,
+    handleCheckButtonPressOut,
+    getCheckButtonIcon,
+  } = useCheckButton();
 
   useEffect(() => {
     setCheckButtonState((prev) => ({
       ...prev,
-      isSelected: selectedPatientInfo === patientInfo,
+      isSelected: false,
     }));
-  }, [selectedPatientInfo, patientInfo]);
+  }, [patientInfo]);
+
+  useEffect(() => {
+    if (checkButtonState.isSelected) {
+      setSelectedPatientInfo(patientInfo);
+    } else {
+      setSelectedPatientInfo(null);
+    }
+  }, [checkButtonState]);
 
   const handlePressOut = () => {
     handleCheckButtonPressOut();
-    setSelectedPatientInfo(patientInfo);
   };
 
   const CheckButtonIcon = getCheckButtonIcon();

@@ -24,8 +24,13 @@ const SearchPatientPage = () => {
   const { postFindPatient, patientList } = useSearchPatient();
   const keyboardVisible = useKeyboardVisible();
   const keyboardHeight = useGetKeyboardHeight();
+
+  const buttonDisabled = useMemo(() => {
+    return phoneNumber.length !== 11 || (patientList !== null && !selectedPatientInfo);
+  }, [phoneNumber, patientList, selectedPatientInfo]);
+
   const buttonStyle: ViewStyle = keyboardVisible
-    ? { borderRadius: 0, marginBottom: keyboardHeight + 24 }
+    ? { borderRadius: 0, marginBottom: keyboardHeight, width: '100%' }
     : { marginLeft: 20, marginRight: 20, marginBottom: 20, width: 350 };
 
   const error = phoneNumber.length > 0 && !/\d{11}/g.test(phoneNumber);
@@ -44,7 +49,8 @@ const SearchPatientPage = () => {
       };
     }
     return undefined;
-  }, [inputIcon]);
+  }, [inputIcon, phoneNumber]);
+
   const onSubmitEditing = async () => {
     if (phoneNumber.length === 11) {
       await postFindPatient(phoneNumber);
@@ -52,6 +58,7 @@ const SearchPatientPage = () => {
       Keyboard.dismiss();
     }
   };
+
   return (
     <ManagePatientLayout
       status="ADD"
@@ -99,18 +106,18 @@ const SearchPatientPage = () => {
         <Button
           text="다음"
           onPress={async () => {
-            if (!patientList) {
+            if (patientList === null) {
               await postFindPatient(phoneNumber);
             } else if (selectedPatientInfo) {
               router.push({
                 pathname: '/caregiver/requestRelation',
                 params: {
-                  patientInfo: JSON.stringify(selectedPatientInfo), // 객체를 문자열로 변환하여 전달
+                  patientInfo: JSON.stringify(selectedPatientInfo),
                 },
               });
             }
           }}
-          disabled={phoneNumber.length !== 11 || (!patientList && !selectedPatientInfo)}
+          disabled={buttonDisabled}
           defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}
           defaultTextColor={FILLBOM_COLOR.GRAY[100]}
           pressedBackgroundColor={FILLBOM_COLOR.BLUE[300]}
