@@ -7,7 +7,7 @@ interface PatientCardPendingProps {
 
 const PatientCardPending = ({ patient }: PatientCardPendingProps) => {
   return (
-    <View style={patientCardStyles.container}>
+    <View style={patientCardStyles.pendingPatientCard}>
       <Pressable style={patientCardStyles.profilWrapper}>
         <View style={patientCardStyles.infoWrapper}>
           <View style={patientCardStyles.profileImage}></View>

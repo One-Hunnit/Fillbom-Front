@@ -41,6 +41,18 @@ export const styles = StyleSheet.create({
 });
 
 export const patientCardStyles = StyleSheet.create({
+  pendingPatientCard: {
+    backgroundColor: FILLBOM_COLOR.GRAY[100],
+    borderRadius: 12,
+    width: 350,
+    height: 100,
+    paddingHorizontal: 12,
+    overflow: 'scroll',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 11,
+  },
   container: {
     backgroundColor: FILLBOM_COLOR.GRAY[100],
     borderRadius: 12,
@@ -70,7 +82,6 @@ export const patientCardStyles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   profilWrapper: {
-    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -89,7 +100,7 @@ export const patientCardStyles = StyleSheet.create({
     gap: 12,
   },
   infoTextWrapper: {
-    width: 200,
+    // backgroundColor: FILLBOM_COLOR.GRAY[500],
   },
   name: {
     ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
@@ -110,6 +121,7 @@ export const patientCardStyles = StyleSheet.create({
     textAlign: 'right',
     justifyContent: 'center',
     borderRadius: 1500,
+    backgroundColor: FILLBOM_COLOR.BLUE[100],
   },
   pendingText: {
     ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
