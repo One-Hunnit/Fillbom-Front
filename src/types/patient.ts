@@ -1,5 +1,5 @@
 export interface IPatientInfo {
   name: string;
   phoneNumber: string;
-  profileImageUrl: string;
+  profileImageUrl: string | null;
 }

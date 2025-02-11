@@ -9,7 +9,6 @@ const useGetKeyboardHeight = () => {
       Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow',
       (event) => {
         setKeyboardHeight(event.endCoordinates.height);
-        console.log('keyboardHeight', event.endCoordinates.height);
       },
     );
 

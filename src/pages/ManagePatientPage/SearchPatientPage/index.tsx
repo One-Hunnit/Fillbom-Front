@@ -19,11 +19,7 @@ import useSearchPatient from './hooks/useSearchPatient';
 const SearchPatientPage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isInputFocused, setIsInputFocused] = useState(false);
-  const [selectedPatientInfo, setSelectedPatientInfo] = useState<IPatientInfo | null>({
-    name: '김필봄',
-    phoneNumber: '01012345678',
-    profileImageUrl: 'https://fillbom.s3.ap-northeast-2.amazonaws.com/1619822389000.png',
-  });
+  const [selectedPatientInfo, setSelectedPatientInfo] = useState<IPatientInfo | null>(null);
 
   const { postFindPatient, patientList } = useSearchPatient();
   const keyboardVisible = useKeyboardVisible();
@@ -103,9 +99,18 @@ const SearchPatientPage = () => {
         <Button
           text="다음"
           onPress={async () => {
-            router.push(`/caregiver/requestRelation/${selectedPatientInfo?.toString()}`);
+            if (!patientList) {
+              await postFindPatient(phoneNumber);
+            } else if (selectedPatientInfo) {
+              router.push({
+                pathname: '/caregiver/requestRelation',
+                params: {
+                  patientInfo: JSON.stringify(selectedPatientInfo), // 객체를 문자열로 변환하여 전달
+                },
+              });
+            }
           }}
-          disabled={phoneNumber.length !== 11}
+          disabled={phoneNumber.length !== 11 || (!patientList && !selectedPatientInfo)}
           defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}
           defaultTextColor={FILLBOM_COLOR.GRAY[100]}
           pressedBackgroundColor={FILLBOM_COLOR.BLUE[300]}

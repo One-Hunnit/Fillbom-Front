@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import { router, useLocalSearchParams } from 'expo-router';
 import React, { useMemo, useState } from 'react';
 import { Image, Text, View, type ViewStyle } from 'react-native';
@@ -18,12 +19,10 @@ import MaskedName from '../SearchPatientPage/components/MaskedName';
 
 const RequestRelationPage = () => {
   const { patientInfo } = useLocalSearchParams();
+
+  const patient = patientInfo ? JSON.parse(decodeURIComponent(patientInfo as string)) : null;
+
   const { getCheckButtonIcon } = useCheckButton();
-  const patient = {
-    name: '김필봄',
-    phoneNumber: '01012341234',
-    profileImageUrl: 'https://fillbom.s3.ap-northeast-2.amazonaws.com/1619822389000.png',
-  };
 
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
   const [relation, setRelation] = useState<string>('');
@@ -42,7 +41,7 @@ const RequestRelationPage = () => {
     router.replace('/caregiver/addPatient');
   };
   const onRequestButtonPress = async () => {
-    await useRegistPatients(1);
+    await useRegistPatients(patient.patientId, relation);
   };
 
   return (
