@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '@/components/Button';
 import Header from '@/components/Header';
@@ -15,6 +15,9 @@ const PatientListPage = () => {
   const data = result?.data ?? [];
   const isLoading = result?.isLoading ?? false;
 
+  const handlePatientCardPress = (patientId: number) => {
+    router.push(`/caregiver/managePatient/patientDetail/${patientId}`);
+  };
   return (
     <SafeAreaView style={styles.safeArea} edges={['left', 'right', 'top']}>
       <Header containerStyle={styles.headerContainer} title="환자 관리" />
@@ -25,13 +28,19 @@ const PatientListPage = () => {
           <ScrollView style={patientCardStyles.scrollViewStyle}>
             <View style={styles.listWrapper}>
               {data.map((patient, index) => (
-                <View key={index} style={styles.cardWrapper}>
+                <Pressable
+                  onPress={() => {
+                    handlePatientCardPress(patient.patientId ?? 0);
+                  }}
+                  key={index}
+                  style={styles.cardWrapper}
+                >
                   {patient.accepted ? (
                     <PatientCardAccepted key={index} patient={patient} />
                   ) : (
                     <PatientCardPending key={index} patient={patient} />
                   )}
-                </View>
+                </Pressable>
               ))}
             </View>
           </ScrollView>
