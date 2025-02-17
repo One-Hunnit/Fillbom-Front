@@ -12,5 +12,5 @@ export default function useSearchPatient() {
     }
   };
 
-  return { postFindPatient: postSearchPatient, patientList };
+  return { postFindPatient: postSearchPatient, patientList, setPatientList };
 }

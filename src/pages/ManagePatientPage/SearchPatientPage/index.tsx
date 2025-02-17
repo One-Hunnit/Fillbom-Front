@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Keyboard, ScrollView, type ViewStyle } from 'react-native';
+import { set } from 'ts-pattern/dist/patterns';
 import IconCancel from '@/assets/svgs/ico_cancel.svg';
 import IconSearch from '@/assets/svgs/ico_search.svg';
 import Button from '@/components/Button';
@@ -21,9 +22,13 @@ const SearchPatientPage = () => {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [selectedPatientInfo, setSelectedPatientInfo] = useState<IPatientInfo | null>(null);
 
-  const { postFindPatient, patientList } = useSearchPatient();
+  const { postFindPatient, patientList, setPatientList } = useSearchPatient();
   const keyboardVisible = useKeyboardVisible();
   const keyboardHeight = useGetKeyboardHeight();
+
+  useEffect(() => {
+    console.log('phoneNumber', phoneNumber, 'selectedPatientInfo', selectedPatientInfo, 'patientList', patientList);
+  }, [phoneNumber, selectedPatientInfo, patientList]);
 
   const buttonDisabled = useMemo(() => {
     return phoneNumber.length !== 11 || (patientList !== null && !selectedPatientInfo);
@@ -61,7 +66,14 @@ const SearchPatientPage = () => {
     if (phoneNumber.length === 11) {
       await postFindPatient(phoneNumber);
       setIsInputFocused(false);
-      Keyboard.dismiss();
+    }
+  };
+
+  const handlePhoneNumberChange = (text: string) => {
+    setPhoneNumber(text);
+    setSelectedPatientInfo(null);
+    if (patientList) {
+      setPatientList(null);
     }
   };
 
@@ -90,7 +102,7 @@ const SearchPatientPage = () => {
           activatedTextColor={FILLBOM_COLOR.GRAY[900]}
           defaultIconColor={FILLBOM_COLOR.GRAY[500]}
           pressedIconColor={FILLBOM_COLOR.GRAY[400]}
-          onChangeText={setPhoneNumber}
+          onChangeText={handlePhoneNumberChange}
           onIconPress={onIconPress}
           icon={inputIcon}
           onSubmitEditing={onSubmitEditing}
@@ -112,7 +124,9 @@ const SearchPatientPage = () => {
         <Button
           text="다음"
           onPress={async () => {
-            if (patientList === null) {
+            console.log('환자를 선택해주세요');
+
+            if (patientList === null || selectedPatientInfo === null) {
               await postFindPatient(phoneNumber);
             } else if (selectedPatientInfo) {
               router.push({
@@ -122,6 +136,7 @@ const SearchPatientPage = () => {
                 },
               });
             }
+            Keyboard.dismiss();
           }}
           disabled={buttonDisabled}
           defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}
