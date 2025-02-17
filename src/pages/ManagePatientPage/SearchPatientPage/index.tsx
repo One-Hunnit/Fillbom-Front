@@ -47,7 +47,11 @@ const SearchPatientPage = () => {
 
   const onIconPress = useMemo(() => {
     if (inputIcon === IconCancel) {
-      return () => setPhoneNumber('');
+      return () => {
+        setSelectedPatientInfo(null);
+        setPatientList(null);
+        setPhoneNumber('');
+      };
     } else if (inputIcon === IconSearch) {
       return async () => {
         setIsInputFocused(false);
