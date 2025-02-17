@@ -2,11 +2,11 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import React, { useMemo, useState } from 'react';
 import { Image, Text, View, type ViewStyle } from 'react-native';
-import Toast from 'react-native-toast-message';
 import IconCancel from '@/assets/svgs/ico_cancel.svg';
 import IconToastMessage from '@/assets/svgs/ico_toast_message.svg';
 import Button from '@/components/Button';
 import InputWithIcon from '@/components/InputWithIcon';
+import { ToastMessage } from '@/components/ToastMessage';
 import { FILLBOM_COLOR } from '@/constants/color';
 import useCheckButton from '@/hooks/useCheckButton';
 import useGetKeyboardHeight from '@/hooks/useGetKeyboardHeight';
@@ -14,7 +14,7 @@ import { patientCardStyles } from '@/pages/PatientListPage/styles';
 import useKeyboardVisible from '@/pages/SignupPage/hooks/useKeyboardVisible';
 import TEXT_STYLES from '@/styles/textStyles';
 import ManagePatientLayout from '../Layouts';
-import useRegistPatients from './hooks/useRegistPatients';
+import { useRegisterPatient } from './hooks/useRegistPatients';
 import styles from './styles';
 import formattedPhoneNumber from './utils/formatingPhoneNumber';
 import MaskedName from '../SearchPatientPage/components/MaskedName';
@@ -42,28 +42,23 @@ const RequestRelationPage = () => {
   const onResearchPatientButtonPress = () => {
     router.replace('/caregiver/addPatient');
   };
-  const onRequestButtonPress = async () => {
-    const { status } = await useRegistPatients(patient.patientId, relation);
 
-    if (status === 'SUCCESS') {
-      Toast.show({
-        type: 'ToastPopup',
-        props: {
-          text: '상대방에게 수락 요청을 보냈습니다.',
-          icon: <IconToastMessage />,
+  const { mutate: registerPatient } = useRegisterPatient();
+  const onRequestButtonPress = () => {
+    registerPatient(
+      { patientId: patient.patientId, relationship: relation },
+      {
+        onSuccess: (data) => {
+          if (data?.status === 'SUCCESS') {
+            ToastMessage('success', '상대방에게 수락 요청을 보냈습니다.', <IconToastMessage />);
+            router.replace('/(auth)/caregiver/patient-list');
+          }
         },
-      });
-      router.replace('/(auth)/caregiver/patient-list');
-    }
-    if (status === 'FAILURE') {
-      Toast.show({
-        type: 'ToastPopup',
-        props: {
-          text: '서버에 에러가 발생했습니다.',
-          icon: '❗️',
+        onError: (error) => {
+          ToastMessage('error', error.message || '환자 등록에 실패했습니다.', <Text>❗️</Text>);
         },
-      });
-    }
+      },
+    );
   };
 
   return (
