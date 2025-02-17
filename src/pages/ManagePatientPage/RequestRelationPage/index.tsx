@@ -44,6 +44,7 @@ const RequestRelationPage = () => {
   };
   const onRequestButtonPress = async () => {
     const { status } = await useRegistPatients(patient.patientId, relation);
+
     if (status === 'SUCCESS') {
       Toast.show({
         type: 'ToastPopup',
@@ -53,6 +54,15 @@ const RequestRelationPage = () => {
         },
       });
       router.replace('/(auth)/caregiver/patient-list');
+    }
+    if (status === 'FAILURE') {
+      Toast.show({
+        type: 'ToastPopup',
+        props: {
+          text: '서버에 에러가 발생했습니다.',
+          icon: '❗️',
+        },
+      });
     }
   };
 
