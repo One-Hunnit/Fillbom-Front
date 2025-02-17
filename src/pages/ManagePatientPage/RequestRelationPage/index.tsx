@@ -2,13 +2,13 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import React, { useMemo, useState } from 'react';
 import { Image, Text, View, type ViewStyle } from 'react-native';
+import CheckButtonSelected from '@/assets/svgs/check_button_selected.svg';
 import IconCancel from '@/assets/svgs/ico_cancel.svg';
 import IconToastMessage from '@/assets/svgs/ico_toast_message.svg';
 import Button from '@/components/Button';
 import InputWithIcon from '@/components/InputWithIcon';
 import { ToastMessage } from '@/components/ToastMessage';
 import { FILLBOM_COLOR } from '@/constants/color';
-import useCheckButton from '@/hooks/useCheckButton';
 import useGetKeyboardHeight from '@/hooks/useGetKeyboardHeight';
 import { patientCardStyles } from '@/pages/PatientListPage/styles';
 import useKeyboardVisible from '@/pages/SignupPage/hooks/useKeyboardVisible';
@@ -24,11 +24,8 @@ const RequestRelationPage = () => {
 
   const patient = patientInfo ? JSON.parse(decodeURIComponent(patientInfo as string)) : null;
 
-  const { getCheckButtonIcon } = useCheckButton();
-
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
   const [relation, setRelation] = useState<string>('');
-  const CheckButtonIcon = getCheckButtonIcon();
   const keyboardVisible = useKeyboardVisible();
   const keyboardHeight = useGetKeyboardHeight();
   const buttonStyle: ViewStyle = keyboardVisible
@@ -81,8 +78,8 @@ const RequestRelationPage = () => {
                 </Text>
               </View>
             </View>
-            <View>
-              <CheckButtonIcon />
+            <View style={{ position: 'absolute', right: 40 }}>
+              <CheckButtonSelected />
             </View>
           </View>
         </View>
