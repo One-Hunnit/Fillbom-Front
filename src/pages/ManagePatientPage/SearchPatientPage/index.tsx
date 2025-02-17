@@ -1,7 +1,6 @@
 import { router } from 'expo-router';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
 import { Keyboard, ScrollView, type ViewStyle } from 'react-native';
-import { set } from 'ts-pattern/dist/patterns';
 import IconCancel from '@/assets/svgs/ico_cancel.svg';
 import IconSearch from '@/assets/svgs/ico_search.svg';
 import Button from '@/components/Button';
@@ -25,10 +24,6 @@ const SearchPatientPage = () => {
   const { postFindPatient, patientList, setPatientList } = useSearchPatient();
   const keyboardVisible = useKeyboardVisible();
   const keyboardHeight = useGetKeyboardHeight();
-
-  useEffect(() => {
-    console.log('phoneNumber', phoneNumber, 'selectedPatientInfo', selectedPatientInfo, 'patientList', patientList);
-  }, [phoneNumber, selectedPatientInfo, patientList]);
 
   const buttonDisabled = useMemo(() => {
     return phoneNumber.length !== 11 || (patientList !== null && !selectedPatientInfo);
@@ -61,6 +56,19 @@ const SearchPatientPage = () => {
     }
     return undefined;
   }, [inputIcon, phoneNumber]);
+
+  const handleNextButtonPress = useCallback(async () => {
+    if (patientList === null || selectedPatientInfo === null) {
+      await postFindPatient(phoneNumber);
+    } else if (selectedPatientInfo) {
+      router.push({
+        pathname: '/caregiver/requestRelation',
+        params: {
+          patientInfo: JSON.stringify(selectedPatientInfo),
+        },
+      });
+    }
+  }, [patientList, selectedPatientInfo, phoneNumber, postFindPatient]);
 
   const onSubmitEditing = async () => {
     if (phoneNumber.length === 11) {
@@ -123,19 +131,8 @@ const SearchPatientPage = () => {
         </ScrollView>
         <Button
           text="다음"
-          onPress={async () => {
-            console.log('환자를 선택해주세요');
-
-            if (patientList === null || selectedPatientInfo === null) {
-              await postFindPatient(phoneNumber);
-            } else if (selectedPatientInfo) {
-              router.push({
-                pathname: '/caregiver/requestRelation',
-                params: {
-                  patientInfo: JSON.stringify(selectedPatientInfo),
-                },
-              });
-            }
+          onPress={() => {
+            handleNextButtonPress();
             Keyboard.dismiss();
           }}
           disabled={buttonDisabled}
