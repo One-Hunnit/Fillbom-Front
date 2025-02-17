@@ -1,5 +1,6 @@
 import { Link, Stack } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
+import TEXT_STYLES from '@/styles/textStyles';
 
 export default () => (
   <>
@@ -30,7 +31,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   title: {
-    fontSize: 20,
-    fontWeight: '700',
+    ...TEXT_STYLES.SUBTITLE_LARGE_BOLD,
   },
 });
