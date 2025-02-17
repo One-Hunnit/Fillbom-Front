@@ -24,6 +24,7 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'react-native/no-inline-styles': 'off',
     'import/no-extraneous-dependencies': 0,
     'react/jsx-filename-extension': [
       1,

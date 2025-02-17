@@ -28,25 +28,25 @@ export function useGetQuery<P extends Paths<'get'>>(path: P, params?: Params<'ge
   return { ...queryResult, queryKey: queryKey as QueryKey };
 }
 
-type UseMutationOptions = Pick<RQUseMutationOptions, 'retry'>;
+type UseMutationOptions = Pick<RQUseMutationOptions, 'retry' | 'onSuccess' | 'onError'>;
 
 export function usePostMutation<P extends Paths<'post'>>(path: P, options?: UseMutationOptions) {
   return useMutation({
     mutationFn: (params: Params<'post', P>) => client.POST(path, params),
-    ...options,
+    ...(options as Pick<RQUseMutationOptions, 'retry'>),
   });
 }
 
 export function usePutMutation<P extends Paths<'put'>>(path: P, options?: UseMutationOptions) {
   return useMutation({
     mutationFn: (params: Params<'put', P>) => client.PUT(path, params),
-    ...options,
+    ...(options as Pick<RQUseMutationOptions, 'retry'>),
   });
 }
 
 export function useDeleteMutation<P extends Paths<'delete'>>(path: P, options?: UseMutationOptions) {
   return useMutation({
     mutationFn: (params: Params<'delete', P>) => client.DELETE(path, params),
-    ...options,
+    ...(options as Pick<RQUseMutationOptions, 'retry'>),
   });
 }

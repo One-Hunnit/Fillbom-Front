@@ -4,1721 +4,1721 @@
  */
 
 export interface paths {
-    "/safe-zone/patients/{patientId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** 안전구역 목록 조회 */
-        get: operations["findAllSafeZone"];
-        put?: never;
-        /** 안전구역 설정 */
-        post: operations["registerSafeZone"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+  '/safe-zone/patients/{patientId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/patients/{patientId}/location": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** 환자의 마지막 위치 저장 */
-        post: operations["savePatientLastLocation"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /** 안전구역 목록 조회 */
+    get: operations['findAllSafeZone'];
+    put?: never;
+    /** 안전구역 설정 */
+    post: operations['registerSafeZone'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/patients/{patientId}/location': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/patients/search": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** 전화번호로 환자 검색 */
-        post: operations["searchByPhone"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    /** 환자의 마지막 위치 저장 */
+    post: operations['savePatientLastLocation'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/patients/search': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/patients/registration/caregivers/{caregiverId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * 보호자 등록 요청 수락
-         * @description jwt 토큰 필요
-         */
-        post: operations["registerCaregiver"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    /** 전화번호로 환자 검색 */
+    post: operations['searchByPhone'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/patients/registration/caregivers/{caregiverId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/oauth/refresh-token": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * 토큰 재발급
-         * @description 리프레시 토큰 앞에 토큰 타입 'Bearer ' 필요
-         */
-        post: operations["reGenerateAccessToken"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    /**
+     * 보호자 등록 요청 수락
+     * @description jwt 토큰 필요
+     */
+    post: operations['registerCaregiver'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/oauth/refresh-token': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/oauth/kakao": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** 카카오 소셜로그인 */
-        post: operations["kakaoLogin"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    /**
+     * 토큰 재발급
+     * @description 리프레시 토큰 앞에 토큰 타입 'Bearer ' 필요
+     */
+    post: operations['reGenerateAccessToken'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/oauth/kakao': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/notification": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** 알림 전송 */
-        post: operations["pushNotification"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    /** 카카오 소셜로그인 */
+    post: operations['kakaoLogin'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/notification': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/image/upload": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["uploadImage"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    /** 알림 전송 */
+    post: operations['pushNotification'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/image/upload': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/diaries": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** 일기 저장 */
-        post: operations["saveDiary"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations['uploadImage'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/diaries': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/caregiver/registration/patients/{patientId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * 환자 등록 요청
-         * @description jwt 토큰 필요
-         */
-        post: operations["registerCaregiver_1"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    /** 일기 저장 */
+    post: operations['saveDiary'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/caregiver/registration/patients/{patientId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/accounts/sign-up": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** 회원가입 */
-        post: operations["signUp"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    /**
+     * 환자 등록 요청
+     * @description jwt 토큰 필요
+     */
+    post: operations['registerCaregiver_1'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/accounts/sign-up': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/accounts": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /**
-         * 회원탈퇴
-         * @description jwt 토큰 필요
-         */
-        delete: operations["deleteAccount"];
-        options?: never;
-        head?: never;
-        /**
-         * 계정 정보 수정
-         * @description jwt 토큰 필요
-         */
-        patch: operations["updateUserInfo"];
-        trace?: never;
+    get?: never;
+    put?: never;
+    /** 회원가입 */
+    post: operations['signUp'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/accounts': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/safe-zone/patients/{patientId}/checking": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** 안전구역 내 존재 확인 */
-        get: operations["checkSafeZone"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post?: never;
+    /**
+     * 회원탈퇴
+     * @description jwt 토큰 필요
+     */
+    delete: operations['deleteAccount'];
+    options?: never;
+    head?: never;
+    /**
+     * 계정 정보 수정
+     * @description jwt 토큰 필요
+     */
+    patch: operations['updateUserInfo'];
+    trace?: never;
+  };
+  '/safe-zone/patients/{patientId}/checking': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/patients/{patientId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** 환자 상세 조회 */
-        get: operations["getPatientDetail"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /** 안전구역 내 존재 확인 */
+    get: operations['checkSafeZone'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/patients/{patientId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/notification/{notificationId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** 알림 조회 */
-        get: operations["getNotification"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /** 환자 상세 조회 */
+    get: operations['getPatientDetail'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/notification/{notificationId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/notification/all": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** 알림 목록 조회 */
-        get: operations["getAllNotifications"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /** 알림 조회 */
+    get: operations['getNotification'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/notification/all': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/district/search": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * 행정 구역 검색
-         * @description jwt 토큰 필요
-         */
-        get: operations["searchDistricts"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /** 알림 목록 조회 */
+    get: operations['getAllNotifications'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/district/search': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/district/save-data": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * 행정구역 데이터 저장
-         * @description 로컬에서 데이터 저장 용도, 배포 서버 사용X
-         */
-        get: operations["processGeoJson"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /**
+     * 행정 구역 검색
+     * @description jwt 토큰 필요
+     */
+    get: operations['searchDistricts'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/district/save-data': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/district/coordinate": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * 행정 구역 정보 조회
-         * @description jwt 토큰 필요, 좌표 제공
-         */
-        get: operations["getDistrictCoordinate"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /**
+     * 행정구역 데이터 저장
+     * @description 로컬에서 데이터 저장 용도, 배포 서버 사용X
+     */
+    get: operations['processGeoJson'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/district/coordinate': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/district/check/location/safe-zone": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * 행정구역 내에 포함 여부 확인
-         * @description jwt 토큰 필요
-         */
-        get: operations["checkLocation"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /**
+     * 행정 구역 정보 조회
+     * @description jwt 토큰 필요, 좌표 제공
+     */
+    get: operations['getDistrictCoordinate'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/district/check/location/safe-zone': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/diaries/{diaryId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** 환자가 일기 조회 */
-        get: operations["findDiaryById"];
-        put?: never;
-        post?: never;
-        /** 환자가 일기 삭제 */
-        delete: operations["deleteDiaryById"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /**
+     * 행정구역 내에 포함 여부 확인
+     * @description jwt 토큰 필요
+     */
+    get: operations['checkLocation'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/diaries/{diaryId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/diaries/{diaryId}/patients/{patientId}/caregivers": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * 보호자가 환자의 일기 조회
-         * @description 환자가 공유 허용한 일기만 조회
-         */
-        get: operations["findPatientDiaryForCaregivers"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /** 환자가 일기 조회 */
+    get: operations['findDiaryById'];
+    put?: never;
+    post?: never;
+    /** 환자가 일기 삭제 */
+    delete: operations['deleteDiaryById'];
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/diaries/{diaryId}/patients/{patientId}/caregivers': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/diaries/patients/{patientId}/caregivers": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * 보호자가 환자의 일기 목록 조회
-         * @description 환자가 공유 허용한 일기만 조회
-         */
-        get: operations["findPatientDiariesForCaregivers"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /**
+     * 보호자가 환자의 일기 조회
+     * @description 환자가 공유 허용한 일기만 조회
+     */
+    get: operations['findPatientDiaryForCaregivers'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/diaries/patients/{patientId}/caregivers': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/diaries/all": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** 환자가 전체 일기 목록 조회 */
-        get: operations["findAllDiary"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /**
+     * 보호자가 환자의 일기 목록 조회
+     * @description 환자가 공유 허용한 일기만 조회
+     */
+    get: operations['findPatientDiariesForCaregivers'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/diaries/all': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/caregiver/patients/list": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** 환자 목록 조회 */
-        get: operations["getPatientsList"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /** 환자가 전체 일기 목록 조회 */
+    get: operations['findAllDiary'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/caregiver/patients/list': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/accounts/me": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /**
-         * 계정 정보 조회
-         * @description jwt 토큰 필요
-         */
-        get: operations["getUserInfo"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /** 환자 목록 조회 */
+    get: operations['getPatientsList'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/accounts/me': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/safe-zone/{safeZoneId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        /** 안전구역 삭제 */
-        delete: operations["deleteSafeZone"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /**
+     * 계정 정보 조회
+     * @description jwt 토큰 필요
+     */
+    get: operations['getUserInfo'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/safe-zone/{safeZoneId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
+    get?: never;
+    put?: never;
+    post?: never;
+    /** 안전구역 삭제 */
+    delete: operations['deleteSafeZone'];
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-    schemas: {
-        ErrorResponse: {
-            message?: string;
-            /** Format: int32 */
-            code?: number;
-            /** Format: int32 */
-            status?: number;
-        };
-        ResponseDtoLong: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            /** Format: int64 */
-            data?: number;
-        };
-        LocationRequestDto: {
-            latitude?: string;
-            longitude?: string;
-        };
-        ResponseDtoString: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            data?: string;
-        };
-        Phone: {
-            phoneNumber?: string;
-        };
-        ResponseDtoListPhone: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            data?: components["schemas"]["Phone"][];
-        };
-        RefreshTokenDto: {
-            /** @description 리프레시 토큰(Bearer 필요) */
-            refreshToken?: string;
-        };
-        ResponseDtoTokenInfoDto: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            data?: components["schemas"]["TokenInfoDto"];
-        };
-        TokenInfoDto: {
-            /** @description 허가 타입(Bearer) */
-            grantType?: string;
-            /** @description 액세스 토큰 */
-            accessToken?: string;
-            /** @description 리프레시 토큰 */
-            refreshToken?: string;
-        };
-        IdTokenDto: {
-            idToken: string;
-        };
-        NotificationRequestDto: {
-            to?: string;
-            title?: string;
-            body?: string;
-        };
-        Base64ImageDto: {
-            base64Image?: string;
-        };
-        DiaryRequestDto: {
-            /** @description 제목 */
-            title?: string;
-            /** @description 내용 */
-            content?: string;
-            /** @description 감정상태(HAPPINESS,SADNESS,ANGER,ANXIETY,CALMNESS */
-            emotionState?: string;
-            /** @description 공유여부 */
-            shared?: boolean;
-        };
-        Registration: {
-            relationship?: string;
-        };
-        SignUp: {
-            /** @description 이름 */
-            name?: string;
-            /** @description 성별(MAN,WOMAN) */
-            gender?: string;
-            /** @description 전화번호 */
-            phone?: string;
-            /**
-             * @description 생년월일
-             * @example 1999.09.13
-             */
-            birthday?: string;
-            /** @description 프로필이미지 url */
-            profile_image?: string;
-            /** @description 역할(PATIENT,CAREGIVER) */
-            role?: string;
-        };
-        Update: {
-            name?: string;
-            profile_image?: string;
-            phone?: string;
-            birthday?: string;
-            /** @enum {string} */
-            gender?: "MAN" | "WOMAN";
-        };
-        Info: {
-            /** Format: int64 */
-            id?: number;
-            email?: string;
-            name?: string;
-            phone?: string;
-            profile_image?: string;
-            birthday?: string;
-            /** @enum {string} */
-            gender?: "MAN" | "WOMAN";
-        };
-        ResponseDtoInfo: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            data?: components["schemas"]["Info"];
-        };
-        DistrictResponseDto: {
-            /** @description 행정구역 명칭 */
-            adm_nm?: string;
-            /** @description 행정구역 코드 */
-            adm_cd?: string;
-        };
-        ResponseDtoListDistrictResponseDto: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            data?: components["schemas"]["DistrictResponseDto"][];
-        };
-        Detail: {
-            profileImageUrl?: string;
-            name?: string;
-            /** @enum {string} */
-            gender?: "MAN" | "WOMAN";
-            birthday?: string;
-            phoneNumber?: string;
-            location?: components["schemas"]["Location"];
-        };
-        Location: {
-            latitude?: string;
-            longitude?: string;
-        };
-        ResponseDtoDetail: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            data?: components["schemas"]["Detail"];
-        };
-        NotificationResponseDto: {
-            /** Format: int64 */
-            id?: number;
-            title?: string;
-            body?: string;
-            /** Format: date-time */
-            createdAt?: string;
-        };
-        ResponseDtoNotificationResponseDto: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            data?: components["schemas"]["NotificationResponseDto"];
-        };
-        ResponseDtoListNotificationResponseDto: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            data?: components["schemas"]["NotificationResponseDto"][];
-        };
-        DistrictCoordinateResponseDto: {
-            /** @description 행정구역 명칭 */
-            admNm?: string;
-            /** @description 행정구역 코드 */
-            admCd?: string;
-            /** @description 행정구역 좌표 */
-            coordinate?: string;
-        };
-        ResponseDtoDistrictCoordinateResponseDto: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            data?: components["schemas"]["DistrictCoordinateResponseDto"];
-        };
-        Brief: {
-            /**
-             * Format: int64
-             * @description 일기 인덱스
-             */
-            id?: number;
-            /** @description 제목 */
-            title?: string;
-            /**
-             * @description 감정상태(HAPPINESS,SADNESS,ANGER,ANXIETY,CALMNESS
-             * @enum {string}
-             */
-            emotionState?: "HAPPINESS" | "SADNESS" | "ANGER" | "ANXIETY" | "CALMNESS";
-            /**
-             * Format: date-time
-             * @description 생성일자
-             */
-            createdAt?: string;
-        };
-        ResponseDtoListBrief: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            data?: components["schemas"]["Brief"][];
-        };
-        BriefDetail: {
-            profileImageUrl?: string;
-            name?: string;
-            relationship?: string;
-            accepted?: boolean;
-        };
-        ResponseDtoListBriefDetail: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            data?: components["schemas"]["BriefDetail"][];
-        };
-        ResponseDtoTokenAccountInfoDto: {
-            /** @enum {string} */
-            status?: "SUCCESS" | "FAILURE" | "ERROR";
-            message?: string;
-            data?: components["schemas"]["TokenAccountInfoDto"];
-        };
-        TokenAccountInfoDto: {
-            /**
-             * Format: int64
-             * @description 계정 인덱스
-             */
-            id?: number;
-            /** @description 이메일 */
-            email?: string;
-            /**
-             * @description 내용
-             * @enum {string}
-             */
-            provider?: "KAKAO" | "APPLE";
-            /** @description 프로필 이미지 url */
-            profile_image?: string;
-            /** @description 이름 */
-            name?: string;
-            /**
-             * Format: int32
-             * @description 나이
-             */
-            age?: number;
-            /** @description 전화번호 */
-            phone?: string;
-            /**
-             * @description 성별(MAN,WOMAN)
-             * @enum {string}
-             */
-            gender?: "MAN" | "WOMAN";
-            /** @description 생년월일 */
-            birthday?: string;
-            /** @description 역할(PATIENT,CAREGIVER */
-            role?: string;
-        };
+  schemas: {
+    ErrorResponse: {
+      message?: string;
+      /** Format: int32 */
+      code?: number;
+      /** Format: int32 */
+      status?: number;
     };
-    responses: never;
-    parameters: never;
-    requestBodies: never;
-    headers: never;
-    pathItems: never;
+    ResponseDtoLong: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      /** Format: int64 */
+      data?: number;
+    };
+    LocationRequestDto: {
+      latitude?: string;
+      longitude?: string;
+    };
+    ResponseDtoString: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: string;
+    };
+    Phone: {
+      phoneNumber?: string;
+    };
+    ResponseDtoListPhone: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['Phone'][];
+    };
+    RefreshTokenDto: {
+      /** @description 리프레시 토큰(Bearer 필요) */
+      refreshToken?: string;
+    };
+    ResponseDtoTokenInfoDto: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['TokenInfoDto'];
+    };
+    TokenInfoDto: {
+      /** @description 허가 타입(Bearer) */
+      grantType?: string;
+      /** @description 액세스 토큰 */
+      accessToken?: string;
+      /** @description 리프레시 토큰 */
+      refreshToken?: string;
+    };
+    IdTokenDto: {
+      idToken: string;
+    };
+    NotificationRequestDto: {
+      to?: string;
+      title?: string;
+      body?: string;
+    };
+    Base64ImageDto: {
+      base64Image?: string;
+    };
+    DiaryRequestDto: {
+      /** @description 제목 */
+      title?: string;
+      /** @description 내용 */
+      content?: string;
+      /** @description 감정상태(HAPPINESS,SADNESS,ANGER,ANXIETY,CALMNESS */
+      emotionState?: string;
+      /** @description 공유여부 */
+      shared?: boolean;
+    };
+    Registration: {
+      relationship?: string;
+    };
+    SignUp: {
+      /** @description 이름 */
+      name?: string;
+      /** @description 성별(MAN,WOMAN) */
+      gender?: string;
+      /** @description 전화번호 */
+      phone?: string;
+      /**
+       * @description 생년월일
+       * @example 1999.09.13
+       */
+      birthday?: string;
+      /** @description 프로필이미지 url */
+      profile_image?: string;
+      /** @description 역할(PATIENT,CAREGIVER) */
+      role?: string;
+    };
+    Update: {
+      name?: string;
+      profile_image?: string;
+      phone?: string;
+      birthday?: string;
+      /** @enum {string} */
+      gender?: 'MAN' | 'WOMAN';
+    };
+    Info: {
+      /** Format: int64 */
+      id?: number;
+      email?: string;
+      name?: string;
+      phone?: string;
+      profile_image?: string;
+      birthday?: string;
+      /** @enum {string} */
+      gender?: 'MAN' | 'WOMAN';
+    };
+    ResponseDtoInfo: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['Info'];
+    };
+    DistrictResponseDto: {
+      /** @description 행정구역 명칭 */
+      adm_nm?: string;
+      /** @description 행정구역 코드 */
+      adm_cd?: string;
+    };
+    ResponseDtoListDistrictResponseDto: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['DistrictResponseDto'][];
+    };
+    Detail: {
+      profileImageUrl?: string;
+      name?: string;
+      /** @enum {string} */
+      gender?: 'MAN' | 'WOMAN';
+      birthday?: string;
+      phoneNumber?: string;
+      location?: components['schemas']['Location'];
+    };
+    Location: {
+      latitude?: string;
+      longitude?: string;
+    };
+    ResponseDtoDetail: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['Detail'];
+    };
+    NotificationResponseDto: {
+      /** Format: int64 */
+      id?: number;
+      title?: string;
+      body?: string;
+      /** Format: date-time */
+      createdAt?: string;
+    };
+    ResponseDtoNotificationResponseDto: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['NotificationResponseDto'];
+    };
+    ResponseDtoListNotificationResponseDto: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['NotificationResponseDto'][];
+    };
+    DistrictCoordinateResponseDto: {
+      /** @description 행정구역 명칭 */
+      admNm?: string;
+      /** @description 행정구역 코드 */
+      admCd?: string;
+      /** @description 행정구역 좌표 */
+      coordinate?: string;
+    };
+    ResponseDtoDistrictCoordinateResponseDto: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['DistrictCoordinateResponseDto'];
+    };
+    Brief: {
+      /**
+       * Format: int64
+       * @description 일기 인덱스
+       */
+      id?: number;
+      /** @description 제목 */
+      title?: string;
+      /**
+       * @description 감정상태(HAPPINESS,SADNESS,ANGER,ANXIETY,CALMNESS
+       * @enum {string}
+       */
+      emotionState?: 'HAPPINESS' | 'SADNESS' | 'ANGER' | 'ANXIETY' | 'CALMNESS';
+      /**
+       * Format: date-time
+       * @description 생성일자
+       */
+      createdAt?: string;
+    };
+    ResponseDtoListBrief: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['Brief'][];
+    };
+    BriefDetail: {
+      profileImageUrl?: string;
+      name?: string;
+      relationship?: string;
+      accepted?: boolean;
+    };
+    ResponseDtoListBriefDetail: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['BriefDetail'][];
+    };
+    ResponseDtoTokenAccountInfoDto: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['TokenAccountInfoDto'];
+    };
+    TokenAccountInfoDto: {
+      /**
+       * Format: int64
+       * @description 계정 인덱스
+       */
+      id?: number;
+      /** @description 이메일 */
+      email?: string;
+      /**
+       * @description 내용
+       * @enum {string}
+       */
+      provider?: 'KAKAO' | 'APPLE';
+      /** @description 프로필 이미지 url */
+      profile_image?: string;
+      /** @description 이름 */
+      name?: string;
+      /**
+       * Format: int32
+       * @description 나이
+       */
+      age?: number;
+      /** @description 전화번호 */
+      phone?: string;
+      /**
+       * @description 성별(MAN,WOMAN)
+       * @enum {string}
+       */
+      gender?: 'MAN' | 'WOMAN';
+      /** @description 생년월일 */
+      birthday?: string;
+      /** @description 역할(PATIENT,CAREGIVER */
+      role?: string;
+    };
+  };
+  responses: never;
+  parameters: never;
+  requestBodies: never;
+  headers: never;
+  pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    findAllSafeZone: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                patientId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoListDistrictResponseDto"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+  findAllSafeZone: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        patientId: number;
+      };
+      cookie?: never;
     };
-    registerSafeZone: {
-        parameters: {
-            query: {
-                adm_cd: string;
-            };
-            header?: never;
-            path: {
-                patientId: number;
-            };
-            cookie?: never;
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoLong"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
+        content: {
+          '*/*': components['schemas']['ResponseDtoListDistrictResponseDto'];
         };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
     };
-    savePatientLastLocation: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                patientId: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["LocationRequestDto"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoString"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+  };
+  registerSafeZone: {
+    parameters: {
+      query: {
+        adm_cd: string;
+      };
+      header?: never;
+      path: {
+        patientId: number;
+      };
+      cookie?: never;
     };
-    searchByPhone: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Phone"];
-            };
+        content: {
+          '*/*': components['schemas']['ResponseDtoLong'];
         };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoListPhone"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
         };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
     };
-    registerCaregiver: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                caregiverId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoLong"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+  };
+  savePatientLastLocation: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        patientId: number;
+      };
+      cookie?: never;
     };
-    reGenerateAccessToken: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["RefreshTokenDto"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoTokenInfoDto"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['LocationRequestDto'];
+      };
     };
-    kakaoLogin: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["IdTokenDto"];
-            };
+        content: {
+          '*/*': components['schemas']['ResponseDtoString'];
         };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoTokenInfoDto"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
         };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
     };
-    pushNotification: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["NotificationRequestDto"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoString"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+  };
+  searchByPhone: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    uploadImage: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Base64ImageDto"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoString"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Phone'];
+      };
     };
-    saveDiary: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["DiaryRequestDto"];
-            };
+        content: {
+          '*/*': components['schemas']['ResponseDtoListPhone'];
         };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoLong"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
         };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
     };
-    registerCaregiver_1: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                patientId: number;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Registration"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoLong"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+  };
+  registerCaregiver: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        caregiverId: number;
+      };
+      cookie?: never;
     };
-    signUp: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["SignUp"];
-            };
+        content: {
+          '*/*': components['schemas']['ResponseDtoLong'];
         };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoString"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
         };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
     };
-    deleteAccount: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": string;
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+  };
+  reGenerateAccessToken: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    updateUserInfo: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Update"];
-            };
-        };
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoInfo"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['RefreshTokenDto'];
+      };
     };
-    checkSafeZone: {
-        parameters: {
-            query: {
-                longitude: number;
-                latitude: number;
-            };
-            header?: never;
-            path: {
-                patientId: number;
-            };
-            cookie?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": string;
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
+        content: {
+          '*/*': components['schemas']['ResponseDtoTokenInfoDto'];
         };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
     };
-    getPatientDetail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                patientId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoDetail"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+  };
+  kakaoLogin: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    getNotification: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                notificationId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoNotificationResponseDto"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['IdTokenDto'];
+      };
     };
-    getAllNotifications: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoListNotificationResponseDto"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
+        content: {
+          '*/*': components['schemas']['ResponseDtoTokenInfoDto'];
         };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
     };
-    searchDistricts: {
-        parameters: {
-            query: {
-                searchWord: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoListDistrictResponseDto"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+  };
+  pushNotification: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    processGeoJson: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['NotificationRequestDto'];
+      };
     };
-    getDistrictCoordinate: {
-        parameters: {
-            query: {
-                adm_cd: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoDistrictCoordinateResponseDto"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
+        content: {
+          '*/*': components['schemas']['ResponseDtoString'];
         };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
     };
-    checkLocation: {
-        parameters: {
-            query: {
-                adm_cd: string;
-                longitude: number;
-                latitude: number;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": string;
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+  };
+  uploadImage: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    findDiaryById: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                diaryId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoDetail"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Base64ImageDto'];
+      };
     };
-    deleteDiaryById: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                diaryId: number;
-            };
-            cookie?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": string;
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
+        content: {
+          '*/*': components['schemas']['ResponseDtoString'];
         };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
     };
-    findPatientDiaryForCaregivers: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                patientId: number;
-                diaryId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoDetail"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+  };
+  saveDiary: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    findPatientDiariesForCaregivers: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                patientId: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoListBrief"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['DiaryRequestDto'];
+      };
     };
-    findAllDiary: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoListBrief"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
+        content: {
+          '*/*': components['schemas']['ResponseDtoLong'];
         };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
     };
-    getPatientsList: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoListBriefDetail"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+  };
+  registerCaregiver_1: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        patientId: number;
+      };
+      cookie?: never;
     };
-    getUserInfo: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoTokenAccountInfoDto"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Registration'];
+      };
     };
-    deleteSafeZone: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                safeZoneId: number;
-            };
-            cookie?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            /** @description OK */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ResponseDtoLong"];
-                };
-            };
-            /** @description Bad Request */
-            400: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ErrorResponse"];
-                };
-            };
+        content: {
+          '*/*': components['schemas']['ResponseDtoLong'];
         };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
     };
+  };
+  signUp: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['SignUp'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoString'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  deleteAccount: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': string;
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  updateUserInfo: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['Update'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoInfo'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  checkSafeZone: {
+    parameters: {
+      query: {
+        longitude: number;
+        latitude: number;
+      };
+      header?: never;
+      path: {
+        patientId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': string;
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  getPatientDetail: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        patientId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoDetail'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  getNotification: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        notificationId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoNotificationResponseDto'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  getAllNotifications: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoListNotificationResponseDto'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  searchDistricts: {
+    parameters: {
+      query: {
+        searchWord: string;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoListDistrictResponseDto'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  processGeoJson: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  getDistrictCoordinate: {
+    parameters: {
+      query: {
+        adm_cd: string;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoDistrictCoordinateResponseDto'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  checkLocation: {
+    parameters: {
+      query: {
+        adm_cd: string;
+        longitude: number;
+        latitude: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': string;
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  findDiaryById: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        diaryId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoDetail'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  deleteDiaryById: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        diaryId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': string;
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  findPatientDiaryForCaregivers: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        patientId: number;
+        diaryId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoDetail'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  findPatientDiariesForCaregivers: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        patientId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoListBrief'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  findAllDiary: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoListBrief'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  getPatientsList: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoListBriefDetail'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  getUserInfo: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoTokenAccountInfoDto'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  deleteSafeZone: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        safeZoneId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoLong'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
 }

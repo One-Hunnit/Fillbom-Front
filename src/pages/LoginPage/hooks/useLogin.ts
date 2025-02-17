@@ -3,7 +3,6 @@ import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Clipboard from 'expo-clipboard';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Alert } from 'react-native';
 import { client } from '@/api/client';
 import useAccount from '@/hooks/useAccount';
 import { useAuthStore } from '@/stores/authStore';
