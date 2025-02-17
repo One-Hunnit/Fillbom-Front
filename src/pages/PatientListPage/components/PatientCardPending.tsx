@@ -13,7 +13,7 @@ const PatientCardPending = ({ patient }: PatientCardPendingProps) => {
           <View style={patientCardStyles.profileImage}></View>
           <View style={patientCardStyles.infoTextWrapper}>
             <Text style={patientCardStyles.name}>{patient.name}</Text>
-            <Text style={patientCardStyles.relation}>{patient.relation}</Text>
+            <Text style={patientCardStyles.relation}>{patient.relationship}</Text>
           </View>
         </View>
       </Pressable>
