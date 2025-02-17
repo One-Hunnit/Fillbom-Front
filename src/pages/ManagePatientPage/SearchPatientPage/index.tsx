@@ -74,20 +74,23 @@ const SearchPatientPage = () => {
     }
   }, [patientList, selectedPatientInfo, phoneNumber, postFindPatient]);
 
-  const onSubmitEditing = async () => {
+  const onSubmitEditing = useCallback(async () => {
     if (phoneNumber.length === 11) {
       await postFindPatient(phoneNumber);
       setIsInputFocused(false);
     }
-  };
+  }, [phoneNumber, postFindPatient]);
 
-  const handlePhoneNumberChange = (text: string) => {
-    setPhoneNumber(text);
-    setSelectedPatientInfo(null);
-    if (patientList) {
-      setPatientList(null);
-    }
-  };
+  const handlePhoneNumberChange = useCallback(
+    (text: string) => {
+      setPhoneNumber(text);
+      setSelectedPatientInfo(null);
+      if (patientList) {
+        setPatientList(null);
+      }
+    },
+    [setPhoneNumber, setSelectedPatientInfo, patientList, setPatientList],
+  );
 
   return (
     <ManagePatientLayout
