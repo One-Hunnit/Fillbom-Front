@@ -1,16 +1,22 @@
+import { useMutation } from '@tanstack/react-query';
 import { client } from '@/api/client';
 
-const useRegistPatients = async (patientId: number, relationship: string) => {
-  const { data } = await client.POST(`/caregiver/registration/patients/{patientId}`, {
-    params: {
-      path: {
-        patientId,
-      },
-    },
-    body: {
-      relationship: relationship,
-    },
+const registerPatient = async (patientId: number, relationship: string) => {
+  const { data, error } = await client.POST('/caregiver/registration/patients/{patientId}', {
+    params: { path: { patientId } },
+    body: { relationship },
   });
-  return { data: data?.data, status: data?.status };
+
+  if (error) {
+    throw new Error(error?.message || '환자 등록 실패');
+  }
+
+  return data;
 };
-export default useRegistPatients;
+
+export const useRegisterPatient = () => {
+  return useMutation({
+    mutationFn: ({ patientId, relationship }: { patientId: number; relationship: string }) =>
+      registerPatient(patientId, relationship),
+  });
+};
