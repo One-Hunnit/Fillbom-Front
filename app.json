@@ -18,12 +18,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.onehunnit.fillbom",
       "googleServicesFile": "./GoogleService-Info.plist",
-      "UIBackgroundModes": [
-        "location",
-        "fetch",
-        "location",
-        "fetch"
-      ],
+      "UIBackgroundModes": ["location", "fetch", "location", "fetch"],
       "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow $(PRODUCT_NAME) to access your location both while the app is in use and in the background.",
       "NSLocationAlwaysUsageDescription": "Allow $(PRODUCT_NAME) to access your location even when the app is in the background.",
       "NSLocationWhenInUseUsageDescription": "Allow $(PRODUCT_NAME) to access your location while the app is in use.",
@@ -32,7 +27,7 @@
       }
     },
     "android": {
-      "jsEngine": "jsc",
+      "jsEngine": "hermes",
       "package": "com.onehunnit.fillbom",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/png/adaptive-icon.png",
