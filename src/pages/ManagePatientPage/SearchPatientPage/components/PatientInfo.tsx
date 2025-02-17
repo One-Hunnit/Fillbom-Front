@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
-import useCheckButton from '@/hooks/useCheckButton';
+import Check from '@/components/Check';
 import { type IPatientInfo } from '@/types/patient';
 import { patientInfoStyles } from '../styles';
 import MaskedName from './MaskedName';
@@ -12,40 +12,23 @@ interface IPatientInfoProps {
 }
 
 const PatientInfo = ({ patientInfo, setSelectedPatientInfo }: IPatientInfoProps) => {
-  const {
-    checkButtonState,
-    handleCheckButtonPressIn,
-    setCheckButtonState,
-    handleCheckButtonPressOut,
-    getCheckButtonIcon,
-  } = useCheckButton();
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    setCheckButtonState((prev) => ({
-      ...prev,
-      isSelected: false,
-    }));
-  }, [patientInfo]);
-
-  useEffect(() => {
-    if (checkButtonState.isSelected) {
+    if (isChecked) {
       setSelectedPatientInfo(patientInfo);
     } else {
       setSelectedPatientInfo(null);
     }
-  }, [checkButtonState]);
+  }, [isChecked]);
 
-  const handlePressOut = () => {
-    handleCheckButtonPressOut();
-  };
-
-  const CheckButtonIcon = getCheckButtonIcon();
   return (
     <View style={patientInfoStyles.wrapper}>
       <Pressable
         style={patientInfoStyles.patientInfoWrapper}
-        onPressIn={handleCheckButtonPressIn}
-        onPressOut={handlePressOut}
+        onPressIn={() => {
+          setIsChecked((prev) => !prev);
+        }}
       >
         <View style={patientInfoStyles.patientImageInfoWrapper}>
           <Image src={patientInfo.profileImageUrl} style={patientInfoStyles.profileImage} />
@@ -55,7 +38,12 @@ const PatientInfo = ({ patientInfo, setSelectedPatientInfo }: IPatientInfoProps)
           </View>
         </View>
         <View>
-          <CheckButtonIcon />
+          <Check
+            checked={isChecked}
+            onPress={() => {
+              setIsChecked((prev) => !prev);
+            }}
+          />
         </View>
       </Pressable>
     </View>
