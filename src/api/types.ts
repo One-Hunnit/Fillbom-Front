@@ -113,7 +113,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/notification': {
+  '/oauth/apple': {
     parameters: {
       query?: never;
       header?: never;
@@ -122,8 +122,43 @@ export interface paths {
     };
     get?: never;
     put?: never;
+    /** 애플 소셜로그인 */
+    post: operations['appleLogin'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/notifications': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** 알림 목록 조회 */
+    get: operations['getAllNotifications'];
+    put?: never;
     /** 알림 전송 */
     post: operations['pushNotification'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/notifications/device-token': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** 디바이스 토큰 저장 */
+    post: operations['getDeviceToken'];
     delete?: never;
     options?: never;
     head?: never;
@@ -258,32 +293,15 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/notification/{notificationId}': {
+  '/notifications/{notificationId}/read': {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    /** 알림 조회 */
-    get: operations['getNotification'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/notification/all': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** 알림 목록 조회 */
-    get: operations['getAllNotifications'];
+    /** 알림 읽음 처리 */
+    get: operations['readNotification'];
     put?: never;
     post?: never;
     delete?: never;
@@ -372,56 +390,15 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/diaries/{diaryId}': {
+  '/diaries/{diaryId}/patients/{patientId}': {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    /** 환자가 일기 조회 */
+    /** 일기 상세 조회 */
     get: operations['findDiaryById'];
-    put?: never;
-    post?: never;
-    /** 환자가 일기 삭제 */
-    delete: operations['deleteDiaryById'];
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/diaries/{diaryId}/patients/{patientId}/caregivers': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * 보호자가 환자의 일기 조회
-     * @description 환자가 공유 허용한 일기만 조회
-     */
-    get: operations['findPatientDiaryForCaregivers'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  '/diaries/patients/{patientId}/caregivers': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * 보호자가 환자의 일기 목록 조회
-     * @description 환자가 공유 허용한 일기만 조회
-     */
-    get: operations['findPatientDiariesForCaregivers'];
     put?: never;
     post?: never;
     delete?: never;
@@ -437,7 +414,10 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    /** 환자가 전체 일기 목록 조회 */
+    /**
+     * 전체 일기 목록 조회
+     * @description 보호자의 경우 환자가 공유 허용한 일기만 조회
+     */
     get: operations['findAllDiary'];
     put?: never;
     post?: never;
@@ -501,6 +481,23 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/diaries/{diaryId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    /** 일기 삭제 */
+    delete: operations['deleteDiaryById'];
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -559,26 +556,73 @@ export interface components {
     IdTokenDto: {
       idToken: string;
     };
-    NotificationRequestDto: {
-      to?: string;
+    Info: {
       title?: string;
+      /** @enum {string} */
+      type?:
+        | 'RELATIONSHIP_RESPONSE'
+        | 'RELATIONSHIP_REQUEST'
+        | 'SCHEDULE_REMINDER'
+        | 'DIARY_CREATED'
+        | 'MEDICATION_REMINDER'
+        | 'RELEASED'
+        | 'ETC';
+      /** Format: int64 */
+      senderId?: number;
+      /** Format: int64 */
+      receiverId?: number;
       body?: string;
+    };
+    ResponseDtoVoid: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: Record<string, never>;
+    };
+    DeviceToken: {
+      deviceToken?: string;
     };
     Base64ImageDto: {
       base64Image?: string;
     };
-    DiaryRequestDto: {
+    /** @description 내용 목록 */
+    DiaryContentDto: {
+      /**
+       * @description 일기 타입(QNA, FREE)
+       * @enum {string}
+       */
+      type?: 'QNA' | 'FREE';
       /** @description 제목 */
       title?: string;
       /** @description 내용 */
       content?: string;
+    };
+    DiaryRequestDto: {
+      /** @description 내용 목록 */
+      contents?: components['schemas']['DiaryContentDto'][];
+      /** @description 날씨 */
+      weather?: string;
       /** @description 감정상태(HAPPINESS,SADNESS,ANGER,ANXIETY,CALMNESS */
-      emotionState?: string;
+      emotion?: string;
+      /** @description 오디오URL */
+      audioUrl?: string;
+      /** @description 사진 URL 목록 */
+      photos?: string[];
       /** @description 공유여부 */
       shared?: boolean;
     };
     Registration: {
       relationship?: string;
+    };
+    CaregiverResponseDto: {
+      /** Format: int64 */
+      patientCaregiverId?: number;
+    };
+    ResponseDtoCaregiverResponseDto: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['CaregiverResponseDto'];
     };
     SignUp: {
       /** @description 이름 */
@@ -593,7 +637,7 @@ export interface components {
        */
       birthday?: string;
       /** @description 프로필이미지 url */
-      profile_image?: string;
+      profileImageUrl?: string;
       /** @description 역할(PATIENT,CAREGIVER) */
       role?: string;
     };
@@ -601,17 +645,6 @@ export interface components {
       name?: string;
       profile_image?: string;
       phone?: string;
-      birthday?: string;
-      /** @enum {string} */
-      gender?: 'MAN' | 'WOMAN';
-    };
-    Info: {
-      /** Format: int64 */
-      id?: number;
-      email?: string;
-      name?: string;
-      phone?: string;
-      profile_image?: string;
       birthday?: string;
       /** @enum {string} */
       gender?: 'MAN' | 'WOMAN';
@@ -657,21 +690,60 @@ export interface components {
       /** Format: int64 */
       id?: number;
       title?: string;
+      /** @enum {string} */
+      type?:
+        | 'RELATIONSHIP_RESPONSE'
+        | 'RELATIONSHIP_REQUEST'
+        | 'SCHEDULE_REMINDER'
+        | 'DIARY_CREATED'
+        | 'MEDICATION_REMINDER'
+        | 'RELEASED'
+        | 'ETC';
+      /** Format: int64 */
+      senderId?: number;
+      senderProfileImage?: string;
+      /** Format: int64 */
+      receiverId?: number;
       body?: string;
       /** Format: date-time */
       createdAt?: string;
+      read?: boolean;
     };
-    ResponseDtoNotificationResponseDto: {
+    PageableObject: {
+      /** Format: int64 */
+      offset?: number;
+      sort?: components['schemas']['SortObject'];
+      /** Format: int32 */
+      pageNumber?: number;
+      /** Format: int32 */
+      pageSize?: number;
+      paged?: boolean;
+      unpaged?: boolean;
+    };
+    ResponseDtoSliceNotificationResponseDto: {
       /** @enum {string} */
       status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
       message?: string;
-      data?: components['schemas']['NotificationResponseDto'];
+      data?: components['schemas']['SliceNotificationResponseDto'];
     };
-    ResponseDtoListNotificationResponseDto: {
-      /** @enum {string} */
-      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
-      message?: string;
-      data?: components['schemas']['NotificationResponseDto'][];
+    SliceNotificationResponseDto: {
+      /** Format: int32 */
+      size?: number;
+      content?: components['schemas']['NotificationResponseDto'][];
+      /** Format: int32 */
+      number?: number;
+      sort?: components['schemas']['SortObject'];
+      /** Format: int32 */
+      numberOfElements?: number;
+      pageable?: components['schemas']['PageableObject'];
+      first?: boolean;
+      last?: boolean;
+      empty?: boolean;
+    };
+    SortObject: {
+      empty?: boolean;
+      unsorted?: boolean;
+      sorted?: boolean;
     };
     DistrictCoordinateResponseDto: {
       /** @description 행정구역 명칭 */
@@ -687,32 +759,62 @@ export interface components {
       message?: string;
       data?: components['schemas']['DistrictCoordinateResponseDto'];
     };
+    ContentDto: {
+      /** @enum {string} */
+      type?: 'QNA' | 'FREE';
+      title?: string;
+      content?: string;
+    };
+    DiaryDetailResponseDto: {
+      /** Format: int64 */
+      diaryId?: number;
+      /** Format: int64 */
+      patientId?: number;
+      contents?: components['schemas']['ContentDto'][];
+      weather?: string;
+      /** @enum {string} */
+      emotion?: 'HAPPINESS' | 'SADNESS' | 'ANGER' | 'ANXIETY' | 'CALMNESS';
+      photos?: string[];
+      /** Format: date-time */
+      createdAt?: string;
+    };
+    ResponseDtoDiaryDetailResponseDto: {
+      /** @enum {string} */
+      status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
+      message?: string;
+      data?: components['schemas']['DiaryDetailResponseDto'];
+    };
     Brief: {
       /**
        * Format: int64
        * @description 일기 인덱스
        */
-      id?: number;
-      /** @description 제목 */
-      title?: string;
+      diaryId?: number;
       /**
        * @description 감정상태(HAPPINESS,SADNESS,ANGER,ANXIETY,CALMNESS
        * @enum {string}
        */
-      emotionState?: 'HAPPINESS' | 'SADNESS' | 'ANGER' | 'ANXIETY' | 'CALMNESS';
+      emotion?: 'HAPPINESS' | 'SADNESS' | 'ANGER' | 'ANXIETY' | 'CALMNESS';
       /**
        * Format: date-time
        * @description 생성일자
        */
       createdAt?: string;
     };
-    ResponseDtoListBrief: {
+    DiaryBriefResponseDto: {
+      /** Format: int64 */
+      patientId?: number;
+      briefs?: components['schemas']['Brief'][];
+    };
+    ResponseDtoListDiaryBriefResponseDto: {
       /** @enum {string} */
       status?: 'SUCCESS' | 'FAILURE' | 'ERROR';
       message?: string;
-      data?: components['schemas']['Brief'][];
+      data?: components['schemas']['DiaryBriefResponseDto'][];
     };
     BriefDetail: {
+      /** Format: int64 */
+      patientId?: number;
       profileImageUrl?: string;
       name?: string;
       relationship?: string;
@@ -1002,6 +1104,71 @@ export interface operations {
       };
     };
   };
+  appleLogin: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['IdTokenDto'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoTokenInfoDto'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  getAllNotifications: {
+    parameters: {
+      query: {
+        pageNumber: number;
+        pageSize: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoSliceNotificationResponseDto'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
   pushNotification: {
     parameters: {
       query?: never;
@@ -1011,7 +1178,40 @@ export interface operations {
     };
     requestBody: {
       content: {
-        'application/json': components['schemas']['NotificationRequestDto'];
+        'application/json': components['schemas']['Info'];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoVoid'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  getDeviceToken: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['DeviceToken'];
       };
     };
     responses: {
@@ -1122,7 +1322,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['ResponseDtoLong'];
+          '*/*': components['schemas']['ResponseDtoCaregiverResponseDto'];
         };
       };
       /** @description Bad Request */
@@ -1296,7 +1496,7 @@ export interface operations {
       };
     };
   };
-  getNotification: {
+  readNotification: {
     parameters: {
       query?: never;
       header?: never;
@@ -1313,36 +1513,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['ResponseDtoNotificationResponseDto'];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ErrorResponse'];
-        };
-      };
-    };
-  };
-  getAllNotifications: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ResponseDtoListNotificationResponseDto'];
+          '*/*': components['schemas']['ResponseDtoString'];
         };
       };
       /** @description Bad Request */
@@ -1484,99 +1655,6 @@ export interface operations {
       header?: never;
       path: {
         diaryId: number;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ResponseDtoDetail'];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ErrorResponse'];
-        };
-      };
-    };
-  };
-  deleteDiaryById: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        diaryId: number;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': string;
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ErrorResponse'];
-        };
-      };
-    };
-  };
-  findPatientDiaryForCaregivers: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        patientId: number;
-        diaryId: number;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description OK */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ResponseDtoDetail'];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ErrorResponse'];
-        };
-      };
-    };
-  };
-  findPatientDiariesForCaregivers: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
         patientId: number;
       };
       cookie?: never;
@@ -1589,7 +1667,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['ResponseDtoListBrief'];
+          '*/*': components['schemas']['ResponseDtoDiaryDetailResponseDto'];
         };
       };
       /** @description Bad Request */
@@ -1605,7 +1683,10 @@ export interface operations {
   };
   findAllDiary: {
     parameters: {
-      query?: never;
+      query: {
+        month: number;
+        year: number;
+      };
       header?: never;
       path?: never;
       cookie?: never;
@@ -1618,7 +1699,7 @@ export interface operations {
           [name: string]: unknown;
         };
         content: {
-          '*/*': components['schemas']['ResponseDtoListBrief'];
+          '*/*': components['schemas']['ResponseDtoListDiaryBriefResponseDto'];
         };
       };
       /** @description Bad Request */
@@ -1708,6 +1789,37 @@ export interface operations {
         };
         content: {
           '*/*': components['schemas']['ResponseDtoLong'];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ErrorResponse'];
+        };
+      };
+    };
+  };
+  deleteDiaryById: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        diaryId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description OK */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ResponseDtoVoid'];
         };
       };
       /** @description Bad Request */
