@@ -81,7 +81,7 @@ const PatientDetailPage = () => {
             title="삭제하기"
           />
         </Menu>
-        <View style={{ width: '100%', paddingHorizontal: 20 }}>
+        <View style={{ width: '100%', height: '100%', paddingHorizontal: 20 }}>
           <PatientInfoCard patientInfo={data} />
           <PatientLastPosition location={data?.location} profileImageUrl={data?.profileImageUrl} />
         </View>

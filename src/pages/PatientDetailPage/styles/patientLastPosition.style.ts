@@ -8,7 +8,7 @@ const patientLastPositionStyle = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingRight: 4,
-    marginBottom: 11,
+    marginVertical: 11,
   },
   lastLocationHeaderText: {
     ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
@@ -16,7 +16,7 @@ const patientLastPositionStyle = StyleSheet.create({
   },
   mapContainer: {
     width: '100%',
-    height: 404,
+    height: '60%',
     flexShrink: 0,
     borderRadius: 10,
     borderWidth: 1,
@@ -33,12 +33,12 @@ const patientLastPositionStyle = StyleSheet.create({
     alignItems: 'center',
   },
   profileImage: {
-    width: 24, // 프로필 이미지 크기를 마커 크기의 절반으로
+    width: 24,
     height: 24,
-    borderRadius: 15, // 동그란 프로필 이미지
+    borderRadius: 15,
     borderWidth: 2,
     marginTop: 8,
-    backgroundColor: 'red', // 프로필 이미지 테두리
+    backgroundColor: 'red', // @TODO: 삭제 예정
     zIndex: 1,
   },
 });
