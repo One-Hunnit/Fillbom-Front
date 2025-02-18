@@ -6,13 +6,13 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { indexStyle } from './styles/index.style';
 import CloseNormal from '@/assets/svgs/ico_close_normal.svg';
 import CorrectNormal from '@/assets/svgs/ico_correct_normal.svg';
+import CommonModal from '@/components/CommonModal';
 import Header from '@/components/Header';
 import CMenu from '@/components/Menu';
 import { FILLBOM_COLOR } from '@/constants/color';
 const PatientDetailPage = () => {
   const [isRightIconVisible, setIsRightIconVisible] = useState(false);
   const openMenu = () => {
-    console.log('openMenu');
     setIsRightIconVisible(true);
   };
   const closeMenu = () => {
@@ -25,6 +25,7 @@ const PatientDetailPage = () => {
   const handleRightIconPress = () => {
     //수정 삭제 모달 오픈
   };
+  const [visible, setVisible] = useState(false);
   return (
     <PaperProvider>
       <SafeAreaView style={indexStyle.safeArea} edges={['left', 'right', 'top', 'bottom']}>
@@ -36,7 +37,23 @@ const PatientDetailPage = () => {
           containerStyle={indexStyle.headerContainer}
           title="환자 상세보기"
         />
-
+        {visible && (
+          <CommonModal
+            visible={true}
+            onClose={() => {
+              setVisible(false);
+              setIsRightIconVisible(false);
+            }}
+            title={`환자 관리 리스트에서 \n 삭제하시겠습니까?`}
+            onConfirm={() => {
+              setIsRightIconVisible(false);
+            }}
+            onCancel={() => {
+              setVisible(false);
+              setIsRightIconVisible(false);
+            }}
+          />
+        )}
         <Menu
           contentStyle={indexStyle.menu}
           visible={isRightIconVisible}
@@ -53,7 +70,9 @@ const PatientDetailPage = () => {
           <Divider style={{ borderColor: FILLBOM_COLOR.GRAY[200] }} />
           <Menu.Item
             style={[indexStyle.menuItem, { borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }]}
-            onPress={() => {}}
+            onPress={() => {
+              setVisible(true);
+            }}
             trailingIcon={CloseNormal}
             title="삭제하기"
           />
