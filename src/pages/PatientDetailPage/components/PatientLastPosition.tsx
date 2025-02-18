@@ -12,17 +12,23 @@ interface IPatientLastPositionProps {
     longitude?: string;
   };
   profileImageUrl?: string;
+  onRefresh: () => void;
 }
-const PatientLastPosition = ({ location, profileImageUrl }: IPatientLastPositionProps) => {
+const PatientLastPosition = ({ location, profileImageUrl, onRefresh }: IPatientLastPositionProps) => {
   const [isRefreshButtonPressed, setIsRefreshButtonPressed] = useState(false);
   const latitude = location?.latitude ? Number(location.latitude) : 37.5665; // 값이 없을 경우 서울시청 위도
   const longitude = location?.longitude ? Number(location.longitude) : 126.978; // 값이 없을 경우 서울시청 경도
+
+  const handleRefreshButtonPress = () => {
+    onRefresh();
+  };
   return (
     <View style={{ width: '100%', height: '100%' }}>
       <View style={patientLastPositionStyle.lastLocationHeader}>
         <Text style={patientLastPositionStyle.lastLocationHeaderText}> 환자의 마지막 위치</Text>
         <Pressable
           onPressIn={() => setIsRefreshButtonPressed(true)}
+          onPress={handleRefreshButtonPress}
           onPressOut={() => setIsRefreshButtonPressed(false)}
         >
           {isRefreshButtonPressed ? <RefreshIconPressed /> : <RefreshIconNormal />}

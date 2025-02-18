@@ -19,7 +19,7 @@ const PatientDetailPage = () => {
   const [visible, setVisible] = useState(false);
 
   const { patientId } = useLocalSearchParams();
-  const { data } = useGetPatientDetail(Number(patientId));
+  const { data, refetch } = useGetPatientDetail(Number(patientId));
   const insets = useSafeAreaInsets();
   const { width } = Dimensions.get('window');
 
@@ -83,7 +83,7 @@ const PatientDetailPage = () => {
         </Menu>
         <View style={{ width: '100%', height: '100%', paddingHorizontal: 20 }}>
           <PatientInfoCard patientInfo={data} />
-          <PatientLastPosition location={data?.location} profileImageUrl={data?.profileImageUrl} />
+          <PatientLastPosition onRefresh={refetch} location={data?.location} profileImageUrl={data?.profileImageUrl} />
         </View>
       </SafeAreaView>
     </PaperProvider>
