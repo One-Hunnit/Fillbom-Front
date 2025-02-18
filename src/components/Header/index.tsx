@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
+import { Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import ArrowPrevious from '@/assets/svgs/ico_arrow_previous.svg';
 import { FILLBOM_COLOR } from '@/constants/color';
 import { HEADER_HEIGHT } from '@/constants/ui';
@@ -10,10 +10,21 @@ interface IHeaderProps {
   title: string;
   onBack?: () => void;
   backButtonVisible?: boolean;
+  rightIcon?: React.ReactNode;
+  isRightIconVisible?: boolean;
+  onRightIconPress?: () => void;
   containerStyle?: ViewStyle;
 }
 
-const Header = ({ title, onBack, backButtonVisible, containerStyle }: IHeaderProps) => {
+const Header = ({
+  title,
+  onBack,
+  backButtonVisible,
+  rightIcon,
+  isRightIconVisible,
+  onRightIconPress,
+  containerStyle,
+}: IHeaderProps) => {
   const router = useRouter();
 
   const handleBack = () => {
@@ -26,6 +37,11 @@ const Header = ({ title, onBack, backButtonVisible, containerStyle }: IHeaderPro
         <Button buttonStyle={styles.backButton} icon={ArrowPrevious} onPress={onBack ?? handleBack} />
       )}
       <Text style={styles.title}>{title}</Text>
+      {isRightIconVisible && rightIcon && (
+        <Pressable style={styles.rightIcon} onPress={onRightIconPress}>
+          {rightIcon}
+        </Pressable>
+      )}
     </View>
   );
 };
@@ -42,6 +58,12 @@ const styles = StyleSheet.create({
   backButton: {
     position: 'absolute',
     left: 20,
+    width: 24,
+    height: 24,
+  },
+  rightIcon: {
+    position: 'absolute',
+    right: 20,
     width: 24,
     height: 24,
   },
