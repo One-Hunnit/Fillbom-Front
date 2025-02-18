@@ -48,7 +48,7 @@ const PatientListPage = () => {
         <View style={styles.buttonWrapper}>
           <Button
             onPress={() => {
-              router.push('/caregiver/addPatient');
+              router.push('/(auth)/caregiver/addPatient');
             }}
             text="환자 추가하기"
             defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}
