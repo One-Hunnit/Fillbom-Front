@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import { NaverMapMarkerOverlay, NaverMapView } from '@mj-studio/react-native-naver-map';
-import { useState } from 'react';
-import { Image, ImageBackground, Pressable, Text, View } from 'react-native';
+import { useRef, useState } from 'react';
+import { Animated, Easing, Image, ImageBackground, Pressable, Text, View } from 'react-native';
 import patientLastPositionStyle from '../styles/patientLastPosition.style';
 import RefreshIconNormal from '@/assets/svgs/ico_refresh_normal.svg';
 import RefreshIconPressed from '@/assets/svgs/ico_refresh_pressed.svg';
@@ -19,9 +19,25 @@ const PatientLastPosition = ({ location, profileImageUrl, onRefresh }: IPatientL
   const latitude = location?.latitude ? Number(location.latitude) : 37.5665; // 값이 없을 경우 서울시청 위도
   const longitude = location?.longitude ? Number(location.longitude) : 126.978; // 값이 없을 경우 서울시청 경도
 
+  const spinAnim = useRef(new Animated.Value(0)).current;
+
   const handleRefreshButtonPress = () => {
-    onRefresh();
+    Animated.timing(spinAnim, {
+      toValue: 1,
+      duration: 500,
+      easing: Easing.linear,
+      useNativeDriver: true,
+    }).start(() => {
+      spinAnim.setValue(0);
+      onRefresh();
+    });
   };
+
+  const spin = spinAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '180deg'],
+  });
+
   return (
     <View style={{ width: '100%', height: '100%' }}>
       <View style={patientLastPositionStyle.lastLocationHeader}>
@@ -31,7 +47,9 @@ const PatientLastPosition = ({ location, profileImageUrl, onRefresh }: IPatientL
           onPress={handleRefreshButtonPress}
           onPressOut={() => setIsRefreshButtonPressed(false)}
         >
-          {isRefreshButtonPressed ? <RefreshIconPressed /> : <RefreshIconNormal />}
+          <Animated.View style={{ transform: [{ rotate: spin }] }}>
+            {isRefreshButtonPressed ? <RefreshIconPressed /> : <RefreshIconNormal />}
+          </Animated.View>
         </Pressable>
       </View>
       <View style={patientLastPositionStyle.mapContainer}>
