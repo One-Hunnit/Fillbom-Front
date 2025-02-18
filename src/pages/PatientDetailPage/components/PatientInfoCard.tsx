@@ -1,6 +1,7 @@
 import { Image, Text, View } from 'react-native';
 import { type PatientDetailData } from '../hooks/useGetPatientDetail';
 import patientInfoCardStyle from '../styles/patientInfoCard.style';
+import formatPhoneNumber from '@/utils/formatPhoneNumber';
 
 interface PatientInfoCardProps {
   patientInfo: PatientDetailData;
@@ -14,25 +15,33 @@ const PatientInfoCard = ({ patientInfo }: PatientInfoCardProps) => {
         {patientInfo?.name && (
           <View style={patientInfoCardStyle.labelValueWrapper}>
             <Text style={patientInfoCardStyle.label}>이름:</Text>
-            <Text style={patientInfoCardStyle.value}>{patientInfo?.name}</Text>
+            <Text numberOfLines={1} ellipsizeMode="tail" style={patientInfoCardStyle.value}>
+              {patientInfo?.name}
+            </Text>
           </View>
         )}
         {patientInfo?.gender && (
           <View style={patientInfoCardStyle.labelValueWrapper}>
             <Text style={patientInfoCardStyle.label}>성별:</Text>
-            <Text style={patientInfoCardStyle.value}>{gender}</Text>
+            <Text numberOfLines={1} ellipsizeMode="tail" style={patientInfoCardStyle.value}>
+              {gender}
+            </Text>
           </View>
         )}
         {patientInfo?.birthday && (
           <View style={patientInfoCardStyle.labelValueWrapper}>
             <Text style={patientInfoCardStyle.label}>생년월일:</Text>
-            <Text style={patientInfoCardStyle.value}>{patientInfo?.birthday}</Text>
+            <Text numberOfLines={1} ellipsizeMode="tail" style={patientInfoCardStyle.value}>
+              {patientInfo?.birthday}
+            </Text>
           </View>
         )}
         {patientInfo?.phoneNumber && (
           <View style={patientInfoCardStyle.labelValueWrapper}>
             <Text style={patientInfoCardStyle.label}>전화번호:</Text>
-            <Text style={patientInfoCardStyle.value}>{patientInfo?.phoneNumber}</Text>
+            <Text numberOfLines={1} ellipsizeMode="tail" style={patientInfoCardStyle.value}>
+              {formatPhoneNumber(patientInfo?.phoneNumber)}
+            </Text>
           </View>
         )}
       </View>

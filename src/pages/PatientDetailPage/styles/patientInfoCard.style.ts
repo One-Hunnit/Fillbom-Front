@@ -4,7 +4,7 @@ import TEXT_STYLES from '@/styles/textStyles';
 
 const patientInfoCardStyle = StyleSheet.create({
   Wrapper: {
-    width: 350,
+    width: '100%',
     height: 150,
     flexDirection: 'row',
     alignItems: 'center',
@@ -25,6 +25,7 @@ const patientInfoCardStyle = StyleSheet.create({
     backgroundColor: FILLBOM_COLOR.GRAY[500],
   },
   patientInfoTextWrapper: {
+    width: '60%',
     marginLeft: 16,
     justifyContent: 'center',
     gap: 10,
@@ -32,16 +33,19 @@ const patientInfoCardStyle = StyleSheet.create({
   label: {
     ...TEXT_STYLES.BODY_MEDIUM_MEDIUM,
     color: FILLBOM_COLOR.GRAY[600],
+    marginRight: 8, // gap 대신 사용
   },
   value: {
     ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
     color: FILLBOM_COLOR.GRAY[900],
-    overflow: 'hidden',
+    flexShrink: 1,
   },
   labelValueWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    minWidth: '60%',
+    overflow: 'hidden',
+    flexShrink: 1,
   },
 });
 

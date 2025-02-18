@@ -1,8 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
+import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Dimensions, Pressable, Text } from 'react-native';
+import { Dimensions } from 'react-native';
 import { Divider, Menu, PaperProvider } from 'react-native-paper';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import PatientInfoCard from './components/PatientInfoCard';
+import PatientLastPosition from './components/PatientLastPosition';
+import useGetPatientDetail from './hooks/useGetPatientDetail';
 import { indexStyle } from './styles/index.style';
 import CloseNormal from '@/assets/svgs/ico_close_normal.svg';
 import CorrectNormal from '@/assets/svgs/ico_correct_normal.svg';
@@ -12,6 +16,13 @@ import CMenu from '@/components/Menu';
 import { FILLBOM_COLOR } from '@/constants/color';
 const PatientDetailPage = () => {
   const [isRightIconVisible, setIsRightIconVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const { patientId } = useLocalSearchParams();
+  const { data } = useGetPatientDetail(Number(patientId));
+  const insets = useSafeAreaInsets();
+  const { width } = Dimensions.get('window');
+
   const openMenu = () => {
     setIsRightIconVisible(true);
   };
@@ -19,13 +30,6 @@ const PatientDetailPage = () => {
     setIsRightIconVisible(false);
   };
 
-  const insets = useSafeAreaInsets();
-  const { width } = Dimensions.get('window');
-
-  const handleRightIconPress = () => {
-    //수정 삭제 모달 오픈
-  };
-  const [visible, setVisible] = useState(false);
   return (
     <PaperProvider>
       <SafeAreaView style={indexStyle.safeArea} edges={['left', 'right', 'top', 'bottom']}>
@@ -77,10 +81,8 @@ const PatientDetailPage = () => {
             title="삭제하기"
           />
         </Menu>
-        <Text>PatientDetailPage</Text>
-        <Pressable onPress={handleRightIconPress}>
-          <Text>Back</Text>
-        </Pressable>
+        <PatientInfoCard patientInfo={data} />
+        <PatientLastPosition />
       </SafeAreaView>
     </PaperProvider>
   );
