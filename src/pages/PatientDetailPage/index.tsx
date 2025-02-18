@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Dimensions } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import { Divider, Menu, PaperProvider } from 'react-native-paper';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import PatientInfoCard from './components/PatientInfoCard';
@@ -81,8 +81,10 @@ const PatientDetailPage = () => {
             title="삭제하기"
           />
         </Menu>
-        <PatientInfoCard patientInfo={data} />
-        <PatientLastPosition />
+        <View style={{ width: '100%', paddingHorizontal: 20 }}>
+          <PatientInfoCard patientInfo={data} />
+          <PatientLastPosition location={data?.location} profileImageUrl={data?.profileImageUrl} />
+        </View>
       </SafeAreaView>
     </PaperProvider>
   );

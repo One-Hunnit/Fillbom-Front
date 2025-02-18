@@ -7,7 +7,6 @@ export const indexStyle = StyleSheet.create({
     flex: 1,
     width: '100%',
     backgroundColor: '#fff',
-    paddingHorizontal: 20,
   },
   headerContainer: {
     borderBottomWidth: 0,

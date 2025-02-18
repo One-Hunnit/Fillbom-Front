@@ -5,7 +5,7 @@ import TEXT_STYLES from '@/styles/textStyles';
 const patientInfoCardStyle = StyleSheet.create({
   Wrapper: {
     width: '100%',
-    height: 150,
+    height: 174,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 16,
