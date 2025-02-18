@@ -1,9 +1,9 @@
-import { Stack, Tabs } from 'expo-router';
+import { Stack } from 'expo-router';
 
 export default function ManagePatientLayout() {
   return (
-    <Tabs screenOptions={{ headerShown: false }}>
-      <Tabs.Screen
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen
         name="index"
         options={{
           title: '환자 목록',
@@ -15,6 +15,6 @@ export default function ManagePatientLayout() {
           title: '환자 상세',
         }}
       />
-    </Tabs>
+    </Stack>
   );
 }
