@@ -20,7 +20,8 @@ const RefreshPage = () => {
         setState('accessToken', data.data.accessToken);
         setState('refreshToken', data.data.refreshToken);
       }
-      router.back();
+      console.log('hi?');
+      // router.back();
     } catch (error) {
       initState();
       router.replace('/login');

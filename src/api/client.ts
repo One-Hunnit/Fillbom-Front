@@ -1,11 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { router, usePathname } from 'expo-router';
+import { router } from 'expo-router';
 import createClient, { type Middleware } from 'openapi-fetch';
 import { type StorageValue } from 'zustand/middleware';
 import { type IAuthState } from '@/stores/authStore';
 import { type paths } from './types';
 
 let accessToken: string | null = null;
+let currentPathname: string = '';
 
 const authMiddleware: Middleware = {
   async onRequest({ request }) {
@@ -25,9 +26,9 @@ const authMiddleware: Middleware = {
     return request;
   },
   onResponse({ response }) {
+    console.log(currentPathname);
     if (response.status === 401) {
-      const pathname = usePathname();
-      if (pathname !== '/refresh') {
+      if (currentPathname !== '/refresh') {
         router.replace('/refresh');
       }
     }
@@ -37,6 +38,10 @@ const authMiddleware: Middleware = {
 
 export const setAccessToken = (token: string | null) => {
   accessToken = token;
+};
+
+export const setCurrentPathname = (pathname: string) => {
+  currentPathname = pathname;
 };
 
 export const client = createClient<paths>({ baseUrl: process.env.EXPO_PUBLIC_API_URL });

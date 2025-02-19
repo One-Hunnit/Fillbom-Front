@@ -28,10 +28,12 @@ export function useGetQuery<P extends Paths<'get'>>(path: P, params?: Params<'ge
   return { ...queryResult, queryKey: queryKey as QueryKey };
 }
 
-type UseMutationOptions = Pick<RQUseMutationOptions, 'retry'>;
+type UseMutationOptions = RQUseMutationOptions;
 
 export function usePostMutation<P extends Paths<'post'>>(path: P, options?: UseMutationOptions) {
   return useMutation({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     mutationFn: (params: Params<'post', P>) => client.POST(path, params),
     ...options,
   });
@@ -39,6 +41,8 @@ export function usePostMutation<P extends Paths<'post'>>(path: P, options?: UseM
 
 export function usePutMutation<P extends Paths<'put'>>(path: P, options?: UseMutationOptions) {
   return useMutation({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     mutationFn: (params: Params<'put', P>) => client.PUT(path, params),
     ...options,
   });
@@ -46,6 +50,8 @@ export function usePutMutation<P extends Paths<'put'>>(path: P, options?: UseMut
 
 export function useDeleteMutation<P extends Paths<'delete'>>(path: P, options?: UseMutationOptions) {
   return useMutation({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     mutationFn: (params: Params<'delete', P>) => client.DELETE(path, params),
     ...options,
   });
