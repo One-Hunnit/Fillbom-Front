@@ -1,6 +1,6 @@
 import { BottomSheetBackdrop, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import React, { forwardRef, memo, useReducer } from 'react';
-import { Text, Dimensions, View, Pressable, StyleSheet, Image } from 'react-native';
+import { Text, Dimensions, View, Pressable, StyleSheet, Image, ScrollView } from 'react-native';
 import Button from '@/components/Button';
 import Check from '@/components/Check';
 import { FILLBOM_COLOR } from '@/constants/color';
@@ -14,6 +14,8 @@ interface BottomSheetProps {
 const BottomSheet = memo(
   forwardRef<BottomSheetModal, BottomSheetProps>(({ onSubmit }, ref) => {
     const [checked, toggleChecked] = useReducer((checked) => !checked, false);
+
+    const images = [null, DEFAULT_PROFILE_IMAGES[0], DEFAULT_PROFILE_IMAGES[1]];
 
     return (
       <BottomSheetModal
@@ -29,6 +31,21 @@ const BottomSheet = memo(
           </View>
 
           <Text style={styles.addImageLabel}>사진 추가하기</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.imageSlider}>
+            {images.map((image, index) => (
+              <View key={index} style={styles.imageContainer}>
+                {image ? (
+                  <Image source={{ uri: image }} style={styles.carouselImage} />
+                ) : (
+                  <Pressable onPress={() => console.log('Add Image')}>
+                    <View style={styles.addImageButton}>
+                      <Text style={styles.addImageButtonText}>+</Text>
+                    </View>
+                  </Pressable>
+                )}
+              </View>
+            ))}
+          </ScrollView>
 
           <Pressable onPress={toggleChecked} style={styles.termValueContainer}>
             <Text style={styles.termTitle}>보호자에게 일기를 공유할까요?</Text>
@@ -77,6 +94,28 @@ const styles = StyleSheet.create({
     ...TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD,
     color: FILLBOM_COLOR.GRAY[800],
     marginVertical: 11,
+  },
+  imageSlider: {
+    marginBottom: 20,
+  },
+  imageContainer: {
+    marginRight: 10,
+  },
+  addImageButton: {
+    width: 96,
+    height: 96,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: FILLBOM_COLOR.GRAY[200],
+    borderRadius: 12,
+  },
+  addImageButtonText: {
+    fontSize: 24,
+    color: FILLBOM_COLOR.GRAY[600],
+  },
+  carouselImage: {
+    width: 96,
+    height: 96,
   },
   check: {
     alignSelf: 'center',
