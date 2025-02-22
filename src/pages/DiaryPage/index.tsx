@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Image, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { Calendar, type DateData, LocaleConfig } from 'react-native-calendars';
@@ -45,7 +46,11 @@ const diaryEntries = {
 };
 
 const DiaryPage = () => {
+  const router = useRouter();
   const [selectedDate, setSelectedDate] = useState('');
+  const hadnlePressFloatingButton = () => {
+    router.push('/patient/write-diary');
+  };
 
   const renderDay = ({ date, marking }: DayProps & { date: DateData }) => {
     return (
@@ -73,7 +78,12 @@ const DiaryPage = () => {
           }}
           monthFormat={'yyyy년 MM월'}
         />
-        <Button buttonStyle={styles.floatingButton} textStyle={styles.floatingButtonText} onPress={() => {}} text="+" />
+        <Button
+          buttonStyle={styles.floatingButton}
+          textStyle={styles.floatingButtonText}
+          onPress={hadnlePressFloatingButton}
+          text="+"
+        />
       </View>
     </SafeAreaView>
   );
