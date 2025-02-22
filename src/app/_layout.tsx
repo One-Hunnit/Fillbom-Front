@@ -3,10 +3,12 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Slot, SplashScreen, usePathname } from 'expo-router';
 import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import Toast from 'react-native-toast-message';
 import { setCurrentPathname } from '@/api/client';
 import Loading from '@/components/Loading';
 import useInitializeApp from '@/hooks/useInitializeApp';
 import { useUIStore } from '@/stores/ui';
+import { toastConfig } from '@/styles/toastConfig';
 
 Sentry.init({
   dsn: 'https://8c5970fe203209588ed807d99cc63a2a@o4508675532521472.ingest.us.sentry.io/4508675542679552',
@@ -40,6 +42,7 @@ export default () => {
       <GestureHandlerRootView>
         <Slot />
         {loading && <Loading fullScreen />}
+        <Toast config={toastConfig} />
       </GestureHandlerRootView>
     </QueryClientProvider>
   );

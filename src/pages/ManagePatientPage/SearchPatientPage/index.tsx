@@ -1,0 +1,160 @@
+import { router } from 'expo-router';
+import React, { useMemo, useState, useCallback } from 'react';
+import { Keyboard, ScrollView, type ViewStyle } from 'react-native';
+import IconCancel from '@/assets/svgs/ico_cancel.svg';
+import IconSearch from '@/assets/svgs/ico_search.svg';
+import Button from '@/components/Button';
+import InputLayout from '@/components/InputLayout';
+import InputWithIcon from '@/components/InputWithIcon';
+import { FILLBOM_COLOR } from '@/constants/color';
+import useGetKeyboardHeight from '@/hooks/useGetKeyboardHeight';
+import TEXT_STYLES from '@/styles/textStyles';
+import { type IPatientInfo } from '@/types/patient';
+import PatientInfo from './components/PatientInfo';
+import { patientInfoStyles } from './styles';
+import useKeyboardVisible from '../../SignupPage/hooks/useKeyboardVisible';
+import ManagePatientLayout from '../Layouts';
+import useSearchPatient from './hooks/useSearchPatient';
+
+const SearchPatientPage = () => {
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  const [selectedPatientInfo, setSelectedPatientInfo] = useState<IPatientInfo | null>(null);
+
+  const { postFindPatient, patientList, setPatientList } = useSearchPatient();
+  const keyboardVisible = useKeyboardVisible();
+  const keyboardHeight = useGetKeyboardHeight();
+
+  const buttonDisabled = useMemo(() => {
+    return phoneNumber.length !== 11 || (patientList !== null && !selectedPatientInfo);
+  }, [phoneNumber, patientList, selectedPatientInfo]);
+
+  const buttonStyle: ViewStyle = keyboardVisible
+    ? { borderRadius: 0, marginBottom: keyboardHeight, width: '100%' }
+    : { marginLeft: 20, marginRight: 20, marginBottom: 20, width: 350 };
+
+  const error = phoneNumber.length > 0 && !/\d{11}/g.test(phoneNumber);
+
+  const inputIcon = useMemo(() => {
+    if (phoneNumber.length > 0 && isInputFocused) {
+      return IconCancel;
+    } else if (phoneNumber.length > 0 && !isInputFocused) {
+      return IconSearch;
+    } else {
+      return null;
+    }
+  }, [phoneNumber, isInputFocused]);
+
+  const onIconPress = useMemo(() => {
+    if (inputIcon === IconCancel) {
+      return () => {
+        setSelectedPatientInfo(null);
+        setPatientList(null);
+        setPhoneNumber('');
+      };
+    } else if (inputIcon === IconSearch) {
+      return async () => {
+        setIsInputFocused(false);
+        await postFindPatient(phoneNumber);
+      };
+    }
+    return undefined;
+  }, [inputIcon, phoneNumber]);
+
+  const handleNextButtonPress = useCallback(async () => {
+    if (patientList === null || selectedPatientInfo === null) {
+      await postFindPatient(phoneNumber);
+    } else if (selectedPatientInfo) {
+      router.push({
+        pathname: '/caregiver/requestRelation',
+        params: {
+          patientInfo: JSON.stringify(selectedPatientInfo),
+        },
+      });
+    }
+  }, [patientList, selectedPatientInfo, phoneNumber, postFindPatient]);
+
+  const onSubmitEditing = useCallback(async () => {
+    if (phoneNumber.length === 11) {
+      await postFindPatient(phoneNumber);
+      setIsInputFocused(false);
+    }
+  }, [phoneNumber, postFindPatient]);
+
+  const handlePhoneNumberChange = useCallback(
+    (text: string) => {
+      setPhoneNumber(text);
+      setSelectedPatientInfo(null);
+      if (patientList) {
+        setPatientList(null);
+      }
+    },
+    [setPhoneNumber, setSelectedPatientInfo, patientList, setPatientList],
+  );
+
+  return (
+    <ManagePatientLayout
+      status="ADD"
+      headerText="환자 추가하기"
+      setIsInputFocused={setIsInputFocused}
+      titleText={`전화번호를 입력하면 \n환자를 찾을 수 있습니다`}
+    >
+      <InputLayout label="전화번호 검색" guide="띄어쓰기 없이 11자리를 입력해주세요." error={error}>
+        <InputWithIcon
+          isFocused={isInputFocused}
+          setIsFocused={setIsInputFocused}
+          error={error}
+          placeholder="01012345678"
+          value={phoneNumber}
+          maxLength={11}
+          keyboardType="number-pad"
+          selectedBorderColor={FILLBOM_COLOR.BLUE[500]}
+          defaultBorderColor={FILLBOM_COLOR.GRAY[100]}
+          defaultBackgoundColor={FILLBOM_COLOR.GRAY[100]}
+          pressedBackgroundColor={FILLBOM_COLOR.GRAY[200]}
+          defaultTextColor={FILLBOM_COLOR.GRAY[100]}
+          pressedTextColor={FILLBOM_COLOR.GRAY[400]}
+          activatedTextColor={FILLBOM_COLOR.GRAY[900]}
+          defaultIconColor={FILLBOM_COLOR.GRAY[500]}
+          pressedIconColor={FILLBOM_COLOR.GRAY[400]}
+          onChangeText={handlePhoneNumberChange}
+          onIconPress={onIconPress}
+          icon={inputIcon}
+          onSubmitEditing={onSubmitEditing}
+          textContentType="telephoneNumber"
+        />
+      </InputLayout>
+      <>
+        <ScrollView style={patientInfoStyles.container}>
+          {patientList &&
+            patientList.map((patientInfo) => (
+              <PatientInfo
+                selectedPatientInfo={selectedPatientInfo}
+                setSelectedPatientInfo={setSelectedPatientInfo}
+                key={patientInfo.name}
+                patientInfo={patientInfo}
+              />
+            ))}
+        </ScrollView>
+        <Button
+          text="다음"
+          onPress={() => {
+            handleNextButtonPress();
+            Keyboard.dismiss();
+          }}
+          disabled={buttonDisabled}
+          defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}
+          defaultTextColor={FILLBOM_COLOR.GRAY[100]}
+          pressedBackgroundColor={FILLBOM_COLOR.BLUE[300]}
+          pressedTextColor={FILLBOM_COLOR.BLUE[200]}
+          disabledBackgroundColor={FILLBOM_COLOR.GRAY[200]}
+          disabledTextColor={FILLBOM_COLOR.GRAY[700]}
+          textStyle={TEXT_STYLES.BODY_MEDIUM_SEMI_BOLD}
+          buttonStyle={buttonStyle}
+        />
+      </>
+    </ManagePatientLayout>
+  );
+};
+
+export default SearchPatientPage;

@@ -15,7 +15,6 @@ interface ICheckProps {
 
 const Check = ({ checked, containerStyle, iconStyle, onPress }: ICheckProps) => {
   const [isPressed, setIsPressed] = useState(false);
-
   return (
     <Pressable
       onPressIn={() => setIsPressed(true)}
