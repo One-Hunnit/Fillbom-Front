@@ -34,7 +34,7 @@ const RequestRelationPage = () => {
 
   const inputIcon = useMemo(() => {
     return relation.length > 0 ? IconCancel : null;
-  }, [relation, isInputFocused]);
+  }, [relation]);
 
   const onResearchPatientButtonPress = () => {
     router.replace('/caregiver/addPatient');
