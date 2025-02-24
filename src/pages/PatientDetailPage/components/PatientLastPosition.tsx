@@ -35,7 +35,7 @@ const PatientLastPosition = ({ location, profileImageUrl, onRefresh }: IPatientL
 
   const spin = spinAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: ['0deg', '180deg'],
+    outputRange: ['0deg', '-180deg'],
   });
 
   return (
