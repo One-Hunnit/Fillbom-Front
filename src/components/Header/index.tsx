@@ -11,9 +11,10 @@ interface IHeaderProps {
   onBack?: () => void;
   backButtonVisible?: boolean;
   containerStyle?: ViewStyle;
+  actionButton?: React.ReactNode;
 }
 
-const Header = ({ title, onBack, backButtonVisible, containerStyle }: IHeaderProps) => {
+const Header = ({ title, onBack, backButtonVisible, containerStyle, actionButton }: IHeaderProps) => {
   const router = useRouter();
 
   const handleBack = () => {
@@ -26,6 +27,7 @@ const Header = ({ title, onBack, backButtonVisible, containerStyle }: IHeaderPro
         <Button buttonStyle={styles.backButton} icon={ArrowPrevious} onPress={onBack ?? handleBack} />
       )}
       <Text style={styles.title}>{title}</Text>
+      {actionButton}
     </View>
   );
 };

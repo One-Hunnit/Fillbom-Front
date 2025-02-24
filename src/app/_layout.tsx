@@ -1,9 +1,10 @@
 import * as Sentry from '@sentry/react-native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Slot, SplashScreen } from 'expo-router';
+import { Slot, SplashScreen, usePathname } from 'expo-router';
 import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
+import { setCurrentPathname } from '@/api/client';
 import Loading from '@/components/Loading';
 import useInitializeApp from '@/hooks/useInitializeApp';
 import { useUIStore } from '@/stores/ui';
@@ -20,6 +21,11 @@ SplashScreen.preventAutoHideAsync();
 export default () => {
   const [loaded, error] = useInitializeApp();
   const { loading } = useUIStore();
+  const pathName = usePathname();
+
+  useEffect(() => {
+    setCurrentPathname(pathName);
+  }, [pathName]);
 
   useEffect(() => {
     if (loaded || error) {
