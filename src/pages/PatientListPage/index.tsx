@@ -15,9 +15,6 @@ const PatientListPage = () => {
   const data = result?.data ?? [];
   const isLoading = result?.isLoading ?? false;
 
-  const handlePatientCardPress = (patientId: number) => {
-    router.push(`/caregiver/managePatient/patientDetail/${patientId}`);
-  };
   return (
     <SafeAreaView style={styles.safeArea} edges={['left', 'right', 'top']}>
       <Header containerStyle={styles.headerContainer} title="환자 관리" />
@@ -28,19 +25,13 @@ const PatientListPage = () => {
           <ScrollView style={patientCardStyles.scrollViewStyle}>
             <View style={styles.listWrapper}>
               {data.map((patient, index) => (
-                <Pressable
-                  onPress={() => {
-                    handlePatientCardPress(patient.patientId ?? 0);
-                  }}
-                  key={index}
-                  style={styles.cardWrapper}
-                >
+                <View key={index} style={styles.cardWrapper}>
                   {patient.accepted ? (
                     <PatientCardAccepted key={index} patient={patient} />
                   ) : (
                     <PatientCardPending key={index} patient={patient} />
                   )}
-                </Pressable>
+                </View>
               ))}
             </View>
           </ScrollView>
