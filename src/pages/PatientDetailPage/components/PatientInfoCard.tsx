@@ -1,7 +1,7 @@
 import { Image, Text, View } from 'react-native';
+import formatPhoneNumber from '@/utils/formatPhoneNumber';
 import { type PatientDetailData } from '../hooks/useGetPatientDetail';
 import patientInfoCardStyle from '../styles/patientInfoCard.style';
-import formatPhoneNumber from '@/utils/formatPhoneNumber';
 
 interface PatientInfoCardProps {
   patientInfo: PatientDetailData;
