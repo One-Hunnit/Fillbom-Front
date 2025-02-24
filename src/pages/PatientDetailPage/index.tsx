@@ -48,6 +48,7 @@ const PatientDetailPage = () => {
               setVisible(false);
               setIsRightIconVisible(false);
             }}
+            confirmText="삭제"
             title={`환자 관리 리스트에서 \n 삭제하시겠습니까?`}
             onConfirm={() => {
               setIsRightIconVisible(false);
