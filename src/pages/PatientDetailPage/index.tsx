@@ -6,16 +6,18 @@ import { Divider, Menu, PaperProvider } from 'react-native-paper';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import CloseNormal from '@/assets/svgs/ico_close_normal.svg';
 import CorrectNormal from '@/assets/svgs/ico_correct_normal.svg';
+import IconResponse from '@/assets/svgs/ico_response.svg';
 import CommonModal from '@/components/CommonModal';
 import Header from '@/components/Header';
 import CMenu from '@/components/Menu';
+import { ToastMessage } from '@/components/ToastMessage';
 import { FILLBOM_COLOR } from '@/constants/color';
 import PatientInfoCard from './components/PatientInfoCard';
 import PatientLastPosition from './components/PatientLastPosition';
 import useGetPatientDetail from './hooks/useGetPatientDetail';
 import { indexStyle } from './styles/index.style';
 const PatientDetailPage = () => {
-  const [isRightIconVisible, setIsRightIconVisible] = useState(false);
+  const [isRightMenuVisible, setIsRightMenuVisible] = useState(false);
   const [visible, setVisible] = useState(false);
 
   const { patientId } = useLocalSearchParams();
@@ -24,10 +26,10 @@ const PatientDetailPage = () => {
   const { width } = Dimensions.get('window');
 
   const openMenu = () => {
-    setIsRightIconVisible(true);
+    setIsRightMenuVisible(true);
   };
   const closeMenu = () => {
-    setIsRightIconVisible(false);
+    setIsRightMenuVisible(false);
   };
 
   return (
@@ -44,22 +46,25 @@ const PatientDetailPage = () => {
             visible={true}
             onClose={() => {
               setVisible(false);
-              setIsRightIconVisible(false);
+              setIsRightMenuVisible(false);
             }}
             confirmText="삭제"
             title={`환자 관리 리스트에서 \n 삭제하시겠습니까?`}
             onConfirm={() => {
-              setIsRightIconVisible(false);
+              // deletePatient API 연동
+              setIsRightMenuVisible(false);
+              setVisible(false);
+              ToastMessage(`${data?.name}님이 환자 관리에서 삭제되었습니다.`, <IconResponse />);
             }}
             onCancel={() => {
               setVisible(false);
-              setIsRightIconVisible(false);
+              setIsRightMenuVisible(false);
             }}
           />
         )}
         <Menu
           contentStyle={indexStyle.menu}
-          visible={isRightIconVisible}
+          visible={isRightMenuVisible}
           onDismiss={closeMenu}
           anchorPosition="bottom"
           anchor={{ x: width - 20, y: insets.top + 40 }}
