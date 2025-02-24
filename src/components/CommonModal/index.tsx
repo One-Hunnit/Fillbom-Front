@@ -29,11 +29,11 @@ const CommonModal = ({
         <View style={styles.modalContainer}>
           {title && <Text style={styles.title}>{title}</Text>}
           <View style={styles.buttonContainer}>
-            <Pressable style={[styles.button, styles.confirmButton]} onPress={onConfirm}>
-              <Text style={styles.confirmText}>{confirmText}</Text>
-            </Pressable>
             <Pressable style={[styles.button, styles.cancelButton]} onPress={onCancel || onClose}>
               <Text style={styles.cancelText}>{cancelText}</Text>
+            </Pressable>
+            <Pressable style={[styles.button, styles.confirmButton]} onPress={onConfirm}>
+              <Text style={styles.confirmText}>{confirmText}</Text>
             </Pressable>
           </View>
         </View>
