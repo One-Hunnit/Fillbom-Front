@@ -10,9 +10,6 @@ interface IHeaderProps {
   title: string;
   onBack?: () => void;
   backButtonVisible?: boolean;
-  rightIcon?: React.ReactNode;
-  isRightIconVisible?: boolean;
-  onRightIconPress?: () => void;
   containerStyle?: ViewStyle;
   actionButton?: React.ReactNode;
 }

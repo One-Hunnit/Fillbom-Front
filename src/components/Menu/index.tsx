@@ -39,6 +39,5 @@ const styles = StyleSheet.create({
   container: {
     width: 24,
     height: 24,
-    alignSelf: 'flex-start',
   },
 });

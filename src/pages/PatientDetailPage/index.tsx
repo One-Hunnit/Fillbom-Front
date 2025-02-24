@@ -1,19 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
 import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Dimensions, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import { Divider, Menu, PaperProvider } from 'react-native-paper';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import PatientInfoCard from './components/PatientInfoCard';
-import PatientLastPosition from './components/PatientLastPosition';
-import useGetPatientDetail from './hooks/useGetPatientDetail';
-import { indexStyle } from './styles/index.style';
 import CloseNormal from '@/assets/svgs/ico_close_normal.svg';
 import CorrectNormal from '@/assets/svgs/ico_correct_normal.svg';
 import CommonModal from '@/components/CommonModal';
 import Header from '@/components/Header';
 import CMenu from '@/components/Menu';
 import { FILLBOM_COLOR } from '@/constants/color';
+import PatientInfoCard from './components/PatientInfoCard';
+import PatientLastPosition from './components/PatientLastPosition';
+import useGetPatientDetail from './hooks/useGetPatientDetail';
+import { indexStyle } from './styles/index.style';
 const PatientDetailPage = () => {
   const [isRightIconVisible, setIsRightIconVisible] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -35,9 +35,7 @@ const PatientDetailPage = () => {
       <SafeAreaView style={indexStyle.safeArea} edges={['left', 'right', 'top', 'bottom']}>
         <Header
           backButtonVisible={true}
-          rightIcon={<CMenu onPress={openMenu} />}
-          onRightIconPress={openMenu}
-          isRightIconVisible={true}
+          actionButton={<CMenu containerStyle={styles.container} onPress={openMenu} />}
           containerStyle={indexStyle.headerContainer}
           title="환자 상세보기"
         />
@@ -91,3 +89,10 @@ const PatientDetailPage = () => {
   );
 };
 export default PatientDetailPage;
+
+const styles = StyleSheet.create({
+  container: {
+    position: 'absolute',
+    right: 20,
+  },
+});
