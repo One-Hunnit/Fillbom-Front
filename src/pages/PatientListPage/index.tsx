@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '@/components/Button';
 import Header from '@/components/Header';
@@ -39,7 +39,7 @@ const PatientListPage = () => {
         <View style={styles.buttonWrapper}>
           <Button
             onPress={() => {
-              router.push('/caregiver/addPatient');
+              router.push('/(auth)/caregiver/addPatient');
             }}
             text="환자 추가하기"
             defaultBackgoundColor={FILLBOM_COLOR.BLUE[500]}

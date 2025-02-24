@@ -2,9 +2,9 @@ import { useGetQuery } from '@/api/hooks';
 
 const useGetPatientList = () => {
   const { data, isLoading } = useGetQuery('/caregiver/patients/list');
-  const response = data?.data;
+  const response = data?.data?.data;
   if (response) {
-    return { data: response.data, isLoading };
+    return { data: response, isLoading };
   }
 };
 

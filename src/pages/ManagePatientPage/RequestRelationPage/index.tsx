@@ -16,7 +16,7 @@ import TEXT_STYLES from '@/styles/textStyles';
 import ManagePatientLayout from '../Layouts';
 import { useRegisterPatient } from './hooks/useRegistPatients';
 import styles from './styles';
-import formattedPhoneNumber from './utils/formatingPhoneNumber';
+import formatPhoneNumber from '../../../utils/formatPhoneNumber';
 import MaskedName from '../SearchPatientPage/components/MaskedName';
 
 const RequestRelationPage = () => {
@@ -34,7 +34,7 @@ const RequestRelationPage = () => {
 
   const inputIcon = useMemo(() => {
     return relation.length > 0 ? IconCancel : null;
-  }, [relation, isInputFocused]);
+  }, [relation]);
 
   const onResearchPatientButtonPress = () => {
     router.replace('/caregiver/addPatient');
@@ -47,12 +47,12 @@ const RequestRelationPage = () => {
       {
         onSuccess: (data) => {
           if (data?.status === 'SUCCESS') {
-            ToastMessage('success', '상대방에게 수락 요청을 보냈습니다.', <IconToastMessage />);
-            router.replace('/(auth)/caregiver/patient-list');
+            ToastMessage('상대방에게 수락 요청을 보냈습니다.', <IconToastMessage />);
+            router.replace('/(auth)/caregiver/(tabs)/managePatient');
           }
         },
         onError: (error) => {
-          ToastMessage('error', error.message || '환자 등록에 실패했습니다.', <Text>❗️</Text>);
+          ToastMessage(error.message || '환자 등록에 실패했습니다.', <Text>❗️</Text>);
         },
       },
     );
@@ -74,7 +74,7 @@ const RequestRelationPage = () => {
               <View style={patientCardStyles.infoTextWrapper}>
                 <Text style={patientCardStyles.name}> {MaskedName(patient.name)}</Text>
                 <Text numberOfLines={1} style={patientCardStyles.phoneNumber}>
-                  {formattedPhoneNumber(patient.phoneNumber)}
+                  {formatPhoneNumber(patient.phoneNumber)}
                 </Text>
               </View>
             </View>

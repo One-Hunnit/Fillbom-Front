@@ -66,7 +66,7 @@ const SearchPatientPage = () => {
       await postFindPatient(phoneNumber);
     } else if (selectedPatientInfo) {
       router.push({
-        pathname: '/caregiver/requestRelation',
+        pathname: '/(auth)/caregiver/requestRelation/[patientInfo]',
         params: {
           patientInfo: JSON.stringify(selectedPatientInfo),
         },

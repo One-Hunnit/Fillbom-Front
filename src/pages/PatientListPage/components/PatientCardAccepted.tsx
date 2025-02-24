@@ -1,5 +1,6 @@
+import { router } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View, Image } from 'react-native';
 import IcoArrowNextState from '@/assets/svgs/ico_arrow_next_state.svg';
 import IcoArrowNextStatePressed from '@/assets/svgs/ico_arrow_next_state_pressed.svg';
 import IcoDocumentStatePressed from '@/assets/svgs/ico_document_pressed.svg';
@@ -16,7 +17,10 @@ const PatientCardAccepted = ({ patient }: PatientCardPendingProps) => {
   const [isProfileWrapperPressed, setIsProfileWrapperPressed] = useState<boolean>(false);
   const [isShowDetailButtonPressed, setIsShowDetailButtonPressed] = useState<boolean>(false);
   const [isWanderingDetectionButtonPressed, setIsWanderingDetectionButtonPressed] = useState<boolean>(false);
-
+  const handlePatientCardPress = (patientId: number | undefined) => {
+    if (!patientId) return;
+    router.push(`/caregiver/managePatient/patientDetail/${patientId}`);
+  };
   return (
     <View style={acceptedCardStyles.container}>
       <Pressable
@@ -27,9 +31,10 @@ const PatientCardAccepted = ({ patient }: PatientCardPendingProps) => {
         style={[patientCardStyles.profilWrapper, acceptedCardStyles.acceptedProfileWrapper]}
       >
         <View style={patientCardStyles.infoWrapper}>
-          <View
+          <Image
+            src={patient.profileImageUrl}
             style={isProfileWrapperPressed ? patientCardStyles.profileImage : patientCardStyles.profileImage}
-          ></View>
+          />
           <View style={patientCardStyles.infoTextWrapper}>
             <Text style={isProfileWrapperPressed ? patientCardStyles.pressedText : patientCardStyles.name}>
               {patient.name}
@@ -46,6 +51,7 @@ const PatientCardAccepted = ({ patient }: PatientCardPendingProps) => {
       <View style={acceptedCardStyles.buttonsWrapper}>
         <Pressable
           onPressIn={() => setIsShowDetailButtonPressed(true)}
+          onPress={() => handlePatientCardPress(patient.patientId)}
           onPressOut={() => setIsShowDetailButtonPressed(false)}
           style={[acceptedCardStyles.showDetailButton, isShowDetailButtonPressed && acceptedCardStyles.buttonPressed]}
         >

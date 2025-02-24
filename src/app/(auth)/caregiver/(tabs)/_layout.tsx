@@ -11,7 +11,7 @@ const CAREGIVER_TABS: ITab[] = [
     tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
   },
   {
-    name: 'patient-list',
+    name: 'managePatient',
     title: '환자 관리',
     tabBarIcon: ({ focused }) => (focused ? <IcoCareStroke /> : <IcoCareSolid />),
   },

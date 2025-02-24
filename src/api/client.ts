@@ -26,7 +26,6 @@ const authMiddleware: Middleware = {
     return request;
   },
   onResponse({ response }) {
-    console.log(currentPathname);
     if (response.status === 401) {
       if (currentPathname !== '/refresh') {
         router.replace('/refresh');

@@ -5,21 +5,21 @@ import { FILLBOM_COLOR } from '@/constants/color';
 const TEXT_STYLES = StyleSheet.create({
   // Title Styles
   TITLE_XL_BOLD: {
-    fontFamily: 'Pretendard-Bold',
+    fontFamily: 'PretendardBold',
     fontSize: 26,
     fontWeight: '700',
     lineHeight: 36,
     color: FILLBOM_COLOR.GRAY[900],
   },
   TITLE_XL_SEMI_BOLD: {
-    fontFamily: 'Pretendard-SemiBold',
+    fontFamily: 'PretendardSemiBold',
     fontSize: 26,
     fontWeight: '600',
     lineHeight: 36, // SemiBold
     color: FILLBOM_COLOR.GRAY[900],
   },
   TITLE_XL_REGULAR: {
-    fontFamily: 'Pretendard-Regular',
+    fontFamily: 'PretendardRegular',
     fontSize: 26,
     fontWeight: '400',
     lineHeight: 36,
@@ -28,21 +28,21 @@ const TEXT_STYLES = StyleSheet.create({
 
   // SubTitle Styles
   SUBTITLE_LARGE_BOLD: {
-    fontFamily: 'Pretendard-Bold',
+    fontFamily: 'PretendardBold',
     fontSize: 20,
     fontWeight: '700',
     lineHeight: 28,
     color: FILLBOM_COLOR.GRAY[900],
   },
   SUBTITLE_LARGE_SEMI_BOLD: {
-    fontFamily: 'Pretendard-SemiBold',
+    fontFamily: 'PretendardSemiBold',
     fontSize: 20,
     fontWeight: '600',
     lineHeight: 28, // SemiBold
     color: FILLBOM_COLOR.GRAY[900],
   },
   SUBTITLE_LARGE_REGULAR: {
-    fontFamily: 'Pretendard-Regular',
+    fontFamily: 'PretendardRegular',
     fontSize: 20,
     fontWeight: '400',
     lineHeight: 28,
@@ -51,28 +51,28 @@ const TEXT_STYLES = StyleSheet.create({
 
   // Body Styles
   BODY_MEDIUM_BOLD: {
-    fontFamily: 'Pretendard-Bold',
+    fontFamily: 'PretendardBold',
     fontSize: 16,
     fontWeight: '700',
     lineHeight: 22,
     color: FILLBOM_COLOR.GRAY[900],
   },
   BODY_MEDIUM_SEMI_BOLD: {
-    fontFamily: 'Pretendard-SemiBold',
+    fontFamily: 'PretendardSemiBold',
     fontSize: 16,
     fontWeight: '600',
     lineHeight: 22, // SemiBold
     color: FILLBOM_COLOR.GRAY[900],
   },
   BODY_MEDIUM_MEDIUM: {
-    fontFamily: 'Pretendard-Medium',
+    fontFamily: 'PretendardMedium',
     fontSize: 16,
     fontWeight: '500',
     lineHeight: 22, // Medium
     color: FILLBOM_COLOR.GRAY[900],
   },
   BODY_MEDIUM_REGULAR: {
-    fontFamily: 'Pretendard-Regular',
+    fontFamily: 'PretendardRegular',
     fontSize: 16,
     fontWeight: '400',
     lineHeight: 22,
@@ -81,28 +81,28 @@ const TEXT_STYLES = StyleSheet.create({
 
   // SubText Styles
   SUBTEXT_SMALL_BOLD: {
-    fontFamily: 'Pretendard-Bold',
+    fontFamily: 'PretendardBold',
     fontSize: 14,
     fontWeight: '700',
     lineHeight: 20,
     color: FILLBOM_COLOR.GRAY[900],
   },
   SUBTEXT_SMALL_SEMI_BOLD: {
-    fontFamily: 'Pretendard-SemiBold',
+    fontFamily: 'PretendardSemiBold',
     fontSize: 14,
     fontWeight: '600',
     lineHeight: 20, // SemiBold
     color: FILLBOM_COLOR.GRAY[900],
   },
   SUBTEXT_SMALL_MEDIUM: {
-    fontFamily: 'Pretendard-Medium',
+    fontFamily: 'PretendardMedium',
     fontSize: 14,
     fontWeight: '500',
     lineHeight: 20, // Medium
     color: FILLBOM_COLOR.GRAY[900],
   },
   SUBTEXT_SMALL_REGULAR: {
-    fontFamily: 'Pretendard-Regular',
+    fontFamily: 'PretendardRegular',
     fontSize: 14,
     fontWeight: '400',
     lineHeight: 20,
@@ -111,7 +111,7 @@ const TEXT_STYLES = StyleSheet.create({
 
   // Sentence Styles
   SENTENCE_SMALL_REGULAR: {
-    fontFamily: 'Pretendard-Regular',
+    fontFamily: 'PretendardRegular',
     fontSize: 14,
     fontWeight: 'normal',
     lineHeight: 21, // 150% of 14
@@ -120,28 +120,28 @@ const TEXT_STYLES = StyleSheet.create({
 
   // Caption Styles
   CAPTION_X_SMALL_BOLD: {
-    fontFamily: 'Pretendard-Bold',
+    fontFamily: 'PretendardBold',
     fontSize: 12,
     fontWeight: '700',
     lineHeight: 18,
     color: FILLBOM_COLOR.GRAY[900],
   },
   CAPTION_X_SMALL_SEMI_BOLD: {
-    fontFamily: 'Pretendard-SemiBold',
+    fontFamily: 'PretendardSemiBold',
     fontSize: 12,
     fontWeight: '600',
     lineHeight: 18, // SemiBold
     color: FILLBOM_COLOR.GRAY[900],
   },
   CAPTION_X_SMALL_MEDIUM: {
-    fontFamily: 'Pretendard-Medium',
+    fontFamily: 'PretendardMedium',
     fontSize: 12,
     fontWeight: '500',
     lineHeight: 18, // Medium
     color: FILLBOM_COLOR.GRAY[900],
   },
   CAPTION_X_SMALL_REGULAR: {
-    fontFamily: 'Pretendard-Regular',
+    fontFamily: 'PretendardRegular',
     fontSize: 12,
     fontWeight: '400',
     lineHeight: 18,
