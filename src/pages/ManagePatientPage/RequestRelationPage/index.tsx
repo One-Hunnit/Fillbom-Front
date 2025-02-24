@@ -47,12 +47,12 @@ const RequestRelationPage = () => {
       {
         onSuccess: (data) => {
           if (data?.status === 'SUCCESS') {
-            ToastMessage('success', '상대방에게 수락 요청을 보냈습니다.', <IconToastMessage />);
+            ToastMessage('상대방에게 수락 요청을 보냈습니다.', <IconToastMessage />);
             router.replace('/(auth)/caregiver/(tabs)/managePatient');
           }
         },
         onError: (error) => {
-          ToastMessage('error', error.message || '환자 등록에 실패했습니다.', <Text>❗️</Text>);
+          ToastMessage(error.message || '환자 등록에 실패했습니다.', <Text>❗️</Text>);
         },
       },
     );
