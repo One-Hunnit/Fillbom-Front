@@ -12,7 +12,6 @@ const useGetPatientDetail = (patientId: number) => {
     },
   });
 
-  console.log('fetch');
   const responseData = (data?.data?.data as PatientDetailData) || undefined;
 
   return { data: responseData, isLoading, error, isError, refetch };
