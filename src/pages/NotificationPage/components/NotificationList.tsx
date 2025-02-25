@@ -2,29 +2,49 @@ import { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Logo from '@/assets/svgs/ico_symbol.svg';
 import { ColorButton, MonoButton } from '@/components/Button';
+import Loading from '@/components/Loading';
 import { FILLBOM_COLOR } from '@/constants/color';
 import { NOTIFICATION_TYPE } from '@/constants/notification';
+import useAccount from '@/hooks/useAccount';
 import TEXT_STYLES from '@/styles/textStyles';
-import { type INotification } from '@/types/norification';
+import { type INotification } from '@/types/notification';
+import usePostRegistrationAccept from '../hooks/usePostRegistrationAccept';
 
 interface INotificationItemProps {
   item: INotification;
 }
 
 const NotificationItem = memo(({ item }: INotificationItemProps) => {
+  const { handleAcceptCaregiver } = usePostRegistrationAccept();
+  const { account, isLoading } = useAccount();
+
+  if (isLoading) return <Loading fullScreen />;
+  if (!account) return null;
   return (
     <View style={styles.listItem}>
       <Logo width={40} height={40} />
       <View style={styles.list}>
         <Text style={styles.listTitle} numberOfLines={2} ellipsizeMode="tail">
-          {item.content}
+          {item.body}
         </Text>
         <Text style={styles.listDate}>{item.createdAt}</Text>
       </View>
       {item.type === NOTIFICATION_TYPE.RELATIONSHIP_REQUEST ? (
         <View style={styles.relationButtonContainer}>
-          <ColorButton buttonStyle={styles.relationButton} text="수락" />
-          <MonoButton buttonStyle={styles.relationButton} text="거절" />
+          <ColorButton
+            buttonStyle={styles.relationButton}
+            onPress={() => {
+              handleAcceptCaregiver(account?.id, 'ACCEPT');
+            }}
+            text="수락"
+          />
+          <MonoButton
+            buttonStyle={styles.relationButton}
+            onPress={() => {
+              handleAcceptCaregiver(account?.id, 'REJECT');
+            }}
+            text="거절"
+          />
         </View>
       ) : null}
     </View>
