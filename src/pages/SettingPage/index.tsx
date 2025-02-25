@@ -37,6 +37,12 @@ const SettingPage = () => {
           reset();
         }}
       />
+      <Button
+        title="테스트용으로 알림 모아보기 페이지로 이동"
+        onPress={() => {
+          router.replace('/notification');
+        }}
+      />
     </View>
   );
 };
