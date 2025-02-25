@@ -29,9 +29,10 @@ const NotificationPage = () => {
     <SafeAreaView style={styles.safeArea}>
       <Header title="알림 모아보기" backButtonVisible containerStyle={styles.header} />
       <View style={styles.container}>
-        {Object.entries(notifications).map(([date, items]) => (
-          <NotificationList key={date} date={date} items={items} />
-        ))}
+        {Object.entries(notifications).map(([date, items]) => {
+          if (!Array.isArray(items)) return null;
+          return <NotificationList key={date} date={date} items={items} />;
+        })}
       </View>
     </SafeAreaView>
   );
