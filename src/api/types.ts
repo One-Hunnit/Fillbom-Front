@@ -444,6 +444,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/caregiver/id": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 보호자 Id 조회 */
+        get: operations["getCaregiverId"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/accounts/me": {
         parameters: {
             query?: never;
@@ -493,6 +510,23 @@ export interface paths {
         post?: never;
         /** 일기 삭제 */
         delete: operations["deleteDiaryById"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/caregiver/patients/{patientId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** 환자 삭제 */
+        delete: operations["deletePatient"];
         options?: never;
         head?: never;
         patch?: never;
@@ -719,11 +753,11 @@ export interface components {
             /** Format: int32 */
             number?: number;
             sort?: components["schemas"]["SortObject"];
-            first?: boolean;
-            last?: boolean;
             /** Format: int32 */
             numberOfElements?: number;
             pageable?: components["schemas"]["PageableObject"];
+            first?: boolean;
+            last?: boolean;
             empty?: boolean;
         };
         SortObject: {
@@ -811,6 +845,16 @@ export interface components {
             status?: "SUCCESS" | "FAILURE" | "ERROR";
             message?: string;
             data?: components["schemas"]["BriefDetail"][];
+        };
+        Id: {
+            /** Format: int64 */
+            caregiverId?: number;
+        };
+        ResponseDtoId: {
+            /** @enum {string} */
+            status?: "SUCCESS" | "FAILURE" | "ERROR";
+            message?: string;
+            data?: components["schemas"]["Id"];
         };
         ResponseDtoTokenAccountInfoDto: {
             /** @enum {string} */
@@ -1730,6 +1774,35 @@ export interface operations {
             };
         };
     };
+    getCaregiverId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoId"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
     getUserInfo: {
         parameters: {
             query?: never;
@@ -1808,6 +1881,37 @@ export interface operations {
                 };
                 content: {
                     "*/*": components["schemas"]["ResponseDtoVoid"];
+                };
+            };
+            /** @description Bad Request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
+    };
+    deletePatient: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patientId: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["ResponseDtoString"];
                 };
             };
             /** @description Bad Request */
