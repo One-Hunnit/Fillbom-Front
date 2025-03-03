@@ -2,9 +2,9 @@
 import { NaverMapMarkerOverlay, NaverMapView } from '@mj-studio/react-native-naver-map';
 import { useRef, useState } from 'react';
 import { Animated, Easing, Image, ImageBackground, Pressable, Text, View } from 'react-native';
-import patientLastPositionStyle from '../styles/patientLastPosition.style';
 import RefreshIconNormal from '@/assets/svgs/ico_refresh_normal.svg';
 import RefreshIconPressed from '@/assets/svgs/ico_refresh_pressed.svg';
+import patientLastPositionStyle from '../styles/patientLastPosition.style';
 
 interface IPatientLastPositionProps {
   location?: {
