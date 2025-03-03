@@ -41,10 +41,6 @@ export const setAccessToken = (token: string | null) => {
   accessToken = token;
 };
 
-export const setHeaderAccessTokenNull = () => {
-  accessToken = null;
-};
-
 export const setCurrentPathname = (pathname: string) => {
   currentPathname = pathname;
 };
