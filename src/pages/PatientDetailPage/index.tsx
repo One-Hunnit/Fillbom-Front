@@ -13,7 +13,10 @@ import CMenu from '@/components/Menu';
 import { ToastMessage } from '@/components/ToastMessage';
 import { FILLBOM_COLOR } from '@/constants/color';
 import PatientInfoCard from './components/PatientInfoCard';
+import PatientInfoSkeleton from './components/PatientInfoSkeleton';
 import PatientLastPosition from './components/PatientLastPosition';
+import PatientLastPositionSkeleton from './components/PatientLastPositionSkeleton';
+import useDeletePatient from './hooks/useDeletePatient';
 import useGetPatientDetail from './hooks/useGetPatientDetail';
 import { indexStyle } from './styles/index.style';
 const PatientDetailPage = () => {
@@ -21,7 +24,9 @@ const PatientDetailPage = () => {
   const [visible, setVisible] = useState(false);
 
   const { patientId } = useLocalSearchParams();
-  const { data, refetch } = useGetPatientDetail(Number(patientId));
+  const { data: patientDetailData, refetch, isLoading } = useGetPatientDetail(Number(patientId));
+  const { deletePatient } = useDeletePatient(Number(patientId));
+
   const insets = useSafeAreaInsets();
   const { width } = Dimensions.get('window');
 
@@ -51,10 +56,10 @@ const PatientDetailPage = () => {
             confirmText="삭제"
             title={`환자 관리 리스트에서 \n 삭제하시겠습니까?`}
             onConfirm={() => {
-              // deletePatient API 연동
+              deletePatient();
               setIsRightMenuVisible(false);
               setVisible(false);
-              ToastMessage(`${data?.name}님이 환자 관리에서 삭제되었습니다.`, <IconResponse />);
+              ToastMessage(`${patientDetailData?.name}님이 환자 관리에서 삭제되었습니다.`, <IconResponse />);
             }}
             onCancel={() => {
               setVisible(false);
@@ -86,8 +91,16 @@ const PatientDetailPage = () => {
           />
         </Menu>
         <View style={{ width: '100%', height: '100%', paddingHorizontal: 20 }}>
-          <PatientInfoCard patientInfo={data} />
-          <PatientLastPosition onRefresh={refetch} location={data?.location} profileImageUrl={data?.profileImageUrl} />
+          {isLoading ? <PatientInfoSkeleton /> : <PatientInfoCard patientInfo={patientDetailData} />}
+          {isLoading ? (
+            <PatientLastPositionSkeleton />
+          ) : (
+            <PatientLastPosition
+              onRefresh={refetch}
+              location={patientDetailData?.location}
+              profileImageUrl={patientDetailData?.profileImageUrl}
+            />
+          )}
         </View>
       </SafeAreaView>
     </PaperProvider>
