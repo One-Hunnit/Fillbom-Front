@@ -2,12 +2,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import createClient, { type Middleware } from 'openapi-fetch';
 import { type StorageValue } from 'zustand/middleware';
-import { type IAuthState } from '@/stores/authStore';
+import { useAuthStore, type IAuthState } from '@/stores/authStore';
 import { type paths } from './types';
 
 let accessToken: string | null = null;
 let currentPathname: string = '';
-
 const authMiddleware: Middleware = {
   async onRequest({ request }) {
     const auth = JSON.parse((await AsyncStorage.getItem('useAuthStore')) ?? '') as StorageValue<IAuthState>;
@@ -21,6 +20,8 @@ const authMiddleware: Middleware = {
 
     if (accessToken) {
       request.headers.set('Authorization', `Bearer ${accessToken}`);
+    } else {
+      request.headers.delete('Authorization');
     }
 
     return request;
@@ -28,6 +29,7 @@ const authMiddleware: Middleware = {
   onResponse({ response }) {
     if (response.status === 401) {
       if (currentPathname !== '/refresh') {
+        useAuthStore.getState().setState('accessToken', undefined);
         router.replace('/refresh');
       }
     }
