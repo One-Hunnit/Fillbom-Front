@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import { useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import { Divider, Menu, PaperProvider } from 'react-native-paper';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import CloseNormal from '@/assets/svgs/ico_close_normal.svg';
@@ -55,11 +55,18 @@ const PatientDetailPage = () => {
             }}
             confirmText="삭제"
             title={`환자 관리 리스트에서 \n 삭제하시겠습니까?`}
-            onConfirm={() => {
-              deletePatient();
+            onConfirm={async () => {
+              const { isSuccess, error } = await deletePatient();
+
               setIsRightMenuVisible(false);
               setVisible(false);
-              ToastMessage(`${patientDetailData?.name}님이 환자 관리에서 삭제되었습니다.`, <IconResponse />);
+
+              if (isSuccess) {
+                ToastMessage(`${patientDetailData?.name}님이 환자 관리에서 삭제되었습니다.`, <IconResponse />);
+                router.replace('/(auth)/caregiver/(tabs)/managePatient');
+              } else {
+                ToastMessage(`삭제에 실패했습니다. ${error?.message ?? error}`, <Text>❗️</Text>);
+              }
             }}
             onCancel={() => {
               setVisible(false);
