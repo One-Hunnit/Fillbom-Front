@@ -1,7 +1,7 @@
 import { router } from 'expo-router';
 import { useEffect } from 'react';
 import { View } from 'react-native';
-import { client, setAccessToken } from '@/api/client';
+import { client, setHeaderAccessTokenNull } from '@/api/client';
 import Loading from '@/components/Loading';
 import { useAuthStore } from '@/stores/authStore';
 import { styles } from './styles';
@@ -10,15 +10,16 @@ const RefreshPage = () => {
   const { initState, refreshToken, setState } = useAuthStore();
 
   const refresh = async () => {
+    setHeaderAccessTokenNull();
     try {
       if (!refreshToken) {
         throw new Error('refreshToken is not found');
       }
-      setAccessToken(null);
       const data = (await client.POST('/oauth/refresh-token', { body: { refreshToken: refreshToken! } })).data;
       if (data?.data) {
         setState('accessToken', data.data.accessToken);
         setState('refreshToken', data.data.refreshToken);
+        router.back();
       }
     } catch (error) {
       initState();
