@@ -20,6 +20,8 @@ const authMiddleware: Middleware = {
 
     if (accessToken) {
       request.headers.set('Authorization', `Bearer ${accessToken}`);
+    } else {
+      request.headers.delete('Authorization');
     }
 
     return request;
