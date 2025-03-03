@@ -26,7 +26,7 @@ const authMiddleware: Middleware = {
 
     return request;
   },
-  async onResponse({ response }) {
+  onResponse({ response }) {
     if (response.status === 401) {
       if (currentPathname !== '/refresh') {
         useAuthStore.getState().setState('accessToken', undefined);
