@@ -93,7 +93,6 @@ const SearchPatientPage = () => {
     [setPhoneNumber, setSelectedPatientInfo, patientList, setPatientList],
   );
 
-  console.log('patientList', patientList);
 
   return (
     <ManagePatientLayout

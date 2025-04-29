@@ -9,6 +9,7 @@ export const registerDeviceToken = async (deviceToken: string) => {
     });
     return response.data;
   } catch (error) {
+    console.error('Failed to register device token:', error);
     throw error;
   }
 };

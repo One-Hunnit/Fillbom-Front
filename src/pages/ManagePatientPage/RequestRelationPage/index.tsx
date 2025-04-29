@@ -10,6 +10,7 @@ import InputWithIcon from '@/components/InputWithIcon';
 import { ToastMessage } from '@/components/ToastMessage';
 import { FILLBOM_COLOR } from '@/constants/color';
 import useGetKeyboardHeight from '@/hooks/useGetKeyboardHeight';
+import { postNotification } from '@/hooks/usePostNotification';
 import { patientCardStyles } from '@/pages/PatientListPage/styles';
 import useKeyboardVisible from '@/pages/SignupPage/hooks/useKeyboardVisible';
 import TEXT_STYLES from '@/styles/textStyles';
@@ -23,7 +24,6 @@ const RequestRelationPage = () => {
   const { patientInfo } = useLocalSearchParams();
 
   const patient = patientInfo ? JSON.parse(decodeURIComponent(patientInfo as string)) : null;
-
   const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
   const [relation, setRelation] = useState<string>('');
   const keyboardVisible = useKeyboardVisible();
@@ -41,7 +41,7 @@ const RequestRelationPage = () => {
   };
 
   const { mutate: registerPatient } = useRegisterPatient();
-  const onRequestButtonPress = () => {
+  const onRequestButtonPress = async () => {
     registerPatient(
       { patientId: patient.patientId, relationship: relation },
       {
@@ -49,6 +49,11 @@ const RequestRelationPage = () => {
           if (data?.status === 'SUCCESS') {
             ToastMessage('상대방에게 수락 요청을 보냈습니다.', <IconToastMessage />);
             router.replace('/(auth)/caregiver/(tabs)/managePatient');
+            postNotification({
+              title: '수락 요청',
+              type: 'RELATIONSHIP_REQUEST',
+              body: `${patient.name}님에게 수락 요청을 보냈습니다.`,
+            });
           }
         },
         onError: (error) => {
