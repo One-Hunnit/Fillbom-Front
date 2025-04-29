@@ -13,7 +13,7 @@ export default function useSearchPatient() {
     onSuccess: (data: unknown) => {
       const response = data as IResPatientSearch;
       const patientData = response?.data.data;
-      if (patientData && patientData.length > 0) {
+      if (patientData) {
         setPatientList(patientData);
       }
     },

@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import React, { useMemo, useState, useCallback } from 'react';
-import { Keyboard, ScrollView, type ViewStyle } from 'react-native';
+import { Keyboard, ScrollView, View, type ViewStyle, Text } from 'react-native';
 import IconCancel from '@/assets/svgs/ico_cancel.svg';
 import IconSearch from '@/assets/svgs/ico_search.svg';
 import Button from '@/components/Button';
@@ -24,6 +24,7 @@ const SearchPatientPage = () => {
   const { postFindPatient, patientList, setPatientList } = useSearchPatient();
   const keyboardVisible = useKeyboardVisible();
   const keyboardHeight = useGetKeyboardHeight();
+
 
   const buttonDisabled = useMemo(() => {
     return phoneNumber.length !== 11 || (patientList !== null && !selectedPatientInfo);
@@ -59,7 +60,7 @@ const SearchPatientPage = () => {
       };
     }
     return undefined;
-  }, [inputIcon, phoneNumber]);
+  }, [inputIcon, phoneNumber, postFindPatient, setPatientList]);
 
   const handleNextButtonPress = useCallback(async () => {
     if (patientList === null || selectedPatientInfo === null) {
@@ -91,6 +92,8 @@ const SearchPatientPage = () => {
     },
     [setPhoneNumber, setSelectedPatientInfo, patientList, setPatientList],
   );
+
+  console.log('patientList', patientList);
 
   return (
     <ManagePatientLayout
@@ -126,7 +129,11 @@ const SearchPatientPage = () => {
       </InputLayout>
       <>
         <ScrollView style={patientInfoStyles.container}>
-          {patientList &&
+          {patientList !== null && patientList.length === 0 ? (
+            <View>
+              <Text>검색 결과가 없습니다.</Text>
+            </View>
+          ) : patientList ? (
             patientList.map((patientInfo) => (
               <PatientInfo
                 selectedPatientInfo={selectedPatientInfo}
@@ -134,7 +141,8 @@ const SearchPatientPage = () => {
                 key={patientInfo.name}
                 patientInfo={patientInfo}
               />
-            ))}
+            ))
+          ) : null}
         </ScrollView>
         <Button
           text="다음"
