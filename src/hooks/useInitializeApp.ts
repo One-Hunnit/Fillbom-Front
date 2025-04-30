@@ -29,8 +29,12 @@ export default function useInitializeApp() {
         });
 
         setLoaded(true);
-      } catch (e) {
-        setError(e as Error);
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          setError(e);
+        } else {
+          setError(new Error(String(e)));
+        }
       }
     }
 

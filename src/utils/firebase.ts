@@ -1,5 +1,6 @@
 import analytics, { type FirebaseAnalyticsTypes } from '@react-native-firebase/analytics';
 import messaging, { type FirebaseMessagingTypes } from '@react-native-firebase/messaging';
+import { FirebaseError } from '@react-native-firebase/app';
 import Constants from 'expo-constants';
 
 let analyticsInstance: FirebaseAnalyticsTypes.Module | null = null;
@@ -26,17 +27,22 @@ export const requestUserPermission = async () => {
     console.log('messagingInstance is not initialized');
     return;
   }
+  
+  try {
+    const authStatus = await messagingInstance.requestPermission();
+    console.log('FCM Permission Status:', authStatus);
+    
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
-  const authStatus = await messagingInstance.requestPermission();
-  console.log('FCM Permission Status:', authStatus);
-
-  const enabled =
-    authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-
-  if (enabled) {
-    console.log('FCM Permission granted');
-  } else {
-    console.log('FCM Permission denied');
+    if (enabled) {
+      console.log('FCM Permission granted');
+    } else {
+      console.log('FCM Permission denied');
+    }
+  } catch (error: unknown) {
+    console.error('FCM Permission Error:', error instanceof Error ? error.message : 'Unknown error');
   }
 };
 
@@ -46,19 +52,19 @@ export const getFCMToken = async () => {
     console.log('messagingInstance is not initialized');
     return null;
   }
-
+  
   try {
     const token = await messagingInstance.getToken();
     console.log('FCM Token:', token);
-
+    
     if (!token) {
       console.log('No FCM token received');
       return null;
     }
-
+    
     return token;
-  } catch (error) {
-    console.error('FCM Token Error:', error);
+  } catch (error: unknown) {
+    console.error('FCM Token Error:', error instanceof Error ? error.message : 'Unknown error');
     return null;
   }
 };
