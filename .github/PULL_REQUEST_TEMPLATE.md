@@ -2,7 +2,7 @@
 
 기능 설명과 개발 동기에 대해서는 티켓을 확인해주세요.
 
-https://onehunnit.atlassian.net/browse/OH-XXX
+https://onehunnit.atlassian.net/browse/OK-XXX
 
 <br>
 

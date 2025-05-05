@@ -10,11 +10,13 @@ export const AUTH_STATE_KEY = 'authState';
 export interface IAuthState {
   accessToken?: string;
   refreshToken?: string;
+  deviceToken?: string;
 }
 
 const initialState: IAuthState = {
   accessToken: undefined,
   refreshToken: undefined,
+  deviceToken: undefined,
 };
 
 export const useAuthStore = create<TStore<IAuthState>>()(
@@ -35,12 +37,16 @@ export const useAuthStore = create<TStore<IAuthState>>()(
             }),
           ),
         initState: () => set({ ...initialState }),
+        setDeviceToken: (token: string) => {
+          set({ deviceToken: token });
+        },
       }),
       {
         name: 'useAuthStore',
-        partialize: ({ accessToken, refreshToken }) => ({
+        partialize: ({ accessToken, refreshToken, deviceToken }) => ({
           accessToken,
           refreshToken,
+          deviceToken,
         }),
         storage: createJSONStorage(() => AsyncStorage),
       },
