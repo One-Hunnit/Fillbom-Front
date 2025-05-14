@@ -8,16 +8,18 @@ jobs:
   ai_review:
     runs-on: ubuntu-latest
     steps:
+      # 1. PR 코드 체크아웃
       - name: Checkout PR code
         uses: actions/checkout@v3
 
+      # 2. PR diff 생성 및 저장
       - name: Get PR diff
         id: diff
         run: |
           git fetch origin ${{ github.base_ref }}
           git diff origin/${{ github.base_ref }} > pr.diff
-          echo "diff=$(cat pr.diff)" >> $GITHUB_OUTPUT
 
+      # 3. 변경 파일 수 / 라인 수 계산
       - name: Check PR size
         id: check_size
         run: |
@@ -26,6 +28,7 @@ jobs:
           echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
           echo "changed_lines=$CHANGED_LINES" >> $GITHUB_OUTPUT
 
+      # 4. OpenAI로 리뷰 요청
       - name: Review with OpenAI
         id: review
         env:
@@ -43,10 +46,16 @@ jobs:
               "messages": [{"role": "user", "content": "'"${FINAL_PROMPT//$'\n'/\\n}"'"}]
             }' | jq -r '.choices[0].message.content')
 
+          # null 방지용 fallback 처리
+          if [ -z "$RESPONSE" ]; then
+            RESPONSE="(AI 응답이 비어 있습니다. 오류가 발생했을 수 있습니다.)"
+          fi
+
           echo "review=$RESPONSE" >> $GITHUB_OUTPUT
 
+      # 5. PR에 리뷰 코멘트 작성 (빈 응답이면 스킵)
       - name: Comment on PR
-        if: steps.review.outputs.review != ''
+        if: ${{ steps.review.outputs.review != '' }}
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
@@ -55,6 +64,7 @@ jobs:
             ${{ steps.review.outputs.review }}
             ```
 
+      # 6. PR 크기 초과 시 경고 코멘트 작성
       - name: Warn if PR is too large
         if: ${{ steps.check_size.outputs.changed_files > 10 || steps.check_size.outputs.changed_lines > 500 }}
         env:
@@ -66,4 +76,4 @@ jobs:
             - 변경된 라인 수: \`${{ steps.check_size.outputs.changed_lines }}\`
 
             리뷰 효율을 위해 가능하면 기능 단위로 더 작은 PR로 나눠주세요 🙏" \
-            --repo ${{ github.repository }}
+                        --repo ${{ github.repository }}
