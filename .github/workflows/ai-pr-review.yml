@@ -38,13 +38,16 @@ jobs:
           DIFF=$(cat pr.diff | head -c 4000)
           FINAL_PROMPT="$PROMPT\n$DIFF"
 
+          echo "$FINAL_PROMPT" > prompt.txt
+          ESCAPED_PROMPT=$(jq -Rs . < prompt.txt)
+
           RAW_RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
-            -H "Authorization: Bearer $OPENAI_API_KEY" \
-            -H "Content-Type: application/json" \
-            -d '{
+          -H "Authorization: Bearer $OPENAI_API_KEY" \
+          -H "Content-Type: application/json" \
+          -d '{
               "model": "gpt-3.5-turbo",
-              "messages": [{"role": "user", "content": "'"${FINAL_PROMPT//$'\n'/\\n}"'"}]
-            }')
+              "messages": [{"role": "user", "content": '"$ESCAPED_PROMPT"'}]
+          }')
 
           echo "==== GPT RAW RESPONSE ===="
           echo "$RAW_RESPONSE"
@@ -52,7 +55,7 @@ jobs:
           RESPONSE=$(echo "$RAW_RESPONSE" | jq -r '.choices[0].message.content' || echo "")
 
           if [ -z "$RESPONSE" ] || [ "$RESPONSE" = "null" ]; then
-            RESPONSE="(AI 응답이 비어 있거나 오류가 발생했습니다.)"
+          RESPONSE="(AI 응답이 비어 있거나 오류가 발생했습니다.)"
           fi
 
           echo "review=$RESPONSE" >> $GITHUB_OUTPUT
