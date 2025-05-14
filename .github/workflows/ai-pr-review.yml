@@ -1,0 +1,68 @@
+name: AI PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  ai_review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR code
+        uses: actions/checkout@v3
+
+      - name: Get PR diff
+        id: diff
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          git diff origin/${{ github.base_ref }} > pr.diff
+          echo "::set-output name=diff::$(cat pr.diff)"
+
+      - name: Check PR size
+        id: check_size
+        run: |
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }} | wc -l)
+          CHANGED_LINES=$(git diff --shortstat origin/${{ github.base_ref }} | grep -o '[0-9]\+' | paste -sd+ - | bc || echo 0)
+          echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+          echo "changed_lines=$CHANGED_LINES" >> $GITHUB_OUTPUT
+
+      - name: Review with OpenAI
+        id: review
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          PROMPT=$(cat .github/prompt/review.txt)
+          DIFF=$(cat pr.diff | head -c 4000)
+          FINAL_PROMPT="$PROMPT\n$DIFF"
+
+          RESPONSE=$(curl https://api.openai.com/v1/chat/completions \
+            -H "Authorization: Bearer $OPENAI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "model": "gpt-4",
+              "messages": [{"role": "user", "content": "'"${FINAL_PROMPT//$'\n'/\\n}"'"}]
+            }' | jq -r '.choices[0].message.content')
+
+          echo "::set-output name=review::$RESPONSE"
+
+      - name: Comment on PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: |
+            🤖 **AI 코드 리뷰 요약 (GPT-4 기반)**  
+            ```
+            ${{ steps.review.outputs.review }}
+            ```
+
+      - name: Warn if PR is too large
+        if: ${{ steps.check_size.outputs.changed_files > 10 || steps.check_size.outputs.changed_lines > 500 }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} \
+            --body "⚠️ **이 PR은 대형 변경입니다.**  
+            - 변경된 파일 수: \`${{ steps.check_size.outputs.changed_files }}\`  
+            - 변경된 라인 수: \`${{ steps.check_size.outputs.changed_lines }}\`
+
+            리뷰 효율을 위해 가능하면 기능 단위로 더 작은 PR로 나눠주세요 🙏" \
+                        --repo ${{ github.repository }}
