@@ -38,13 +38,13 @@ jobs:
           DIFF=$(cat pr.diff | head -c 4000)
           FINAL_PROMPT="$PROMPT\n$DIFF"
 
-          RAW_RESPONSE=$(curl --fail -s https://api.openai.com/v1/chat/completions \
-          -H "Authorization: Bearer $OPENAI_API_KEY" \
-          -H "Content-Type: application/json" \
-          -d '{
+          RAW_RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
+            -H "Authorization: Bearer $OPENAI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{
               "model": "gpt-3.5-turbo",
               "messages": [{"role": "user", "content": "'"${FINAL_PROMPT//$'\n'/\\n}"'"}]
-          }')
+            }')
 
           echo "==== GPT RAW RESPONSE ===="
           echo "$RAW_RESPONSE"
@@ -52,25 +52,32 @@ jobs:
           RESPONSE=$(echo "$RAW_RESPONSE" | jq -r '.choices[0].message.content' || echo "")
 
           if [ -z "$RESPONSE" ] || [ "$RESPONSE" = "null" ]; then
-          RESPONSE="(AI 응답이 비어 있거나 오류가 발생했습니다.)"
+            RESPONSE="(AI 응답이 비어 있거나 오류가 발생했습니다.)"
           fi
 
           echo "review=$RESPONSE" >> $GITHUB_OUTPUT
 
-      # 5. PR에 리뷰 코멘트 작성 (빈 응답이면 스킵)
+      # ✅ 5. Debug (항상 실행)
+      - name: Debug response
+        if: always()
+        run: |
+          echo "==== DEBUGGING GPT RESPONSE ===="
+          echo "REVIEW OUTPUT: ${{ steps.review.outputs.review }}"
+
+      # 6. PR에 리뷰 코멘트 작성 (빈 응답이면 스킵)
       - name: Comment on PR
         if: ${{ steps.review.outputs.review && steps.review.outputs.review != 'null' }}
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
-            🤖 **AI 코드 리뷰 요약 (GPT-4 기반)**  
+            🤖 **AI 코드 리뷰 요약 (GPT-3.5 기반)**  
             ```
             ${{ steps.review.outputs.review }}
             ```
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
 
-      # 6. PR 크기 초과 시 경고 코멘트 작성
+      # 7. PR 크기 초과 시 경고 코멘트 작성
       - name: Warn if PR is too large
         if: ${{ steps.check_size.outputs.changed_files > 10 || steps.check_size.outputs.changed_lines > 500 }}
         env:
@@ -82,9 +89,4 @@ jobs:
             - 변경된 라인 수: \`${{ steps.check_size.outputs.changed_lines }}\`
 
             리뷰 효율을 위해 가능하면 기능 단위로 더 작은 PR로 나눠주세요 🙏" \
-                        --repo ${{ github.repository }}
-
-      - name: Debug response
-        if: always()
-        run: |
-          echo "RESPONSE: ${{ steps.review.outputs.review }}"
+            --repo ${{ github.repository }}
