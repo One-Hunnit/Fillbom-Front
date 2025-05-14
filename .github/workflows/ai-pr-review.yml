@@ -57,7 +57,7 @@ jobs:
       - name: Warn if PR is too large
         if: ${{ steps.check_size.outputs.changed_files > 10 || steps.check_size.outputs.changed_lines > 500 }}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
         run: |
           gh pr comment ${{ github.event.pull_request.number }} \
             --body "⚠️ **이 PR은 대형 변경입니다.**  
