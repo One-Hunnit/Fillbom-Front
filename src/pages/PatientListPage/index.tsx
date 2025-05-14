@@ -12,14 +12,14 @@ import { patientCardStyles, styles } from './styles';
 
 const PatientListPage = () => {
   const result = useGetPatientList();
-  const data = result?.data ?? [];
+  const data = result?.data;
   const isLoading = result?.isLoading ?? false;
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['left', 'right', 'top']}>
       <Header containerStyle={styles.headerContainer} title="환자 관리" />
       <View style={styles.container}>
-        {data?.length === 0 ? (
+        {data.length === 0 ? (
           <NoPatients />
         ) : (
           <ScrollView style={patientCardStyles.scrollViewStyle}>
