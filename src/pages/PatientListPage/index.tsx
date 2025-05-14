@@ -14,7 +14,7 @@ const PatientListPage = () => {
   const result = useGetPatientList();
   const data = result?.data ?? [];
   const isLoading = result?.isLoading ?? false;
-
+  console.log(data);
   return (
     <SafeAreaView style={styles.safeArea} edges={['left', 'right', 'top']}>
       <Header containerStyle={styles.headerContainer} title="환자 관리" />
