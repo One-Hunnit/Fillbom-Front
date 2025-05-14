@@ -65,10 +65,6 @@ reviews:
   tools:
     eslint:
       enabled: true
-    prettier:
-      enabled: true
-    typescript:
-      enabled: true
     github-checks:
       enabled: true
       timeout_ms: 60000
