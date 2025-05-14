@@ -14,7 +14,19 @@ const PatientListPage = () => {
   const result = useGetPatientList();
   const data = result?.data ?? [];
   const isLoading = result?.isLoading ?? false;
-  console.log(data);
+
+  // 추후 삭제
+  console.log(data); // 데이터 출력
+  console.log(isLoading);
+
+  const handlePressAdㅇPatient = (test: string) => {
+    console.log(test);
+  };
+
+  useEffect(() => {
+    handlePressAdPatient(1);
+  }, []);
+
   return (
     <SafeAreaView style={styles.safeArea} edges={['left', 'right', 'top']}>
       <Header containerStyle={styles.headerContainer} title="환자 관리" />
