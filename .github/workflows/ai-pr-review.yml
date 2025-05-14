@@ -55,7 +55,7 @@ jobs:
 
       # 5. PR에 리뷰 코멘트 작성 (빈 응답이면 스킵)
       - name: Comment on PR
-        if: ${{ steps.review.outputs.review != '' }}
+        if: ${{ steps.review.outputs.review && steps.review.outputs.review != 'null' }}
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
@@ -63,6 +63,8 @@ jobs:
             ```
             ${{ steps.review.outputs.review }}
             ```
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
 
       # 6. PR 크기 초과 시 경고 코멘트 작성
       - name: Warn if PR is too large
