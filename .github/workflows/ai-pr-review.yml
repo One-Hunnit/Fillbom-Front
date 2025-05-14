@@ -16,7 +16,7 @@ jobs:
         run: |
           git fetch origin ${{ github.base_ref }}
           git diff origin/${{ github.base_ref }} > pr.diff
-          echo "::set-output name=diff::$(cat pr.diff)"
+          echo "diff=$(cat pr.diff)" >> $GITHUB_OUTPUT
 
       - name: Check PR size
         id: check_size
@@ -43,9 +43,10 @@ jobs:
               "messages": [{"role": "user", "content": "'"${FINAL_PROMPT//$'\n'/\\n}"'"}]
             }' | jq -r '.choices[0].message.content')
 
-          echo "::set-output name=review::$RESPONSE"
+          echo "review=$RESPONSE" >> $GITHUB_OUTPUT
 
       - name: Comment on PR
+        if: steps.review.outputs.review != ''
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
@@ -65,4 +66,4 @@ jobs:
             - 변경된 라인 수: \`${{ steps.check_size.outputs.changed_lines }}\`
 
             리뷰 효율을 위해 가능하면 기능 단위로 더 작은 PR로 나눠주세요 🙏" \
-                        --repo ${{ github.repository }}
+            --repo ${{ github.repository }}
