@@ -79,3 +79,8 @@ jobs:
 
             리뷰 효율을 위해 가능하면 기능 단위로 더 작은 PR로 나눠주세요 🙏" \
                         --repo ${{ github.repository }}
+
+      - name: Debug response
+        if: always()
+        run: |
+          echo "RESPONSE: ${{ steps.review.outputs.review }}"
