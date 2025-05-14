@@ -1,0 +1,87 @@
+language: ko-KR
+
+early_access: true
+enable_free_tier: true
+reviews:
+  profile: balanced
+  request_changes_workflow: true
+  high_level_summary: true
+  high_level_summary_placeholder: '@coderabbitai 요약'
+  auto_title_placeholder: '@coderabbitai'
+  review_status: true
+  collapse_walkthrough: false
+  path_filters:
+    - '!**/node_modules/**'
+    - '!**/.expo/**'
+    - '!**/.expo-shared/**'
+    - '!**/build/**'
+    - '!**/dist/**'
+    - '!**/*.lock'
+    - '!**/assets/**/*.png'
+    - '!**/assets/**/*.jpg'
+    - '!**/assets/**/*.jpeg'
+    - '!**/assets/**/*.gif'
+  path_instructions:
+    - path: '**/*.tsx'
+      instructions: >
+        React 컴포넌트 파일 검토 기준:
+        - 컴포넌트 명명 규칙: PascalCase 사용
+        - props 타입 정의 확인
+        - 불필요한 리렌더링 방지 (React.memo, useCallback, useMemo 적절히 사용)
+        - 컴포넌트 분리와 재사용성
+        - 스타일 구성 및 일관성
+    - path: '**/screens/**'
+      instructions: >
+        화면 컴포넌트 검토 기준:
+        - 비즈니스 로직과 UI 로직의 적절한 분리
+        - 상태 관리 패턴의 일관성
+        - 화면 전환 및 네비게이션 처리
+        - 사용자 입력 유효성 검사
+    - path: '**/hooks/**'
+      instructions: >
+        커스텀 훅 검토 기준:
+        - 이름이 'use'로 시작하는지 확인
+        - 단일 책임 원칙 준수 여부
+        - 의존성 배열 올바른 사용
+        - 적절한 타입 정의
+    - path: '**/api/**'
+      instructions: >
+        API 통신 코드 검토 기준:
+        - 에러 처리 구현
+        - API 호출 패턴의 일관성
+        - 타입 안전성 확보
+        - 응답 처리 및 캐싱 전략
+    - path: '**/navigation/**'
+      instructions: >
+        네비게이션 관련 코드 검토 기준:
+        - 라우팅 구조의 명확성
+        - 타입 안전한 파라미터 전달
+        - 네비게이션 상태 관리
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    ignore_title_keywords: []
+    drafts: false
+  tools:
+    eslint:
+      enabled: true
+    prettier:
+      enabled: true
+    typescript:
+      enabled: true
+    github-checks:
+      enabled: true
+      timeout_ms: 60000
+    biome:
+      enabled: false
+    gitleaks:
+      enabled: true
+    markdownlint:
+      enabled: true
+chat:
+  auto_reply: true
+knowledge_base:
+  learnings:
+    scope: auto
+  issues:
+    scope: auto
