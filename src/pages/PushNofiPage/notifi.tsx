@@ -1,19 +1,18 @@
 import { router } from 'expo-router';
-import { Pressable, ScrollView, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '@/components/Button';
 import Header from '@/components/Header';
 import { FILLBOM_COLOR } from '@/constants/color';
-import NoPatients from './components/NoPatients';
-import PatientCardAccepted from './components/PatientCardAccepted';
-import PatientCardPending from './components/PatientCardPending';
-import useGetPatientList from './hooks/useGetPatientList';
-import { patientCardStyles, styles } from './styles';
+import NoPatients from '../PatientListPage/components/NoPatients';
+import PatientCardAccepted from '../PatientListPage/components/PatientCardAccepted';
+import PatientCardPending from '../PatientListPage/components/PatientCardPending';
+import useGetPatientList from '../PatientListPage/hooks/useGetPatientList';
+import { patientCardStyles, styles } from '../PatientListPage/styles';
 
 const pushNofiPage = () => {
   const result = useGetPatientList();
   const data = result?.data;
-  const isLoading = result?.isLoading ?? false;
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['left', 'right', 'top']}>
@@ -54,4 +53,4 @@ const pushNofiPage = () => {
   );
 };
 
-export default PatientListPage;
+export default pushNofiPage;
