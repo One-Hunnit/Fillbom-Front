@@ -10,7 +10,7 @@ import PatientCardPending from './components/PatientCardPending';
 import useGetPatientList from './hooks/useGetPatientList';
 import { patientCardStyles, styles } from './styles';
 
-const PatientListPage = () => {
+const pushNofiPage = () => {
   const result = useGetPatientList();
   const data = result?.data;
   const isLoading = result?.isLoading ?? false;
