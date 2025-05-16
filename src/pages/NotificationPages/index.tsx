@@ -2,7 +2,28 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-const notifications = () => {
+const notificationList = () => {
+  const styles = {
+    container: {
+      padding: 10,
+      backgroundColor: '#fff',
+    },
+    text: {
+      fontSize: 16,
+      color: '#000',
+    }
+  };
+
+  const renderItem = (item) => {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>{item.title}</Text>
+        <Text style={styles.text}>{item.description}</Text>
+        <Text style={styles.text}>{item.createdAt}</Text>
+      </View>
+    );
+  };
+
   const mocks = [
     {
       id: 1,
@@ -37,14 +58,10 @@ const notifications = () => {
   return (
     <View>
       {mocks.map((notification, index) => (
-        <View key={index}>
-          <Text>{notification.title}</Text>
-          <Text>{notification.description}</Text>
-          <Text>{notification.createdAt}</Text>
-        </View>
+        <View key={index}>{renderItem(notification)}</View>
       ))}
     </View>
   );
 };
 
-export default notifications;
+export default notificationList;
